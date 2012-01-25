@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web", "MetalMastery\MetalMastery.Web.csproj", "{58E157B0-AC61-4829-BE7A-CD573FDCC841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Data", "MetalMastery.Data\MetalMastery.Data.csproj", "{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Core", "MetalMastery.Core\MetalMastery.Core.csproj", "{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58E157B0-AC61-4829-BE7A-CD573FDCC841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E157B0-AC61-4829-BE7A-CD573FDCC841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E157B0-AC61-4829-BE7A-CD573FDCC841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E157B0-AC61-4829-BE7A-CD573FDCC841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

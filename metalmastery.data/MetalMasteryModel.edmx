@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MetalMastery.Data.Entities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MetalMasteryDataEntitiesStoreContainer">
+          <EntitySet Name="Formats" EntityType="MetalMastery.Data.Entities.Store.Formats" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Materials" EntityType="MetalMastery.Data.Entities.Store.Materials" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Orders" EntityType="MetalMastery.Data.Entities.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="MetalMastery.Data.Entities.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateOrders" EntityType="MetalMastery.Data.Entities.Store.StateOrders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="States" EntityType="MetalMastery.Data.Entities.Store.States" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="MetalMastery.Data.Entities.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Things" EntityType="MetalMastery.Data.Entities.Store.Things" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ThingTag" EntityType="MetalMastery.Data.Entities.Store.ThingTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="MetalMastery.Data.Entities.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_OrderStateOrder" Association="MetalMastery.Data.Entities.Store.FK_OrderStateOrder">
+            <End Role="StateOrders" EntitySet="StateOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderThing" Association="MetalMastery.Data.Entities.Store.FK_OrderThing">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingFormat" Association="MetalMastery.Data.Entities.Store.FK_ThingFormat">
+            <End Role="Formats" EntitySet="Formats" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingMaterial" Association="MetalMastery.Data.Entities.Store.FK_ThingMaterial">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingState" Association="MetalMastery.Data.Entities.Store.FK_ThingState">
+            <End Role="States" EntitySet="States" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingTag_Tag" Association="MetalMastery.Data.Entities.Store.FK_ThingTag_Tag">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ThingTag" EntitySet="ThingTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingTag_Thing" Association="MetalMastery.Data.Entities.Store.FK_ThingTag_Thing">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="ThingTag" EntitySet="ThingTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder" Association="MetalMastery.Data.Entities.Store.FK_UserOrder">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole" Association="MetalMastery.Data.Entities.Store.FK_UserRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Formats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StateOrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ThingId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="StateOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Things">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShowOnHome" Type="bit" Nullable="false" />
+          <Property Name="ShowForAll" Type="bit" Nullable="false" />
+          <Property Name="FormatId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Image1" Type="varbinary(max)" />
+          <Property Name="Image2" Type="varbinary(max)" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ImageRes" Type="varbinary(max)" Nullable="false" />
+          <Property Name="MaterialId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StateId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingTag">
+          <Key>
+            <PropertyRef Name="ThingId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="ThingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TagId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderStateOrder">
+          <End Role="StateOrders" Type="MetalMastery.Data.Entities.Store.StateOrders" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="StateOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderThing">
+          <End Role="Things" Type="MetalMastery.Data.Entities.Store.Things" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingFormat">
+          <End Role="Formats" Type="MetalMastery.Data.Entities.Store.Formats" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Store.Things" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingMaterial">
+          <End Role="Materials" Type="MetalMastery.Data.Entities.Store.Materials" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Store.Things" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingState">
+          <End Role="States" Type="MetalMastery.Data.Entities.Store.States" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Store.Things" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingTag_Tag">
+          <End Role="Tags" Type="MetalMastery.Data.Entities.Store.Tags" Multiplicity="1" />
+          <End Role="ThingTag" Type="MetalMastery.Data.Entities.Store.ThingTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingTag_Thing">
+          <End Role="Things" Type="MetalMastery.Data.Entities.Store.Things" Multiplicity="1" />
+          <End Role="ThingTag" Type="MetalMastery.Data.Entities.Store.ThingTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingTag">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder">
+          <End Role="Users" Type="MetalMastery.Data.Entities.Store.Users" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole">
+          <End Role="Roles" Type="MetalMastery.Data.Entities.Store.Roles" Multiplicity="1" />
+          <End Role="Users" Type="MetalMastery.Data.Entities.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MetalMastery.Data.Entities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MmDataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Formats" EntityType="MetalMastery.Data.Entities.Format" />
+          <EntitySet Name="Materials" EntityType="MetalMastery.Data.Entities.Material" />
+          <EntitySet Name="Orders" EntityType="MetalMastery.Data.Entities.Order" />
+          <EntitySet Name="Roles" EntityType="MetalMastery.Data.Entities.Role" />
+          <EntitySet Name="StateOrders" EntityType="MetalMastery.Data.Entities.StateOrder" />
+          <EntitySet Name="States" EntityType="MetalMastery.Data.Entities.State" />
+          <EntitySet Name="Tags" EntityType="MetalMastery.Data.Entities.Tag" />
+          <EntitySet Name="Things" EntityType="MetalMastery.Data.Entities.Thing" />
+          <EntitySet Name="Users" EntityType="MetalMastery.Data.Entities.User" />
+          <AssociationSet Name="FK_ThingFormat" Association="MetalMastery.Data.Entities.FK_ThingFormat">
+            <End Role="Formats" EntitySet="Formats" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingMaterial" Association="MetalMastery.Data.Entities.FK_ThingMaterial">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStateOrder" Association="MetalMastery.Data.Entities.FK_OrderStateOrder">
+            <End Role="StateOrders" EntitySet="StateOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderThing" Association="MetalMastery.Data.Entities.FK_OrderThing">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder" Association="MetalMastery.Data.Entities.FK_UserOrder">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole" Association="MetalMastery.Data.Entities.FK_UserRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingState" Association="MetalMastery.Data.Entities.FK_ThingState">
+            <End Role="States" EntitySet="States" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="ThingTag" Association="MetalMastery.Data.Entities.ThingTag">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Things" Relationship="MetalMastery.Data.Entities.FK_ThingFormat" FromRole="Formats" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Things" Relationship="MetalMastery.Data.Entities.FK_ThingMaterial" FromRole="Materials" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="StateOrderId" Type="Guid" Nullable="false" />
+          <Property Name="ThingId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="StateOrders" Relationship="MetalMastery.Data.Entities.FK_OrderStateOrder" FromRole="Orders" ToRole="StateOrders" />
+          <NavigationProperty Name="Things" Relationship="MetalMastery.Data.Entities.FK_OrderThing" FromRole="Orders" ToRole="Things" />
+          <NavigationProperty Name="Users" Relationship="MetalMastery.Data.Entities.FK_UserOrder" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="MetalMastery.Data.Entities.FK_UserRole" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="StateOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Orders" Relationship="MetalMastery.Data.Entities.FK_OrderStateOrder" FromRole="StateOrders" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Things" Relationship="MetalMastery.Data.Entities.FK_ThingState" FromRole="States" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Things" Relationship="MetalMastery.Data.Entities.ThingTag" FromRole="Tags" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="Thing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ShowOnHome" Type="Boolean" Nullable="false" />
+          <Property Name="ShowForAll" Type="Boolean" Nullable="false" />
+          <Property Name="FormatId" Type="Guid" Nullable="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
+          <Property Name="ImageRes" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="MaterialId" Type="Guid" Nullable="false" />
+          <Property Name="StateId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Formats" Relationship="MetalMastery.Data.Entities.FK_ThingFormat" FromRole="Things" ToRole="Formats" />
+          <NavigationProperty Name="Materials" Relationship="MetalMastery.Data.Entities.FK_ThingMaterial" FromRole="Things" ToRole="Materials" />
+          <NavigationProperty Name="Orders" Relationship="MetalMastery.Data.Entities.FK_OrderThing" FromRole="Things" ToRole="Orders" />
+          <NavigationProperty Name="States" Relationship="MetalMastery.Data.Entities.FK_ThingState" FromRole="Things" ToRole="States" />
+          <NavigationProperty Name="Tags" Relationship="MetalMastery.Data.Entities.ThingTag" FromRole="Things" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="MetalMastery.Data.Entities.FK_UserOrder" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Roles" Relationship="MetalMastery.Data.Entities.FK_UserRole" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_ThingFormat">
+          <End Role="Formats" Type="MetalMastery.Data.Entities.Format" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Thing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingMaterial">
+          <End Role="Materials" Type="MetalMastery.Data.Entities.Material" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Thing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStateOrder">
+          <End Role="StateOrders" Type="MetalMastery.Data.Entities.StateOrder" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="StateOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderThing">
+          <End Role="Things" Type="MetalMastery.Data.Entities.Thing" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder">
+          <End Role="Users" Type="MetalMastery.Data.Entities.User" Multiplicity="1" />
+          <End Role="Orders" Type="MetalMastery.Data.Entities.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole">
+          <End Role="Roles" Type="MetalMastery.Data.Entities.Role" Multiplicity="1" />
+          <End Role="Users" Type="MetalMastery.Data.Entities.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingState">
+          <End Role="States" Type="MetalMastery.Data.Entities.State" Multiplicity="1" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Thing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ThingTag">
+          <End Role="Tags" Type="MetalMastery.Data.Entities.Tag" Multiplicity="*" />
+          <End Role="Things" Type="MetalMastery.Data.Entities.Thing" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MetalMasteryDataEntitiesStoreContainer" CdmEntityContainer="MmDataContext">
+          <EntitySetMapping Name="Formats"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Format"><MappingFragment StoreEntitySet="Formats">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Materials"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Material"><MappingFragment StoreEntitySet="Materials">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Orders"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Order"><MappingFragment StoreEntitySet="Orders">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="StateOrderId" ColumnName="StateOrderId" />
+            <ScalarProperty Name="ThingId" ColumnName="ThingId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Roles"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Role"><MappingFragment StoreEntitySet="Roles">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StateOrders"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.StateOrder"><MappingFragment StoreEntitySet="StateOrders">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="States"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.State"><MappingFragment StoreEntitySet="States">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tags"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Tag"><MappingFragment StoreEntitySet="Tags">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Things"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.Thing"><MappingFragment StoreEntitySet="Things">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+            <ScalarProperty Name="ShowForAll" ColumnName="ShowForAll" />
+            <ScalarProperty Name="FormatId" ColumnName="FormatId" />
+            <ScalarProperty Name="Rating" ColumnName="Rating" />
+            <ScalarProperty Name="Image1" ColumnName="Image1" />
+            <ScalarProperty Name="Image2" ColumnName="Image2" />
+            <ScalarProperty Name="Comment" ColumnName="Comment" />
+            <ScalarProperty Name="ImageRes" ColumnName="ImageRes" />
+            <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+            <ScalarProperty Name="StateId" ColumnName="StateId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="MetalMastery.Data.Entities.User"><MappingFragment StoreEntitySet="Users">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="ThingTag" TypeName="MetalMastery.Data.Entities.ThingTag" StoreEntitySet="ThingTag">
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="Id" ColumnName="TagId" />
+            </EndProperty>
+            <EndProperty Name="Things">
+              <ScalarProperty Name="Id" ColumnName="ThingId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MetalMasteryModel">
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Format" Width="1.5" PointX="0.75" PointY="1.5" Height="1.5956835937500005" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Material" Width="1.5" PointX="0.75" PointY="3.25" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Order" Width="1.5" PointX="6" PointY="1.5" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Role" Width="1.5" PointX="8.125" PointY="5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.StateOrder" Width="1.5" PointX="6.5" PointY="5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.State" Width="1.5" PointX="0.75" PointY="5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Tag" Width="1.5" PointX="4.75" PointY="5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.Thing" Width="1.5" PointX="2.75" PointY="1.5" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetalMastery.Data.Entities.User" Width="1.5" PointX="8.125" PointY="1.5" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_ThingFormat" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.2978417968750002" />
+          <ConnectorPoint PointX="2.75" PointY="2.2978417968750002" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_ThingMaterial" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.047841796875" />
+          <ConnectorPoint PointX="2.75" PointY="4.047841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_OrderStateOrder" ManuallyRouted="false">
+          <ConnectorPoint PointX="7" PointY="5" />
+          <ConnectorPoint PointX="7" PointY="4.0571907552083335" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_OrderThing" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.25" PointY="2.7785953776041667" />
+          <ConnectorPoint PointX="6" PointY="2.7785953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_UserOrder" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.125" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_UserRole" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.875" PointY="5" />
+          <ConnectorPoint PointX="8.875" PointY="3.6725878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.FK_ThingState" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.4901025390625" />
+          <ConnectorPoint PointX="2.75" PointY="5.4901025390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="MetalMastery.Data.Entities.ThingTag" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.75" PointY="5.4901025390625" />
+          <ConnectorPoint PointX="4.25" PointY="5.4901025390625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

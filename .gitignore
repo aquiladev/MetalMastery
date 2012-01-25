@@ -1,0 +1,11 @@
+obj
+bin
+_ReSharper.*
+*.user
+*.resharper
+*.suo
+*.cache
+*/Release
+*/Debug
+*~
+*.dotcover
