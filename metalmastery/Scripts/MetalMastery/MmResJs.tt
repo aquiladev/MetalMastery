@@ -1,0 +1,22 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ output extension=".js"#>
+<#@ assembly name="System.Windows.Forms" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Collections" #>
+<#@ template hostspecific="true" #>
+if (!window.MM)
+	MM={};
+MM.Res={
+<#			
+			var resources = new System.Resources.ResXResourceReader(Host.ResolvePath(@"..\..\App_LocalResources\MmResources.resx"));
+			foreach (DictionaryEntry resource in resources)
+			{
+#>
+	"<#=resource.Key.ToString()#>": "<#=System.Net.WebUtility.HtmlEncode(resource.Value.ToString()).Replace("\"", "'").Replace("\r\n", "")#>",
+<#
+			}
+#>
+	get: function(param) {
+		return this[param] || param;
+	}
+};
