@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Data", "MetalM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Core", "MetalMastery.Core\MetalMastery.Core.csproj", "{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Services", "MetalMastery.Services\MetalMastery.Services.csproj", "{8D2531E3-99C1-4494-B036-F05DDB7519C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Services.Tests", "MetalMastery.Services.Tests\MetalMastery.Services.Tests.csproj", "{45502CD1-9B3F-4102-A6CA-BDF317652B4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web.Tests", "MetalMastery.Web.Tests\MetalMastery.Web.Tests.csproj", "{050085A7-A117-480F-AC6D-9EC1C491F227}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,8 +33,24 @@ Global
 		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2531E3-99C1-4494-B036-F05DDB7519C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2531E3-99C1-4494-B036-F05DDB7519C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2531E3-99C1-4494-B036-F05DDB7519C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2531E3-99C1-4494-B036-F05DDB7519C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45502CD1-9B3F-4102-A6CA-BDF317652B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45502CD1-9B3F-4102-A6CA-BDF317652B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45502CD1-9B3F-4102-A6CA-BDF317652B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45502CD1-9B3F-4102-A6CA-BDF317652B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{050085A7-A117-480F-AC6D-9EC1C491F227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050085A7-A117-480F-AC6D-9EC1C491F227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050085A7-A117-480F-AC6D-9EC1C491F227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050085A7-A117-480F-AC6D-9EC1C491F227}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45502CD1-9B3F-4102-A6CA-BDF317652B4D} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
+		{050085A7-A117-480F-AC6D-9EC1C491F227} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
 	EndGlobalSection
 EndGlobal

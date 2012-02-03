@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Objects;
 using System.Linq;
 using MetalMastery.Core.Data;
@@ -7,18 +8,25 @@ namespace MetalMastery.Data
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        private const string ConnectionStringName = "MmDataContext";
+
         private ObjectContext _dataContext;
         private IObjectSet<T> _entity;
 
-        public Repository(ObjectContext context)
+        public Repository()
         {
-            _dataContext = context;
+            var connectionString =
+            ConfigurationManager
+                .ConnectionStrings[ConnectionStringName]
+                .ConnectionString;
+
+            _dataContext = new ObjectContext(connectionString); ;
             _entity = _dataContext.CreateObjectSet<T>();
         }
 
         public T GetById(int id)
         {
-            throw new System.NotImplementedException(); 
+            throw new System.NotImplementedException();
         }
 
         public void Insert(T entity)

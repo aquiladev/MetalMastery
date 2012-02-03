@@ -4,6 +4,6 @@ namespace MetalMastery.Core.Infrastructure
 {
     public interface IDependencyRegistrar
     {
-        void Register(ContainerBuilder builder);
+        void Register(ContainerBuilder builder, ITypeFinder typeFinder);
     }
 }

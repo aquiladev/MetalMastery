@@ -18,14 +18,14 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingFormat", "Formats", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.Format), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Thing), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingMaterial", "Materials", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.Material), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Thing), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_OrderStateOrder", "StateOrders", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.StateOrder), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Order), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_OrderThing", "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.Thing), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Order), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_UserOrder", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.User), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Order), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_UserRole", "Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.Role), "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.User), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingState", "States", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.State), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Thing), true)]
-[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "ThingTag", "Tags", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Tag), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.Thing))]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingFormat", "Formats", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.FormatSet), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.ThingSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingMaterial", "Materials", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.MaterialSet), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.ThingSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_OrderStateOrder", "StateOrders", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.StateOrderSet), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.OrderSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_OrderThing", "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.ThingSet), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.OrderSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_UserOrder", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.UserSet), "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.OrderSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_UserRole", "Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.RoleSet), "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.UserSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "FK_ThingState", "States", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MetalMastery.Data.StateSet), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.ThingSet), true)]
+[assembly: EdmRelationshipAttribute("MetalMastery.Data.Entities", "ThingTag", "Tags", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.TagSet), "Things", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MetalMastery.Data.ThingSet))]
 
 #endregion
 
@@ -80,220 +80,220 @@ namespace MetalMastery.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Format> Formats
+        public ObjectSet<FormatSet> Format
         {
             get
             {
-                if ((_Formats == null))
+                if ((_Format == null))
                 {
-                    _Formats = base.CreateObjectSet<Format>("Formats");
+                    _Format = base.CreateObjectSet<FormatSet>("Format");
                 }
-                return _Formats;
+                return _Format;
             }
         }
-        private ObjectSet<Format> _Formats;
+        private ObjectSet<FormatSet> _Format;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Material> Materials
+        public ObjectSet<MaterialSet> Material
         {
             get
             {
-                if ((_Materials == null))
+                if ((_Material == null))
                 {
-                    _Materials = base.CreateObjectSet<Material>("Materials");
+                    _Material = base.CreateObjectSet<MaterialSet>("Material");
                 }
-                return _Materials;
+                return _Material;
             }
         }
-        private ObjectSet<Material> _Materials;
+        private ObjectSet<MaterialSet> _Material;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Order> Orders
+        public ObjectSet<OrderSet> Order
         {
             get
             {
-                if ((_Orders == null))
+                if ((_Order == null))
                 {
-                    _Orders = base.CreateObjectSet<Order>("Orders");
+                    _Order = base.CreateObjectSet<OrderSet>("Order");
                 }
-                return _Orders;
+                return _Order;
             }
         }
-        private ObjectSet<Order> _Orders;
+        private ObjectSet<OrderSet> _Order;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Role> Roles
+        public ObjectSet<RoleSet> Role
         {
             get
             {
-                if ((_Roles == null))
+                if ((_Role == null))
                 {
-                    _Roles = base.CreateObjectSet<Role>("Roles");
+                    _Role = base.CreateObjectSet<RoleSet>("Role");
                 }
-                return _Roles;
+                return _Role;
             }
         }
-        private ObjectSet<Role> _Roles;
+        private ObjectSet<RoleSet> _Role;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<StateOrder> StateOrders
+        public ObjectSet<StateOrderSet> StateOrder
         {
             get
             {
-                if ((_StateOrders == null))
+                if ((_StateOrder == null))
                 {
-                    _StateOrders = base.CreateObjectSet<StateOrder>("StateOrders");
+                    _StateOrder = base.CreateObjectSet<StateOrderSet>("StateOrder");
                 }
-                return _StateOrders;
+                return _StateOrder;
             }
         }
-        private ObjectSet<StateOrder> _StateOrders;
+        private ObjectSet<StateOrderSet> _StateOrder;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<State> States
+        public ObjectSet<StateSet> State
         {
             get
             {
-                if ((_States == null))
+                if ((_State == null))
                 {
-                    _States = base.CreateObjectSet<State>("States");
+                    _State = base.CreateObjectSet<StateSet>("State");
                 }
-                return _States;
+                return _State;
             }
         }
-        private ObjectSet<State> _States;
+        private ObjectSet<StateSet> _State;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Tag> Tags
+        public ObjectSet<TagSet> Tag
         {
             get
             {
-                if ((_Tags == null))
+                if ((_Tag == null))
                 {
-                    _Tags = base.CreateObjectSet<Tag>("Tags");
+                    _Tag = base.CreateObjectSet<TagSet>("Tag");
                 }
-                return _Tags;
+                return _Tag;
             }
         }
-        private ObjectSet<Tag> _Tags;
+        private ObjectSet<TagSet> _Tag;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Thing> Things
+        public ObjectSet<ThingSet> Thing
         {
             get
             {
-                if ((_Things == null))
+                if ((_Thing == null))
                 {
-                    _Things = base.CreateObjectSet<Thing>("Things");
+                    _Thing = base.CreateObjectSet<ThingSet>("Thing");
                 }
-                return _Things;
+                return _Thing;
             }
         }
-        private ObjectSet<Thing> _Things;
+        private ObjectSet<ThingSet> _Thing;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<User> Users
+        public ObjectSet<UserSet> User
         {
             get
             {
-                if ((_Users == null))
+                if ((_User == null))
                 {
-                    _Users = base.CreateObjectSet<User>("Users");
+                    _User = base.CreateObjectSet<UserSet>("User");
                 }
-                return _Users;
+                return _User;
             }
         }
-        private ObjectSet<User> _Users;
+        private ObjectSet<UserSet> _User;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Formats EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Format EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToFormats(Format format)
+        public void AddToFormat(FormatSet formatSet)
         {
-            base.AddObject("Formats", format);
+            base.AddObject("Format", formatSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Materials EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Material EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToMaterials(Material material)
+        public void AddToMaterial(MaterialSet materialSet)
         {
-            base.AddObject("Materials", material);
+            base.AddObject("Material", materialSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Orders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Order EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToOrders(Order order)
+        public void AddToOrder(OrderSet orderSet)
         {
-            base.AddObject("Orders", order);
+            base.AddObject("Order", orderSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Role EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToRoles(Role role)
+        public void AddToRole(RoleSet roleSet)
         {
-            base.AddObject("Roles", role);
+            base.AddObject("Role", roleSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the StateOrders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the StateOrder EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToStateOrders(StateOrder stateOrder)
+        public void AddToStateOrder(StateOrderSet stateOrderSet)
         {
-            base.AddObject("StateOrders", stateOrder);
+            base.AddObject("StateOrder", stateOrderSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the States EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the State EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToStates(State state)
+        public void AddToState(StateSet stateSet)
         {
-            base.AddObject("States", state);
+            base.AddObject("State", stateSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Tag EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToTags(Tag tag)
+        public void AddToTag(TagSet tagSet)
         {
-            base.AddObject("Tags", tag);
+            base.AddObject("Tag", tagSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Things EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Thing EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToThings(Thing thing)
+        public void AddToThing(ThingSet thingSet)
         {
-            base.AddObject("Things", thing);
+            base.AddObject("Thing", thingSet);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the User EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsers(User user)
+        public void AddToUser(UserSet userSet)
         {
-            base.AddObject("Users", user);
+            base.AddObject("User", userSet);
         }
 
         #endregion
@@ -307,24 +307,24 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Format")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="FormatSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Format : EntityObject
+    public partial class FormatSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Format object.
+        /// Create a new FormatSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Format CreateFormat(global::System.Guid id, global::System.String name)
+        public static FormatSet CreateFormatSet(global::System.Guid id, global::System.String name)
         {
-            Format format = new Format();
-            format.Id = id;
-            format.Name = name;
-            return format;
+            FormatSet formatSet = new FormatSet();
+            formatSet.Id = id;
+            formatSet.Name = name;
+            return formatSet;
         }
 
         #endregion
@@ -392,17 +392,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingFormat", "Things")]
-        public EntityCollection<Thing> Things
+        public EntityCollection<ThingSet> Things
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingFormat", "Things");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Things");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingFormat", "Things", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Things", value);
                 }
             }
         }
@@ -413,24 +413,24 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Material")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="MaterialSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Material : EntityObject
+    public partial class MaterialSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Material object.
+        /// Create a new MaterialSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Material CreateMaterial(global::System.Guid id, global::System.String name)
+        public static MaterialSet CreateMaterialSet(global::System.Guid id, global::System.String name)
         {
-            Material material = new Material();
-            material.Id = id;
-            material.Name = name;
-            return material;
+            MaterialSet materialSet = new MaterialSet();
+            materialSet.Id = id;
+            materialSet.Name = name;
+            return materialSet;
         }
 
         #endregion
@@ -498,17 +498,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingMaterial", "Things")]
-        public EntityCollection<Thing> Things
+        public EntityCollection<ThingSet> Things
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingMaterial", "Things");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Things");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingMaterial", "Things", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Things", value);
                 }
             }
         }
@@ -519,30 +519,30 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Order")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="OrderSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Order : EntityObject
+    public partial class OrderSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Order object.
+        /// Create a new OrderSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="createDate">Initial value of the CreateDate property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="stateOrderId">Initial value of the StateOrderId property.</param>
         /// <param name="thingId">Initial value of the ThingId property.</param>
-        public static Order CreateOrder(global::System.Guid id, global::System.DateTime createDate, global::System.Guid userId, global::System.Guid stateOrderId, global::System.Guid thingId)
+        public static OrderSet CreateOrderSet(global::System.Guid id, global::System.DateTime createDate, global::System.Guid userId, global::System.Guid stateOrderId, global::System.Guid thingId)
         {
-            Order order = new Order();
-            order.Id = id;
-            order.CreateDate = createDate;
-            order.UserId = userId;
-            order.StateOrderId = stateOrderId;
-            order.ThingId = thingId;
-            return order;
+            OrderSet orderSet = new OrderSet();
+            orderSet.Id = id;
+            orderSet.CreateDate = createDate;
+            orderSet.UserId = userId;
+            orderSet.StateOrderId = stateOrderId;
+            orderSet.ThingId = thingId;
+            return orderSet;
         }
 
         #endregion
@@ -682,15 +682,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_OrderStateOrder", "StateOrders")]
-        public StateOrder StateOrders
+        public StateOrderSet StateOrders
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrder>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrder>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders").Value = value;
             }
         }
         /// <summary>
@@ -698,17 +698,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<StateOrder> StateOrdersReference
+        public EntityReference<StateOrderSet> StateOrdersReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrder>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateOrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StateOrder>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StateOrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "StateOrders", value);
                 }
             }
         }
@@ -720,15 +720,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_OrderThing", "Things")]
-        public Thing Things
+        public ThingSet Things
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Thing>("MetalMastery.Data.Entities.FK_OrderThing", "Things").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ThingSet>("MetalMastery.Data.Entities.FK_OrderThing", "Things").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Thing>("MetalMastery.Data.Entities.FK_OrderThing", "Things").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ThingSet>("MetalMastery.Data.Entities.FK_OrderThing", "Things").Value = value;
             }
         }
         /// <summary>
@@ -736,17 +736,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Thing> ThingsReference
+        public EntityReference<ThingSet> ThingsReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Thing>("MetalMastery.Data.Entities.FK_OrderThing", "Things");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ThingSet>("MetalMastery.Data.Entities.FK_OrderThing", "Things");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Thing>("MetalMastery.Data.Entities.FK_OrderThing", "Things", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ThingSet>("MetalMastery.Data.Entities.FK_OrderThing", "Things", value);
                 }
             }
         }
@@ -758,15 +758,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_UserOrder", "Users")]
-        public User Users
+        public UserSet Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("MetalMastery.Data.Entities.FK_UserOrder", "Users").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserSet>("MetalMastery.Data.Entities.FK_UserOrder", "Users").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("MetalMastery.Data.Entities.FK_UserOrder", "Users").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserSet>("MetalMastery.Data.Entities.FK_UserOrder", "Users").Value = value;
             }
         }
         /// <summary>
@@ -774,17 +774,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<User> UsersReference
+        public EntityReference<UserSet> UsersReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("MetalMastery.Data.Entities.FK_UserOrder", "Users");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserSet>("MetalMastery.Data.Entities.FK_UserOrder", "Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("MetalMastery.Data.Entities.FK_UserOrder", "Users", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserSet>("MetalMastery.Data.Entities.FK_UserOrder", "Users", value);
                 }
             }
         }
@@ -795,24 +795,24 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Role")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="RoleSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Role : EntityObject
+    public partial class RoleSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Role object.
+        /// Create a new RoleSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Role CreateRole(global::System.Guid id, global::System.String name)
+        public static RoleSet CreateRoleSet(global::System.Guid id, global::System.String name)
         {
-            Role role = new Role();
-            role.Id = id;
-            role.Name = name;
-            return role;
+            RoleSet roleSet = new RoleSet();
+            roleSet.Id = id;
+            roleSet.Name = name;
+            return roleSet;
         }
 
         #endregion
@@ -880,17 +880,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_UserRole", "Users")]
-        public EntityCollection<User> Users
+        public EntityCollection<UserSet> Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("MetalMastery.Data.Entities.FK_UserRole", "Users");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserSet>("MetalMastery.Data.Entities.FK_UserRole", "Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("MetalMastery.Data.Entities.FK_UserRole", "Users", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserSet>("MetalMastery.Data.Entities.FK_UserRole", "Users", value);
                 }
             }
         }
@@ -901,130 +901,24 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="State")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="StateOrderSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class State : EntityObject
+    public partial class StateOrderSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new State object.
+        /// Create a new StateOrderSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static State CreateState(global::System.Guid id, global::System.String name)
+        public static StateOrderSet CreateStateOrderSet(global::System.Guid id, global::System.String name)
         {
-            State state = new State();
-            state.Id = id;
-            state.Name = name;
-            return state;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Guid _Id;
-        partial void OnIdChanging(global::System.Guid value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingState", "Things")]
-        public EntityCollection<Thing> Things
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingState", "Things");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Thing>("MetalMastery.Data.Entities.FK_ThingState", "Things", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="StateOrder")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class StateOrder : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new StateOrder object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static StateOrder CreateStateOrder(global::System.Guid id, global::System.String name)
-        {
-            StateOrder stateOrder = new StateOrder();
-            stateOrder.Id = id;
-            stateOrder.Name = name;
-            return stateOrder;
+            StateOrderSet stateOrderSet = new StateOrderSet();
+            stateOrderSet.Id = id;
+            stateOrderSet.Name = name;
+            return stateOrderSet;
         }
 
         #endregion
@@ -1092,17 +986,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_OrderStateOrder", "Orders")]
-        public EntityCollection<Order> Orders
+        public EntityCollection<OrderSet> Orders
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Order>("MetalMastery.Data.Entities.FK_OrderStateOrder", "Orders");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "Orders");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Order>("MetalMastery.Data.Entities.FK_OrderStateOrder", "Orders", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_OrderStateOrder", "Orders", value);
                 }
             }
         }
@@ -1113,24 +1007,130 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Tag")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="StateSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Tag : EntityObject
+    public partial class StateSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Tag object.
+        /// Create a new StateSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Tag CreateTag(global::System.Guid id, global::System.String name)
+        public static StateSet CreateStateSet(global::System.Guid id, global::System.String name)
         {
-            Tag tag = new Tag();
-            tag.Id = id;
-            tag.Name = name;
-            return tag;
+            StateSet stateSet = new StateSet();
+            stateSet.Id = id;
+            stateSet.Name = name;
+            return stateSet;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingState", "Things")]
+        public EntityCollection<ThingSet> Things
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingState", "Things");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ThingSet>("MetalMastery.Data.Entities.FK_ThingState", "Things", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="TagSet")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TagSet : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TagSet object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static TagSet CreateTagSet(global::System.Guid id, global::System.String name)
+        {
+            TagSet tagSet = new TagSet();
+            tagSet.Id = id;
+            tagSet.Name = name;
+            return tagSet;
         }
 
         #endregion
@@ -1198,17 +1198,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "ThingTag", "Things")]
-        public EntityCollection<Thing> Things
+        public EntityCollection<ThingSet> Things
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Thing>("MetalMastery.Data.Entities.ThingTag", "Things");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ThingSet>("MetalMastery.Data.Entities.ThingTag", "Things");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Thing>("MetalMastery.Data.Entities.ThingTag", "Things", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ThingSet>("MetalMastery.Data.Entities.ThingTag", "Things", value);
                 }
             }
         }
@@ -1219,15 +1219,15 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="Thing")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="ThingSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Thing : EntityObject
+    public partial class ThingSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Thing object.
+        /// Create a new ThingSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
@@ -1238,19 +1238,19 @@ namespace MetalMastery.Data
         /// <param name="imageRes">Initial value of the ImageRes property.</param>
         /// <param name="materialId">Initial value of the MaterialId property.</param>
         /// <param name="stateId">Initial value of the StateId property.</param>
-        public static Thing CreateThing(global::System.Guid id, global::System.String name, global::System.String description, global::System.Boolean showOnHome, global::System.Boolean showForAll, global::System.Guid formatId, global::System.Byte[] imageRes, global::System.Guid materialId, global::System.Guid stateId)
+        public static ThingSet CreateThingSet(global::System.Guid id, global::System.String name, global::System.String description, global::System.Boolean showOnHome, global::System.Boolean showForAll, global::System.Guid formatId, global::System.Byte[] imageRes, global::System.Guid materialId, global::System.Guid stateId)
         {
-            Thing thing = new Thing();
-            thing.Id = id;
-            thing.Name = name;
-            thing.Description = description;
-            thing.ShowOnHome = showOnHome;
-            thing.ShowForAll = showForAll;
-            thing.FormatId = formatId;
-            thing.ImageRes = imageRes;
-            thing.MaterialId = materialId;
-            thing.StateId = stateId;
-            return thing;
+            ThingSet thingSet = new ThingSet();
+            thingSet.Id = id;
+            thingSet.Name = name;
+            thingSet.Description = description;
+            thingSet.ShowOnHome = showOnHome;
+            thingSet.ShowForAll = showForAll;
+            thingSet.FormatId = formatId;
+            thingSet.ImageRes = imageRes;
+            thingSet.MaterialId = materialId;
+            thingSet.StateId = stateId;
+            return thingSet;
         }
 
         #endregion
@@ -1582,15 +1582,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingFormat", "Formats")]
-        public Format Formats
+        public FormatSet Formats
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Format>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormatSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Format>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormatSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats").Value = value;
             }
         }
         /// <summary>
@@ -1598,17 +1598,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Format> FormatsReference
+        public EntityReference<FormatSet> FormatsReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Format>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormatSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Format>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FormatSet>("MetalMastery.Data.Entities.FK_ThingFormat", "Formats", value);
                 }
             }
         }
@@ -1620,15 +1620,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingMaterial", "Materials")]
-        public Material Materials
+        public MaterialSet Materials
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Material>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MaterialSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Material>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MaterialSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials").Value = value;
             }
         }
         /// <summary>
@@ -1636,17 +1636,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Material> MaterialsReference
+        public EntityReference<MaterialSet> MaterialsReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Material>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MaterialSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Material>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MaterialSet>("MetalMastery.Data.Entities.FK_ThingMaterial", "Materials", value);
                 }
             }
         }
@@ -1658,17 +1658,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_OrderThing", "Orders")]
-        public EntityCollection<Order> Orders
+        public EntityCollection<OrderSet> Orders
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Order>("MetalMastery.Data.Entities.FK_OrderThing", "Orders");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_OrderThing", "Orders");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Order>("MetalMastery.Data.Entities.FK_OrderThing", "Orders", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_OrderThing", "Orders", value);
                 }
             }
         }
@@ -1680,15 +1680,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_ThingState", "States")]
-        public State States
+        public StateSet States
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("MetalMastery.Data.Entities.FK_ThingState", "States").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateSet>("MetalMastery.Data.Entities.FK_ThingState", "States").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("MetalMastery.Data.Entities.FK_ThingState", "States").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateSet>("MetalMastery.Data.Entities.FK_ThingState", "States").Value = value;
             }
         }
         /// <summary>
@@ -1696,17 +1696,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<State> StatesReference
+        public EntityReference<StateSet> StatesReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("MetalMastery.Data.Entities.FK_ThingState", "States");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StateSet>("MetalMastery.Data.Entities.FK_ThingState", "States");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<State>("MetalMastery.Data.Entities.FK_ThingState", "States", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StateSet>("MetalMastery.Data.Entities.FK_ThingState", "States", value);
                 }
             }
         }
@@ -1718,17 +1718,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "ThingTag", "Tags")]
-        public EntityCollection<Tag> Tags
+        public EntityCollection<TagSet> Tags
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Tag>("MetalMastery.Data.Entities.ThingTag", "Tags");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TagSet>("MetalMastery.Data.Entities.ThingTag", "Tags");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Tag>("MetalMastery.Data.Entities.ThingTag", "Tags", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TagSet>("MetalMastery.Data.Entities.ThingTag", "Tags", value);
                 }
             }
         }
@@ -1739,28 +1739,28 @@ namespace MetalMastery.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="User")]
+    [EdmEntityTypeAttribute(NamespaceName="MetalMastery.Data.Entities", Name="UserSet")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class User : EntityObject
+    public partial class UserSet : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new User object.
+        /// Create a new UserSet object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="roleId">Initial value of the RoleId property.</param>
-        public static User CreateUser(global::System.Guid id, global::System.String email, global::System.String password, global::System.Guid roleId)
+        public static UserSet CreateUserSet(global::System.Guid id, global::System.String email, global::System.String password, global::System.Guid roleId)
         {
-            User user = new User();
-            user.Id = id;
-            user.Email = email;
-            user.Password = password;
-            user.RoleId = roleId;
-            return user;
+            UserSet userSet = new UserSet();
+            userSet.Id = id;
+            userSet.Email = email;
+            userSet.Password = password;
+            userSet.RoleId = roleId;
+            return userSet;
         }
 
         #endregion
@@ -1876,17 +1876,17 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_UserOrder", "Orders")]
-        public EntityCollection<Order> Orders
+        public EntityCollection<OrderSet> Orders
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Order>("MetalMastery.Data.Entities.FK_UserOrder", "Orders");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_UserOrder", "Orders");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Order>("MetalMastery.Data.Entities.FK_UserOrder", "Orders", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderSet>("MetalMastery.Data.Entities.FK_UserOrder", "Orders", value);
                 }
             }
         }
@@ -1898,15 +1898,15 @@ namespace MetalMastery.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MetalMastery.Data.Entities", "FK_UserRole", "Roles")]
-        public Role Roles
+        public RoleSet Roles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("MetalMastery.Data.Entities.FK_UserRole", "Roles").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleSet>("MetalMastery.Data.Entities.FK_UserRole", "Roles").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("MetalMastery.Data.Entities.FK_UserRole", "Roles").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleSet>("MetalMastery.Data.Entities.FK_UserRole", "Roles").Value = value;
             }
         }
         /// <summary>
@@ -1914,17 +1914,17 @@ namespace MetalMastery.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Role> RolesReference
+        public EntityReference<RoleSet> RolesReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("MetalMastery.Data.Entities.FK_UserRole", "Roles");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleSet>("MetalMastery.Data.Entities.FK_UserRole", "Roles");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("MetalMastery.Data.Entities.FK_UserRole", "Roles", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoleSet>("MetalMastery.Data.Entities.FK_UserRole", "Roles", value);
                 }
             }
         }
