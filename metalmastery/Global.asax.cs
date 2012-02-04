@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using MetalMastery.Core.Infrastructure;
 
 namespace MetalMastery.Web
 {
@@ -30,7 +31,7 @@ namespace MetalMastery.Web
         protected void Application_Start()
         {
             var builder = new ContainerBuilder();
-            new DependencyRegistrar().Register(builder);
+            new DependencyRegistrar().Register(builder, new AppDomainTypeFinder());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 

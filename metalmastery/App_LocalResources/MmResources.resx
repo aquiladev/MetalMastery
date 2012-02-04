@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="EmailLength" xml:space="preserve">
+    <value>Длина e-mail адреса превышает 256 символов</value>
+  </data>
+  <data name="LoginPasswordInvalid" xml:space="preserve">
+    <value>Пользователя с такими логином и паролем не существует, или Вы допустили ошибку!</value>
+  </data>
+  <data name="PasswordLength" xml:space="preserve">
+    <value>Длина пароля не должна быть менее 5 символов и превышать 32 символа</value>
+  </data>
+  <data name="RoleNotFound" xml:space="preserve">
+    <value>Ошибка во время создания пользователья, роль не найдена.</value>
+  </data>
 </root>
