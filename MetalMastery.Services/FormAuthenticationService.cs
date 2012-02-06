@@ -28,7 +28,7 @@ namespace MetalMastery.Services
                 now, 
                 now.Add(_expirationTimeSpan),
                 createPersistentCookie,
-                user.Email,
+                "test",
                 FormsAuthentication.FormsCookiePath);
 
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);

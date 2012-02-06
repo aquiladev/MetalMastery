@@ -66,6 +66,15 @@ namespace MetalMastery.Web.Controllers
             return new MmJsonResult(data: null);
         }
 
+        public JsonResult IsAuthenticate()
+        {
+            return new MmJsonResult(data: new
+                                              {
+                                                  User.Identity.IsAuthenticated,
+                                                  IsAdmin = User.IsInRole(Roles.Administrator.ToString())
+                                              });
+        }
+
         public JsonResult LogOut()
         {
             _authenticationService.SignOut();

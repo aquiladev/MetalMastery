@@ -1,7 +1,8 @@
-﻿@{
-    ViewBag.Title = "!#%$%^&6";
+﻿@using MetalMastery.Web.App_LocalResources
+@{
+    ViewBag.Title = @MmResources.MetalMasteryTitle;
 }
-@if (User.Identity.IsAuthenticated)
+@*@if (User.Identity.IsAuthenticated)
 {
     <label>Hi @User.Identity.Name</label>
     <input type="button" id="logout" value="---"/>
@@ -21,3 +22,26 @@ else
     <p>Confirm passwordd32423: <input data-bind="value: confirmPassword" /></p>
     <input type="button" data-bind="click: $root.logOn" value="*&^*"/>
 </div>
+*@
+<form id="news" action="">
+    <div style="padding: 20px; font-size: 16px;">
+        Когд`а мне исп`олнилось три г`ода (when I turned three years old), род`ители на день рожд`ения подар`или мне кр`асный трехколёсный велосип`ед 
+        (my parents gave me for my birthday a red bicycle that had three wheels: «three-wheeled»). Я, кон`ечно, был`а `очень р`ада (I, naturally, was very happy). 
+        Я ср`азу с`ела на велосип`ед (I immediately got on it) и по`ехала по к`омнате (and started riding it in the room), `это б`ыло совс`ем не тр`удно 
+        (which was not at all difficult). Но, до`ехав до конц`а к`омнаты (but, having reached the wall: «the end of the room»), не смогл`а разверн`уться 
+        (I couldn't turn around). Пришл`ось слез`ать с велосип`еда (I had to get off the bicycle) и развор`ачивать его рук`ами (and turn it around with my hands). 
+        П`омню, что п`апа `очень сме`ялся (I remember my father laughing hard), наблюд`ая мо`и д`ействия (when he was watching me; действие — action, movement). 
+        С тех пор я ч`асто х`одила гул`ять во двор с велосип`едом (since that time I would often go outside with my bicycle; двор — yard, court; outdoors), 
+        это б`ыло так зд`орово — `ехать (it felt/was so great to ride), а не идт`и пешк`ом (not to walk)! П`апа обмот`ал мне велосип`ед б`елыми шнурк`ами 
+        (my father wrapped the bicycle with white laces; шнурок — cord, string), и велосип`ед стал совс`ем крас`ивым (and the bicycle looked like perfection: 
+        «became completely beautiful»), так`ого б`ольше ни у ког`о не был`о (no one else had a bike like that). Я кат`алась на нём н`есколько лет 
+        (I rode it for several years), пок`а не в`ыросла (until I grew up). А пот`ом на `этом велосип`еде кат`ался мой мл`адший брат 
+        (later on it was ridden by my younger brother /active voice/).
+        1. Когда мне исполнилось три года, родители на день рождения подарили мне красный трехколесный велосипед. Я, конечно, была очень рада. 
+        Я сразу села на велосипед и поехала по комнате, это было совсем не трудно. Но, доехав до конца комнаты, не смогла развернуться. 
+        Пришлось слезать с велосипеда и разворачивать его руками. Помню, что папа очень смеялся, наблюдая мои действия. 
+        С тех пор я часто ходила гулять во двор с велосипедом, это было так здорово — ехать, а не идти пешком! 
+        Папа обмотал мне велосипед белыми шнурками, и велосипед стал совсем красивым, такого больше ни у кого не было. 
+        Я каталась на нём несколько лет, пока не выросла. А потом на этом велосипеде катался мой младший брат.
+    </div>
+</form>

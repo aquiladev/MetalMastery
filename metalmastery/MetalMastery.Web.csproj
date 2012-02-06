@@ -92,6 +92,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bottom-left.png" />
+    <Content Include="Content\bottom-right.png" />
+    <Content Include="Content\bottom.png" />
+    <Content Include="Content\left.png" />
+    <Content Include="Content\paper.png" />
+    <Content Include="Content\right.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -148,6 +154,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\top-left.png" />
+    <Content Include="Content\top-right.png" />
+    <Content Include="Content\top.png" />
+    <Content Include="Content\transparent.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
@@ -160,6 +170,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\knockout-2.0.0.debug.js" />
     <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\less-1.2.1.js" />
+    <Content Include="Scripts\less-1.2.1.min.js" />
     <Content Include="Scripts\MetalMastery\MmBaseScript.js" />
     <Content Include="Scripts\MetalMastery\MmResJs.js">
       <AutoGen>True</AutoGen>
@@ -261,6 +273,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Site.less" />
     <None Include="Scripts\MetalMastery\MmResJs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MmResJs.js</LastGenOutput>

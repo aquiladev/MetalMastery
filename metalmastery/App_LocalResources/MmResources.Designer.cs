@@ -70,11 +70,38 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Мыло.
+        /// </summary>
+        public static string EmailLbl {
+            get {
+                return ResourceManager.GetString("EmailLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Длина e-mail адреса превышает 256 символов.
         /// </summary>
         public static string EmailLength {
             get {
                 return ResourceManager.GetString("EmailLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вперёд.
+        /// </summary>
+        public static string EnterBtn {
+            get {
+                return ResourceManager.GetString("EnterBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string EntranceTab {
+            get {
+                return ResourceManager.GetString("EntranceTab", resourceCulture);
             }
         }
         
@@ -88,6 +115,33 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MetalMastery.
+        /// </summary>
+        public static string MetalMasteryTitle {
+            get {
+                return ResourceManager.GetString("MetalMasteryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Почитать.
+        /// </summary>
+        public static string NewsTab {
+            get {
+                return ResourceManager.GetString("NewsTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль.
+        /// </summary>
+        public static string PasswordLbl {
+            get {
+                return ResourceManager.GetString("PasswordLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Длина пароля не должна быть менее 5 символов и превышать 32 символа.
         /// </summary>
         public static string PasswordLength {
@@ -97,11 +151,29 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Запомнить меня.
+        /// </summary>
+        public static string RememberMeLbl {
+            get {
+                return ResourceManager.GetString("RememberMeLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ошибка во время создания пользователья, роль не найдена..
         /// </summary>
         public static string RoleNotFound {
             get {
                 return ResourceManager.GetString("RoleNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Хочешь зарегаться?.
+        /// </summary>
+        public static string WantToReg {
+            get {
+                return ResourceManager.GetString("WantToReg", resourceCulture);
             }
         }
     }

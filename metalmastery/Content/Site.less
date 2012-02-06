@@ -1,0 +1,358 @@
+﻿@base-color: xxx();
+@btn-color: lighten(desaturate(@base-color, 90%), -30%);
+@txt-color: lighten(@base-color, -90%);
+@shadow-color: lighten(@base-color, -90%);
+@left-border: 90px;
+@top-border: 99px;
+@right-border: 119px;
+@bottom-border: 109px;
+@horizontal-btn-height: 50px;
+@horizontal-btn-width: 250px;
+@horizontal-btn-padding: 25px;
+@vertical-btn-height: 250px;
+@vertical-btn-width: 50px;
+@border-radius: 10px;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    margin: 0px; 
+    height: 100%;
+    min-width: 800px;
+    min-height: 600px;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+table, td {
+    border-collapse: collapse;
+    border: none;    
+    margin: 0;
+    padding: 0;
+    background: @base-color;
+    background-image: url("transparent.png");
+}
+
+fieldset {
+    border: 0 none;
+}
+
+.button {
+    background-color: #ddd;
+    border-color: #BBBBBB #BBBBBB #999999;
+    .border-radius(4px);
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    margin: 0;
+    overflow: hidden;
+    padding: 5px 9px;
+}
+
+.text-rotate (@degree) {
+    -webkit-transform: rotate(@degree);	
+    -moz-transform: rotate(@degree);
+    -ms-transform: rotate(@degree);
+    -o-transform: rotate(@degree);
+    transform: rotate(@degree);
+}
+
+.box-shadow(@color) {
+    -moz-box-shadow: 0 0 10px @color;
+    -webkit-box-shadow: 0 0 10px @color;
+    box-shadow: 0 0 10px @color;
+}
+
+.border-radius(@border-radius) {
+    -webkit-border-radius: @border-radius;
+    -moz-border-radius: @border-radius;
+    border-radius: @border-radius; 
+}
+
+.bottom-border-radius(@border-radius) {
+    -webkit-border-bottom-right-radius: @border-radius;
+    -webkit-border-bottom-left-radius: @border-radius;
+    -moz-border-radius-bottomright: @border-radius;
+    -moz-border-radius-bottomleft: @border-radius;
+    border-bottom-right-radius: @border-radius;
+    border-bottom-left-radius: @border-radius; 
+}
+
+.root-layout {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.tl-corner, .t-border, .tr-corner, .l-border,
+.r-border, .bl-corner, .b-border, .br-corner {
+    background-repeat: no-repeat;
+}
+
+.top-row > .l-column, .tl-corner{
+    width: @left-border; 
+    height: @top-border;
+}
+
+.tl-corner {
+    background-image: url("top-left.png");
+}
+
+.top-row > .r-column, .tr-corner{
+    width: @right-border; 
+    height: @top-border; 
+}
+
+.tr-corner {     
+    background-image: url("top-right.png");
+}
+
+.top-row > .c-column{
+    vertical-align: top;
+    width: 100%;
+}
+
+.bottom-row > .c-column{
+    vertical-align: bottom;
+}
+
+.center-row, .center-row > .l-column, .center-row > .r-column{
+    height: 100%;
+}
+
+.center-row{
+    vertical-align: top;
+}
+
+.t-border {
+    height: @top-border; 
+    background-image: url("top.png");
+    background-size: 100% @top-border;
+    -o-background-size: 100% @top-border;
+    -webkit-background-size: 100% @top-border;
+}
+
+.l-border {
+    width: @left-border;
+    background-image: url("left.png");
+    background-size: @left-border 100%;
+    -o-background-size: @left-border 100%;
+    -webkit-background-size: @left-border 100%;
+    top: @top-border;
+    bottom: @bottom-border;
+    position: absolute;
+}
+
+.r-border {
+    width: @right-border; 
+    background-image: url("right.png");
+    background-size: @right-border 100%;
+    -o-background-size: @right-border 100%;
+    -webkit-background-size: @right-border 100%;
+    right: 0;
+    top: @top-border;
+    bottom: @bottom-border;
+    position: absolute;
+}
+
+.top-row{
+    height: @top-border;
+}
+
+.bottom-row{
+    height: @top-border;
+}
+
+.bl-corner { 
+    width: @left-border; 
+    height: @bottom-border;
+    background-image: url("bottom-left.png");
+}
+
+.b-border {
+    height: @bottom-border; 
+    background-image: url("bottom.png");
+    background-size: 100% @bottom-border;
+    -o-background-size: 100% @bottom-border;
+    -webkit-background-size: 100% @bottom-border;
+}
+
+.center {
+    background-image: url("center.png");
+    background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    top: @top-border;
+    bottom: @bottom-border;
+    position: absolute;
+    left: @left-border;
+    right: @right-border;
+}
+
+.br-corner {  
+    width: @right-border; 
+    height: @bottom-border; 
+    background-image: url("bottom-right.png");
+}
+
+.top-button, .bottom-button {
+    background-color: @btn-color;
+    height: @horizontal-btn-height;
+    width: @horizontal-btn-width; 
+    position: absolute;
+    margin-left: -125px;
+    padding-top: @horizontal-btn-padding;
+    text-align: center; 
+    left: 50%;
+}
+
+.top-button {   
+    top: 0; 
+    .bottom-border-radius(@border-radius);     
+}
+
+.bottom-button {        
+    bottom: 0; 
+    -webkit-border-top-right-radius: @border-radius;
+    -webkit-border-top-left-radius: @border-radius;
+    -moz-border-radius-topright: @border-radius;
+    -moz-border-radius-topleft: @border-radius;
+    border-top-right-radius: @border-radius;
+    border-top-left-radius: @border-radius;  
+}
+
+.left-button, .right-button {
+    background-color: @btn-color;
+    height: @vertical-btn-height;
+    width: @vertical-btn-width; 
+    position: absolute;    
+    top: 50%;
+    margin-top: -125px;    
+    text-align: center;    
+}
+
+.left-button {
+    left: 0;
+    padding-left: @horizontal-btn-padding;
+    -webkit-border-top-right-radius: @border-radius;
+    -webkit-border-bottom-right-radius: @border-radius;
+    -moz-border-radius-topright: @border-radius;
+    -moz-border-radius-bottomright: @border-radius;
+    border-top-right-radius: @border-radius;
+    border-bottom-right-radius: @border-radius;	
+    div {
+        .text-rotate(-90deg);
+        margin-top: 110px;
+        margin-left: -25px;
+    }
+}
+
+.right-button {
+    right: 0; 
+    padding-right: @horizontal-btn-padding;
+    -webkit-border-top-left-radius: @border-radius;
+    -webkit-border-bottom-left-radius: @border-radius;
+    -moz-border-radius-topleft: @border-radius;
+    -moz-border-radius-bottomleft: @border-radius;
+    border-top-left-radius: @border-radius;
+    border-bottom-left-radius: @border-radius;
+    div {
+        .text-rotate(-90deg);
+        margin-top: 110px;
+        margin-right: -25px;   
+    }
+}
+
+.top-button, .left-button, 
+.right-button, .bottom-button {
+    font-size: 1.5em;
+    color: @txt-color;
+    cursor: pointer;
+    .box-shadow(@shadow-color);
+}
+
+.logo {
+    background-image: url("ornament_2.png");
+    width: 276px;
+    height: 278px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -122px;
+    margin-top: -180px;
+}
+
+.logo-txt {
+    background-image: url("metalmastery.png");
+    width: 483px;
+    height: 57px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -241px;
+    margin-top: 130px;
+}
+
+#signin {
+    display: none;
+    background-color: @btn-color;
+    position: absolute;
+    margin-left: -150px;
+    padding-top: @horizontal-btn-padding;
+    text-align: left;
+    left: 50%;
+    top: 0;
+    z-index: 1;
+    cursor: auto;
+    padding: 10px;  
+    font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+    color: @txt-color;
+    .box-shadow(@shadow-color);
+    .bottom-border-radius(5px);    
+    .subchck {
+        padding: 9px 0;
+        position: relative;
+        text-align: right;
+        .remember {
+            left: 0;
+            position: absolute;
+            text-align: left;
+            white-space: nowrap;
+        }
+    }
+    .textbox {
+        label {
+            padding-bottom: 7px;
+        }
+        span, label {
+            display: block;
+        }
+        input{
+            width: 200px;
+            .border-radius(3px);
+            font: 13px Arial,sans-serif;
+            padding: 6px 6px 4px;
+            background: none repeat scroll 0 0 #666666;
+            color: #FFFFFF; 
+            font: 13px Arial,sans-serif;
+            border: 1px solid #16171A;
+        }
+    }
+}
+
+#news {
+    display: none;
+}
