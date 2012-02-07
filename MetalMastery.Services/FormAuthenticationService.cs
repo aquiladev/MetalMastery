@@ -10,9 +10,6 @@ namespace MetalMastery.Services
         private readonly HttpContextBase _httpContext;
         private readonly TimeSpan _expirationTimeSpan;
 
-        /// <summary>
-        /// Ctor
-        /// </summary>
         public FormAuthenticationService(HttpContextBase httpContext)
         {
             _httpContext = httpContext;
@@ -22,7 +19,7 @@ namespace MetalMastery.Services
         public void SignIn(User user, bool createPersistentCookie)
         {
             var now = DateTime.UtcNow.ToLocalTime();
-
+            //TODO: роли заполнять
             var ticket = new FormsAuthenticationTicket(1,
                 user.Email,
                 now, 

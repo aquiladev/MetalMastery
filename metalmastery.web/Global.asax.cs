@@ -7,6 +7,7 @@ using System.Web.Security;
 using Autofac;
 using Autofac.Integration.Mvc;
 using MetalMastery.Core.Infrastructure;
+using MetalMastery.Web.Infrastructure;
 
 namespace MetalMastery.Web
 {
@@ -23,17 +24,20 @@ namespace MetalMastery.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional}, // Parameter defaults
+                new[] {"MetalMastery.Web.Controllers"}
+                );
         }
 
         protected void Application_Start()
         {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new MmRazorViewEngine());
+
             var builder = new ContainerBuilder();
             new DependencyRegistrar().Register(builder, new AppDomainTypeFinder());
             var container = builder.Build();

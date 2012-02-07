@@ -68,7 +68,7 @@
       <Project>{8D2531E3-99C1-4494-B036-F05DDB7519C3}</Project>
       <Name>MetalMastery.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MetalMastery\MetalMastery.Web.csproj">
+    <ProjectReference Include="..\MetalMastery.Web\MetalMastery.Web.csproj">
       <Project>{58E157B0-AC61-4829-BE7A-CD573FDCC841}</Project>
       <Name>MetalMastery.Web</Name>
     </ProjectReference>

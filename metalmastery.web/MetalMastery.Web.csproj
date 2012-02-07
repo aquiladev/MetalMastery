@@ -42,6 +42,9 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc3.2.5.2.830\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=2.0.0.232, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
@@ -90,6 +93,11 @@
     <Compile Include="Models\RegistrateModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\AreaAwareViewLocation.cs" />
+    <Compile Include="Infrastructure\MmRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\MmBuildManagerViewEngine.cs" />
+    <Compile Include="Infrastructure\MmVirtualPathProviderViewEngine.cs" />
+    <Compile Include="Infrastructure\ViewLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bottom-left.png" />
@@ -159,7 +167,7 @@
     <Content Include="Content\top.png" />
     <Content Include="Content\transparent.png" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site_temp.css" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -261,6 +269,10 @@
     <ProjectReference Include="..\MetalMastery.Services\MetalMastery.Services.csproj">
       <Project>{8D2531E3-99C1-4494-B036-F05DDB7519C3}</Project>
       <Name>MetalMastery.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="Administration\MetalMastery.Admin.csproj">
+      <Project>{64D81F60-E41A-4CCE-94AC-77517EF4CD29}</Project>
+      <Name>MetalMastery.Admin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

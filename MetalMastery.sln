@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web", "MetalMastery\MetalMastery.Web.csproj", "{58E157B0-AC61-4829-BE7A-CD573FDCC841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web", "MetalMastery.Web\MetalMastery.Web.csproj", "{58E157B0-AC61-4829-BE7A-CD573FDCC841}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Data", "MetalMastery.Data\MetalMastery.Data.csproj", "{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9}"
 EndProject
@@ -14,6 +14,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Services.Tests", "MetalMastery.Services.Tests\MetalMastery.Services.Tests.csproj", "{45502CD1-9B3F-4102-A6CA-BDF317652B4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web.Tests", "MetalMastery.Web.Tests\MetalMastery.Web.Tests.csproj", "{050085A7-A117-480F-AC6D-9EC1C491F227}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{ACF4DFE0-DE63-4090-BBAD-65184474651F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{FD1C2FCB-172D-4817-9013-3275B4A549F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Admin", "MetalMastery.Web\Administration\MetalMastery.Admin.csproj", "{64D81F60-E41A-4CCE-94AC-77517EF4CD29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,10 @@ Global
 		{050085A7-A117-480F-AC6D-9EC1C491F227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{050085A7-A117-480F-AC6D-9EC1C491F227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{050085A7-A117-480F-AC6D-9EC1C491F227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D81F60-E41A-4CCE-94AC-77517EF4CD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D81F60-E41A-4CCE-94AC-77517EF4CD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D81F60-E41A-4CCE-94AC-77517EF4CD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D81F60-E41A-4CCE-94AC-77517EF4CD29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +62,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{45502CD1-9B3F-4102-A6CA-BDF317652B4D} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
 		{050085A7-A117-480F-AC6D-9EC1C491F227} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
+		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}
+		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}
+		{8D2531E3-99C1-4494-B036-F05DDB7519C3} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}
+		{58E157B0-AC61-4829-BE7A-CD573FDCC841} = {FD1C2FCB-172D-4817-9013-3275B4A549F6}
+		{64D81F60-E41A-4CCE-94AC-77517EF4CD29} = {FD1C2FCB-172D-4817-9013-3275B4A549F6}
 	EndGlobalSection
 EndGlobal
