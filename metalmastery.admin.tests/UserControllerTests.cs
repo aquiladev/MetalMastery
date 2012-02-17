@@ -114,6 +114,15 @@ namespace MetalMastery.Admin.Tests
         {
             _userController.ModelState.AddModelError("Email", "err");
 
+            using (_mockRepository.Record())
+            {
+                _userService.Stub(x => x.GetAllRoles())
+                    .Return(new List<Role> { new Role { Name = "role1" } });
+                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                    .IgnoreArguments()
+                    .Return(new User());
+            }
+
             var result = _userController.Edit(new UserModel());
 
             Assert.IsNotNull(((ViewResultBase)result).ViewBag.PossibleRoles);
