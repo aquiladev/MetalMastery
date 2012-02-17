@@ -46,7 +46,7 @@ namespace MetalMastery.Web.Tests
                     .IgnoreArguments().Return(false);
             }
 
-            var result = _userController.LogIn(new UserModel { Email = EmailTest, Password = PwdTest });
+            var result = _userController.LogIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, false);
             Assert.AreEqual(((MmJsonResult)result).Errors.Count, 1);
@@ -61,7 +61,7 @@ namespace MetalMastery.Web.Tests
                     .IgnoreArguments().Return(true);
             }
 
-            var result = _userController.LogIn(new UserModel { Email = EmailTest, Password = PwdTest });
+            var result = _userController.LogIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, true);
         }

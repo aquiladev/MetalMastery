@@ -26,7 +26,7 @@ namespace MetalMastery.Web.Controllers
         }
 
         [CheckModel]
-        public JsonResult LogIn(UserModel user)
+        public JsonResult LogIn(LogOnModel user)
         {
             if (_userService.ValidateUser(user.Email, user.Password))
             {

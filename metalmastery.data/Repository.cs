@@ -1,34 +1,28 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.Objects;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using MetalMastery.Core.Data;
 
 namespace MetalMastery.Data
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private const string ConnectionStringName = "MmDataContext";
+        private IDbContext _dataContext;
+        private readonly IDbSet<T> _entity;
 
-        private ObjectContext _dataContext;
-        private IObjectSet<T> _entity;
-
-        public Repository()
+        public Repository(IDbContext context)
         {
-            var connectionString =
-            ConfigurationManager
-                .ConnectionStrings[ConnectionStringName]
-                .ConnectionString;
-
-            _dataContext = new ObjectContext(connectionString); ;
-            _entity = _dataContext.CreateObjectSet<T>();
+            _dataContext = context;
+            _entity = _dataContext.Set<T>();
         }
-
-        public T GetById(int id)
+        
+        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
         {
-            throw new System.NotImplementedException();
+            return _entity.Where<T>(predicate);
         }
-
+        
         public void Insert(T entity)
         {
             if (entity == null)
@@ -36,12 +30,7 @@ namespace MetalMastery.Data
                 throw new ArgumentNullException("entity");
             }
 
-            _entity.AddObject(entity);
-        }
-
-        public void Update(T entity)
-        {
-            throw new System.NotImplementedException();
+            _entity.Add(entity);
         }
 
         public void Delete(T entity)
@@ -51,7 +40,7 @@ namespace MetalMastery.Data
                 throw new ArgumentNullException("entity");
             }
 
-            _entity.DeleteObject(entity);
+            _entity.Remove(entity);
         }
 
         public IQueryable<T> Table

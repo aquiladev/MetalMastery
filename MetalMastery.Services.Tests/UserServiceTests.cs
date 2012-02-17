@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
-using MetalMastery.Data;
 using NUnit.Framework;
 using Rhino.Mocks;
-using AutoMapper;
 
 namespace MetalMastery.Services.Tests
 {
@@ -14,8 +13,8 @@ namespace MetalMastery.Services.Tests
     public class UserServiceTests
     {
         private MockRepository _mockRepository;
-        private IRepository<UserSet> _userRepository;
-        private IRepository<RoleSet> _roleRepository;
+        private IRepository<User> _userRepository;
+        private IRepository<Role> _roleRepository;
 
         private IUserService _userService;
 
@@ -23,8 +22,8 @@ namespace MetalMastery.Services.Tests
         public void SetUp()
         {
             _mockRepository = new MockRepository();
-            _userRepository = _mockRepository.DynamicMock<IRepository<UserSet>>();
-            _roleRepository = _mockRepository.DynamicMock<IRepository<RoleSet>>();
+            _userRepository = _mockRepository.DynamicMock<IRepository<User>>();
+            _roleRepository = _mockRepository.DynamicMock<IRepository<Role>>();
 
             _userService = new UserService(_userRepository, _roleRepository);
         }
@@ -85,16 +84,30 @@ namespace MetalMastery.Services.Tests
         [Test]
         public void GetRoleByName_ExistRole()
         {
-            var role = InitRoleSets();
+            string roleName = "fest";
 
             using (_mockRepository.Record())
             {
-                _roleRepository.Table.Stub(x => x).Return(role.AsQueryable());
+                _roleRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(InitRoleSets());
             }
 
-            var result = _userService.GetRoleByName("fest");
+            var result = _userService.GetRoleByName(roleName);
 
             Assert.IsTrue(result != null);
+        }
+
+        [Test]
+        public void GetAllRoles_CorrectCount()
+        {
+            using (_mockRepository.Record())
+            {
+                _roleRepository.Stub(x => x.Table).Return(InitRoleSets().AsQueryable());
+            }
+
+            var result = _userService.GetAllRoles();
+            Assert.AreEqual(result.Count, 2);
         }
 
         [Test]
@@ -103,30 +116,125 @@ namespace MetalMastery.Services.Tests
         {
             _userService.InsertUser(null);
         }
+        
+        [Test]
+        public void GetAllUsers_CorrectCount()
+        {
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Table)
+                    .Return((new List<User> { new User() })
+                                .AsQueryable());
+            }
+
+            var result = _userService.GetAllUsers(0, 1);
+
+            Assert.AreEqual(result.Count(), 1);
+        }
 
         [Test]
-        [ExpectedException(typeof(AutoMapperMappingException))]
-        public void InsertUser_UserNotValid_Exception()
+        public void GetAllUsers_WithPaging_CorrectCount()
         {
-            _userService.InsertUser(new User());
+            var users = new List<User>();
+            for (int i = 0; i < 6; i++)
+            {
+                users.Add(new User());
+            }
+
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Table)
+                    .Return(users.AsQueryable());
+            }
+
+            var result = _userService.GetAllUsers(1, 4);
+
+            Assert.AreEqual(result.Count(), 2);
         }
 
-        private IEnumerable<UserSet> InitUserSets()
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetUserById_NotFound_ReturnNull()
         {
-            return new List<UserSet>
+            var id = Guid.NewGuid();
+
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(null);
+            }
+
+            var result = _userService.GetUserById(id);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetUserById_IdEmpty_Exception()
+        {
+            _userService.GetUserById(Guid.Empty);
+        }
+
+        [Test]
+        public void GetUserById_Founded()
+        {
+            var id = Guid.NewGuid();
+            var user = new User();
+            user.GetType()
+                .InvokeMember(
+                    "Id",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance,
+                    null,
+                    user,
+                    new object[] { id });
+
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(new List<User>
+                                {
+                                    user
+                                });
+            }
+
+            var result = _userService.GetUserById(id);
+
+            Assert.IsNotNull(result);
+        }
+        
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteUser_UserIsNull_Exception()
+        {
+            _userService.DeleteUser(null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateUser_UserIsNull_Exception()
+        {
+            _userService.DeleteUser(null);
+        }
+
+        #region
+        private IEnumerable<User> InitUserSets()
+        {
+            return new List<User>
                             {
-                                new UserSet{ Email = "test@te.te", Password = "123qw!"},
-                                new UserSet{ Email = "seta@sa.sa", Password = "1231q!"}
+                                new User{ Email = "test@te.te", Password = "123qw!"},
+                                new User{ Email = "seta@sa.sa", Password = "1231q!"}
                             };
         }
 
-        private IEnumerable<RoleSet> InitRoleSets()
+        private IEnumerable<Role> InitRoleSets()
         {
-            return new List<RoleSet>
+            return new List<Role>
                             {
-                                new RoleSet{ Name = "tset"},
-                                new RoleSet{ Name = "fest"}
+                                new Role{ Name = "tset"},
+                                new Role{ Name = "fest"}
                             };
         }
+        #endregion
     }
 }

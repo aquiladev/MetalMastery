@@ -37,17 +37,16 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleService.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="FormAuthenticationService.cs" />
+    <Compile Include="IArticleService.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IEmailSender.cs" />
     <Compile Include="IUserService.cs" />

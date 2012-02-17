@@ -4,7 +4,7 @@ using MetalMastery.Web.App_LocalResources;
 
 namespace MetalMastery.Web.Models
 {
-    public class RegistrateModel : UserModel
+    public class RegistrateModel : LogOnModel
     {
         [Required]
         [Compare("Password", ErrorMessageResourceType = typeof(MmResources), ErrorMessageResourceName = "ConfirmPasswordErrorMessage")]

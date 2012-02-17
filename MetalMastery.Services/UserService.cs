@@ -1,42 +1,42 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
-using MetalMastery.Data;
 
 namespace MetalMastery.Services
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<UserSet> _userRepository;
-        private readonly IRepository<RoleSet> _roleRepository;
+        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Role> _roleRepository;
 
-        public UserService(IRepository<UserSet> userRepository,
-            IRepository<RoleSet> roleRepository)
+        public UserService(IRepository<User> userRepository,
+            IRepository<Role> roleRepository)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
-
-            Mapper.CreateMap<RoleSet, Role>();
-            Mapper.CreateMap<User, UserSet>();
         }
 
         public IPagedList<User> GetAllUsers(int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
-        }
-
-        public IList<User> GetUsersByRoleId(int customerRoleId)
-        {
-            throw new NotImplementedException();
+            return new PagedList<User>(_userRepository
+                                           .Table
+                                           .ToList(),
+                                       pageIndex,
+                                       pageSize);
         }
 
         public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            _userRepository.Delete(user);
+            _userRepository.SaveChanges();
         }
 
         public void InsertUser(User user)
@@ -46,18 +46,33 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("user");
             }
 
-            _userRepository.Insert(Mapper.Map<User, UserSet>(user));
+            _userRepository.Insert(user);
             _userRepository.SaveChanges();
+        }
+
+        public void UpdateUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            var userRep = _userRepository.Find(x => x.Id == user.Id).FirstOrDefault();
+            if (userRep != null)
+            {
+                userRep.RoleId = user.RoleId;
+                _userRepository.SaveChanges();
+            }
         }
 
         public User GetUserById(Guid userId)
         {
-            throw new NotImplementedException();
-        }
+            if (userId.Equals(default(Guid)))
+            {
+                throw new ArgumentNullException("userId");
+            }
 
-        public User GetUserByEmail(string email)
-        {
-            throw new NotImplementedException();
+            return _userRepository.Find(u => u.Id == userId).FirstOrDefault();
         }
 
         public bool ValidateUser(string email, string password)
@@ -83,12 +98,18 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("roleName");
             }
 
-            var role = _roleRepository.Table
-                .FirstOrDefault(r => r.Name == roleName);
+            var role = _roleRepository.Find(r => r.Name == roleName);
 
             return role == null
                        ? null
-                       : Mapper.Map<RoleSet, Role>(role);
+                       : role.FirstOrDefault();
+        }
+
+        public IList<Role> GetAllRoles()
+        {
+            return _roleRepository
+                .Table
+                .ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Configuration;
+using System.Linq;
 using System.Web;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -14,6 +15,9 @@ namespace MetalMastery.Web
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
+
+            //TODO: хорошо бы убрать связь с Data
+            builder.Register<IDbContext>(c => new MmDataContext(ConfigurationManager.ConnectionStrings["MmDataContext"].ConnectionString)).InstancePerHttpRequest();
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();
 

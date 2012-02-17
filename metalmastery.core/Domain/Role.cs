@@ -1,16 +1,20 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-    public class Role
-    {
-        public Guid Id { get; protected set; }
+	public class Role
+	{
+	    public Role()
+		{
+			Users = new List<User>();
+		}
 
+		public Guid Id { get; set; }
+		
         public string Name { get; set; }
-
-        public Role()
-        {
-            Id = Guid.NewGuid();
-        }
-    }
+		
+        public virtual ICollection<User> Users { get; set; }
+	}
 }
+

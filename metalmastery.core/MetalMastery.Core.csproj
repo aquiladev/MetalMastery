@@ -44,16 +44,22 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Article.cs" />
     <Compile Include="Domain\EmailAccount.cs" />
+    <Compile Include="Domain\Format.cs" />
+    <Compile Include="Domain\Material.cs" />
+    <Compile Include="Domain\Order.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\Roles.cs" />
+    <Compile Include="Domain\State.cs" />
+    <Compile Include="Domain\StateOrder.cs" />
+    <Compile Include="Domain\Tag.cs" />
+    <Compile Include="Domain\Thing.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
@@ -62,9 +68,11 @@
     <Compile Include="IPagedList.cs" />
     <Compile Include="Mvc\ClientModelValidatorsProvider.cs" />
     <Compile Include="Mvc\MmJsonResult.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
