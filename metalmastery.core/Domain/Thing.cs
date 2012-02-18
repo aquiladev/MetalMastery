@@ -37,7 +37,7 @@ namespace MetalMastery.Core.Domain
 		
         public Guid StateId { get; set; }
 
-        public Guid OwnerId { get; set; }
+        //public Guid OwnerId { get; set; }
 		
         public virtual Format Format { get; set; }
 		

@@ -43,5 +43,24 @@ namespace MetalMastery.Admin
         }
 
         #endregion
+
+        #region Format
+
+        public static FormatModel ToModel(this Format entity)
+        {
+            return Mapper.Map<Format, FormatModel>(entity);
+        }
+
+        public static Format ToEntity(this FormatModel model)
+        {
+            return Mapper.Map<FormatModel, Format>(model);
+        }
+
+        public static Format ToEntity(this FormatModel model, Format destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        #endregion
     }
 }

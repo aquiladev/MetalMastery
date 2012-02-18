@@ -39,7 +39,7 @@ namespace MetalMastery.Data.Mapping
 			Property(t => t.ImageRes).HasColumnName("ImageRes");
 			Property(t => t.MaterialId).HasColumnName("MaterialId");
 			Property(t => t.StateId).HasColumnName("StateId");
-            Property(t => t.OwnerId).HasColumnName("OwnerId");
+            //Property(t => t.OwnerId).HasColumnName("OwnerId");
 
 			// Relationships
 			HasRequired(t => t.Format)

@@ -12,7 +12,7 @@ namespace MetalMastery.Admin.Controllers
     {
         private readonly IArticleService _articleService;
         private readonly IUserService _userService;
-        
+
         public ArticleController(IArticleService articleService,
             IUserService userService)
         {
@@ -77,7 +77,7 @@ namespace MetalMastery.Admin.Controllers
 
             if (article == null)
             {
-                ViewBag.Error = MmAdminResources.UserDidntFound;
+                ViewBag.Error = MmAdminResources.ArticleDidntFound;
                 return View();
             }
 

@@ -159,8 +159,17 @@
   <data name="Exit" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="FormatDidntFound" xml:space="preserve">
+    <value>Формат с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Formats" xml:space="preserve">
+    <value>Форматы</value>
+  </data>
   <data name="IdEmptyError" xml:space="preserve">
     <value>Идендитификатор не может быть пустым.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>

@@ -75,7 +75,7 @@ namespace MetalMastery.Admin.Tests
 
             var result = _articleController.Edit(id);
 
-            Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmAdminResources.UserDidntFound);
+            Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmAdminResources.ArticleDidntFound);
             Assert.IsNull(((ViewResultBase)result).Model);
         }
 

@@ -187,11 +187,38 @@ namespace MetalMastery.Admin.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Формат с таким идендитификатором не найден..
+        /// </summary>
+        public static string FormatDidntFound {
+            get {
+                return ResourceManager.GetString("FormatDidntFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Форматы.
+        /// </summary>
+        public static string Formats {
+            get {
+                return ResourceManager.GetString("Formats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Идендитификатор не может быть пустым..
         /// </summary>
         public static string IdEmptyError {
             get {
                 return ResourceManager.GetString("IdEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
