@@ -1,4 +1,5 @@
-﻿using MetalMastery.Core;
+﻿using System;
+using MetalMastery.Core;
 using MetalMastery.Core.Domain;
 
 namespace MetalMastery.Services
@@ -30,5 +31,12 @@ namespace MetalMastery.Services
         /// </summary>
         /// <param name="article">Article</param>
         void UpdateArticle(Article article);
+
+        /// <summary>
+        /// Get article by identify
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Article</returns>
+        Article GetArticleById(Guid id);
     }
 }

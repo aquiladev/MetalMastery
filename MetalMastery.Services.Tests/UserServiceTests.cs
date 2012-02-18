@@ -153,7 +153,6 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetUserById_NotFound_ReturnNull()
         {
             var id = Guid.NewGuid();
@@ -166,6 +165,8 @@ namespace MetalMastery.Services.Tests
             }
 
             var result = _userService.GetUserById(id);
+
+            Assert.IsNull(result);
         }
 
         [Test]
@@ -179,14 +180,7 @@ namespace MetalMastery.Services.Tests
         public void GetUserById_Founded()
         {
             var id = Guid.NewGuid();
-            var user = new User();
-            user.GetType()
-                .InvokeMember(
-                    "Id",
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance,
-                    null,
-                    user,
-                    new object[] { id });
+            var user = new User {Id = id};
 
             using (_mockRepository.Record())
             {
@@ -202,7 +196,49 @@ namespace MetalMastery.Services.Tests
 
             Assert.IsNotNull(result);
         }
-        
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetUserByEmail_EmailIsEmpty_Exception()
+        {
+            _userService.GetUserByEmail(string.Empty);
+        }
+
+        [Test]
+        public void GetUserByEmail_NotFound_ReturnNull()
+        {
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Email == string.Empty))
+                    .IgnoreArguments()
+                    .Return(null);
+            }
+
+            var result = _userService.GetUserByEmail("email");
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        public void GetUserByEmail_Founded()
+        {
+            var user = new User { Id = Guid.NewGuid() };
+
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Email == string.Empty))
+                    .IgnoreArguments()
+                    .Return(new List<User>
+                                {
+                                    user
+                                });
+            }
+
+            var result = _userService.GetUserByEmail("email");
+
+            Assert.IsNotNull(result);
+        }
+
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DeleteUser_UserIsNull_Exception()
@@ -214,7 +250,7 @@ namespace MetalMastery.Services.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateUser_UserIsNull_Exception()
         {
-            _userService.DeleteUser(null);
+            _userService.UpdateUser(null);
         }
 
         #region

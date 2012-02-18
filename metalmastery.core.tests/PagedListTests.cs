@@ -96,7 +96,7 @@ namespace MetalMastery.Core.Tests
         }
 
         [Test]
-        public void PagedList_ThreItemOnPage()
+        public void PagedList_ThreeItemOnPage()
         {
             int index = 3;
             int size = 3;

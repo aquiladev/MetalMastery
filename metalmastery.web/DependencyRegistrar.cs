@@ -41,6 +41,7 @@ namespace MetalMastery.Web
             builder.RegisterType<FormAuthenticationService>().As<IAuthenticationService>().InstancePerHttpRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerHttpRequest();
+            builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerHttpRequest();
         }
     }
 }

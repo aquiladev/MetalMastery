@@ -49,7 +49,7 @@ namespace MetalMastery.Core.Domain
 		
         public virtual ICollection<Tag> Tags { get; set; }
 
-        public virtual User Owner { get; set; }
+        //public virtual User Owner { get; set; }
 	}
 }
 

@@ -37,11 +37,18 @@ namespace MetalMastery.Services
         void UpdateUser(User user);
 
         /// <summary>
-        /// Gets a user
+        /// Get a user by idetity
         /// </summary>
         /// <param name="userId">User identifier</param>
         /// <returns>User</returns>
         User GetUserById(Guid userId);
+
+        /// <summary>
+        /// Gets a user by email
+        /// </summary>
+        /// <param name="email">email users</param>
+        /// <returns>User</returns>
+        User GetUserByEmail(string email);
 
         /// <summary>
         /// Validate user

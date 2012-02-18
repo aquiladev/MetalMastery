@@ -79,7 +79,7 @@ namespace MetalMastery.Web.Tests
                     .IgnoreArguments();
             }
 
-            var result = _userController.LogOn(new RegistrateModel {Email = EmailTest, Password = PwdTest});
+            var result = _userController.LogOn(new RegistrateModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, false);
             Assert.AreEqual(((MmJsonResult)result).Errors.Count, 1);
@@ -88,21 +88,14 @@ namespace MetalMastery.Web.Tests
         [Test]
         public void LogOn_CorrectInsert()
         {
-            var stubRole = new Role();
-            stubRole.GetType()
-                .InvokeMember(
-                    "Id",
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance,
-                    null,
-                    stubRole,
-                    new object[] {Guid.NewGuid()});
+            var stubRole = new Role { Id = Guid.NewGuid() };
 
             using (_mockRepository.Record())
             {
                 _userService.Stub(x => x.GetRoleByName(string.Empty))
                     .IgnoreArguments()
                     .Return(stubRole);
-                
+
                 _userService.Stub(x => x.InsertUser(null))
                     .IgnoreArguments();
             }

@@ -36,25 +36,25 @@ namespace MetalMastery.Core
         /// <param name="pageSize">Page size</param>
         /// <param name="totalCount">Total count</param>
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int totalCount)
-            : this(source.ToList(), pageIndex, pageSize) { }
+            : this(source.ToList(), pageIndex, pageSize, totalCount) { }
 
         private PagedList(IList<T> source, int pageIndex, int pageSize, int totalCount)
         {
+            PageSize = pageSize;
+            PageIndex = pageIndex;
             TotalCount = totalCount;
             TotalPages = totalCount / pageSize;
-
+            
             if (totalCount % pageSize > 0)
                 TotalPages++;
 
-            if (pageIndex < 0 || pageIndex >= TotalPages)
+            if (pageIndex < 0 || (pageIndex >= TotalPages && source.Count > 0))
                 throw new ArgumentOutOfRangeException("pageIndex");
 
-            PageSize = pageSize;
-            PageIndex = pageIndex;
-            AddRange(source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
+            AddRange(source.Skip(pageIndex * pageSize).Take(pageSize));
         }
 
-        public int PageIndex { get; private set; }
+        public int PageIndex { get; private set; } 
         public int PageSize { get; private set; }
         public int TotalCount { get; private set; }
         public int TotalPages { get; private set; }

@@ -19,7 +19,7 @@ namespace MetalMastery.Admin.Controllers
         public ViewResult Index()
         {
             return View(_userService.GetAllUsers(0, 10)
-                .Select(x=>x.ToModel())
+                .Select(x => x.ToModel())
                 .ToList());
         }
 
@@ -53,7 +53,7 @@ namespace MetalMastery.Admin.Controllers
             }
 
             _userService.UpdateUser(user);
-            
+
             return RedirectToAction("Index");
         }
 

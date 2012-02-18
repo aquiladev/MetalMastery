@@ -24,5 +24,24 @@ namespace MetalMastery.Admin
         }
 
         #endregion
+
+        #region Article
+
+        public static ArticleModel ToModel(this Article entity)
+        {
+            return Mapper.Map<Article, ArticleModel>(entity);
+        }
+
+        public static Article ToEntity(this ArticleModel model)
+        {
+            return Mapper.Map<ArticleModel, Article>(model);
+        }
+
+        public static Article ToEntity(this ArticleModel model, Article destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        #endregion
     }
 }

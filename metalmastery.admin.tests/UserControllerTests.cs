@@ -21,7 +21,7 @@ namespace MetalMastery.Admin.Tests
         private UserController _userController;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             _mockRepository = new MockRepository();
             _userService = _mockRepository.DynamicMock<IUserService>();
@@ -208,7 +208,7 @@ namespace MetalMastery.Admin.Tests
                     .Return(null);
             }
 
-            var result = _userController.Delete(Guid.NewGuid());
+            var result = _userController.DeleteConfirmed(Guid.NewGuid());
 
             Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmAdminResources.UserDidntFound);
             Assert.IsNull(((ViewResultBase)result).Model);

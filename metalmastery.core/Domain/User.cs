@@ -8,8 +8,8 @@ namespace MetalMastery.Core.Domain
 	    public User()
 		{
 			Orders = new List<Order>();
-            Things = new List<Thing>();
             Articles = new List<Article>();
+            //Things = new List<Thing>();
 		}
 
 		public Guid Id { get; set; }
@@ -24,7 +24,7 @@ namespace MetalMastery.Core.Domain
 		
         public virtual Role Role { get; set; }
 
-        public virtual ICollection<Thing> Things { get; set; }
+        //public virtual ICollection<Thing> Things { get; set; }
 
         public virtual ICollection<Article> Articles { get; set; }
 	}

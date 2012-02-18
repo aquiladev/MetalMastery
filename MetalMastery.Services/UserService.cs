@@ -57,10 +57,15 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("user");
             }
 
-            var userRep = _userRepository.Find(x => x.Id == user.Id).FirstOrDefault();
+            var users = _userRepository.Find(x => x.Id == user.Id);
+            var userRep = users == null
+                ? null
+                : users.FirstOrDefault();
+
             if (userRep != null)
             {
                 userRep.RoleId = user.RoleId;
+
                 _userRepository.SaveChanges();
             }
         }
@@ -72,7 +77,23 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("userId");
             }
 
-            return _userRepository.Find(u => u.Id == userId).FirstOrDefault();
+            var user = _userRepository.Find(u => u.Id == userId);
+            return user == null
+                ? null
+                : user.FirstOrDefault();
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentNullException("email");
+            }
+
+            var user = _userRepository.Find(u => u.Email == email);
+            return user == null
+                ? null
+                : user.FirstOrDefault();
         }
 
         public bool ValidateUser(string email, string password)

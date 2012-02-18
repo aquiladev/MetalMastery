@@ -22,7 +22,7 @@ namespace MetalMastery.Data.Mapping
                 .IsRequired();
 
             // Table & Column Mappings
-            ToTable("Order");
+            ToTable("Article");
             Property(t => t.Id).HasColumnName("Id");
             Property(t => t.CreateDate).HasColumnName("CreateDate");
             Property(t => t.Title).HasColumnName("Title");

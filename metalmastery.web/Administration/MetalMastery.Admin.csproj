@@ -66,9 +66,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MmAdminResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\UserNameFilter.cs" />
     <Compile Include="MappingExtensions.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -84,7 +85,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Article\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -124,20 +125,21 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\Edit.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Article\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Articles\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Article\_CreateOrEdit.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

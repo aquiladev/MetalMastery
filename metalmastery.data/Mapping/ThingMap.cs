@@ -49,14 +49,10 @@ namespace MetalMastery.Data.Mapping
 			HasRequired(t => t.Material)
 				.WithMany(t => t.Things)
 				.HasForeignKey(d => d.MaterialId);
-				
-			HasRequired(t => t.State)
-				.WithMany(t => t.Things)
-				.HasForeignKey(d => d.StateId);
 
-            HasRequired(t => t.Owner)
-                .WithMany(t => t.Things)
-                .HasForeignKey(d => d.OwnerId);
+		    HasRequired(t => t.State)
+		        .WithMany(t => t.Things)
+		        .HasForeignKey(d => d.StateId);
 		}
 	}
 }

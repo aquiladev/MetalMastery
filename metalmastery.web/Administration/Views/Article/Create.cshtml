@@ -1,26 +1,23 @@
+@using MetalMastery.Admin.App_LocalResources
 @model MetalMastery.Admin.Models.ArticleModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = MmAdminResources.Create;
 }
-
-<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Article</legend>
-
 		@Html.Partial("_CreateOrEdit", Model)
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="@MmAdminResources.Create" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(MmAdminResources.BackToList, "Index")
 </div>
 
 
