@@ -168,6 +168,12 @@
   <data name="IdEmptyError" xml:space="preserve">
     <value>Идендитификатор не может быть пустым.</value>
   </data>
+  <data name="MaterialDidntFound" xml:space="preserve">
+    <value>Материал с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Материалы</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Название</value>
   </data>

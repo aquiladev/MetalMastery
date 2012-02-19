@@ -62,5 +62,24 @@ namespace MetalMastery.Admin
         }
 
         #endregion
+
+        #region Material
+
+        public static MaterialModel ToModel(this Material entity)
+        {
+            return Mapper.Map<Material, MaterialModel>(entity);
+        }
+
+        public static Material ToEntity(this MaterialModel model)
+        {
+            return Mapper.Map<MaterialModel, Material>(model);
+        }
+
+        public static Material ToEntity(this MaterialModel model, Material destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        #endregion
     }
 }

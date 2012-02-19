@@ -43,6 +43,7 @@ namespace MetalMastery.Web
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerHttpRequest();
             builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerHttpRequest();
             builder.RegisterType<FormatService>().As<IFormatService>().InstancePerHttpRequest();
+            builder.RegisterType<MaterialService>().As<IMaterialService>().InstancePerHttpRequest();
         }
     }
 }
