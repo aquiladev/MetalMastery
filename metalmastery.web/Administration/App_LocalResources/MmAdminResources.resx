@@ -186,6 +186,12 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="TagDidntFound" xml:space="preserve">
+    <value>Тег с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
   </data>

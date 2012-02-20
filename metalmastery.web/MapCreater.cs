@@ -15,6 +15,7 @@ namespace MetalMastery.Web
             ViceVersa<Article, ArticleModel>();
             ViceVersa<Format, FormatModel>();
             ViceVersa<Material, MaterialModel>();
+            ViceVersa<Tag, TagModel>();
         }
 
         private static void ViceVersa<T1, T2>()

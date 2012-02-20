@@ -57,6 +57,7 @@
     <Compile Include="MaterialServiceTests.cs" />
     <Compile Include="FormatServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagServiceTests.cs" />
     <Compile Include="UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

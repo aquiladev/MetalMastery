@@ -81,5 +81,24 @@ namespace MetalMastery.Admin
         }
 
         #endregion
+
+        #region Tag
+
+        public static TagModel ToModel(this Tag entity)
+        {
+            return Mapper.Map<Tag, TagModel>(entity);
+        }
+
+        public static Tag ToEntity(this TagModel model)
+        {
+            return Mapper.Map<TagModel, Tag>(model);
+        }
+
+        public static Tag ToEntity(this TagModel model, Tag destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        #endregion
     }
 }

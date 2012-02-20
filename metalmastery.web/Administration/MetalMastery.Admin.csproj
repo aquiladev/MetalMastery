@@ -70,12 +70,14 @@
     <Compile Include="Controllers\FormatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\UserNameFilter.cs" />
     <Compile Include="MappingExtensions.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\FormatModel.cs" />
     <Compile Include="Models\MaterialModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -172,6 +174,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Material\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tag\_CreateOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tag\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tag\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tag\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tag\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

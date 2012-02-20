@@ -268,6 +268,24 @@ namespace MetalMastery.Admin.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тег с таким идендитификатором не найден..
+        /// </summary>
+        public static string TagDidntFound {
+            get {
+                return ResourceManager.GetString("TagDidntFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Теги.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Текст.
         /// </summary>
         public static string Text {

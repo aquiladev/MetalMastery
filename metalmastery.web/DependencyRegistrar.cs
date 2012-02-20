@@ -44,6 +44,7 @@ namespace MetalMastery.Web
             builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerHttpRequest();
             builder.RegisterType<FormatService>().As<IFormatService>().InstancePerHttpRequest();
             builder.RegisterType<MaterialService>().As<IMaterialService>().InstancePerHttpRequest();
+            builder.RegisterType<TagService>().As<ITagService>().InstancePerHttpRequest();
         }
     }
 }
