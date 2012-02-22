@@ -315,7 +315,7 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
-    <None Include="Content\Site.less" />
+    <Content Include="Content\Site.less" />
     <None Include="Scripts\MetalMastery\MmResJs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MmResJs.js</LastGenOutput>
