@@ -106,7 +106,10 @@
     <Content Include="Content\bottom-left.png" />
     <Content Include="Content\bottom-right.png" />
     <Content Include="Content\bottom.png" />
+    <Content Include="Content\center.png" />
     <Content Include="Content\left.png" />
+    <Content Include="Content\MetalMastery.png" />
+    <Content Include="Content\Ornament.png" />
     <Content Include="Content\paper.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\right.png" />
