@@ -1,0 +1,20 @@
+@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Areas.Admin.Models.UserModel
+
+@{
+    ViewBag.Title = MmResources.Delete;
+}
+
+<h3>@MmResources.DeleteConfirmQuestion</h3>
+<fieldset>
+    <div class="display-label">@MmResources.Email</div>
+    <div class="display-field">@Model.Email</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="@MmResources.Delete" /> |
+        @Html.ActionLink(MmResources.BackToList, "Index")
+    </p>
+}
+
+

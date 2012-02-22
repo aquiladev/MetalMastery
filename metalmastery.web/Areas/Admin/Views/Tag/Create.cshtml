@@ -1,0 +1,23 @@
+@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Areas.Admin.Models.TagModel
+
+@{
+    ViewBag.Title = MmResources.Create;
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="@MmResources.Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(MmResources.BackToList, "Index")
+</div>
+
+

@@ -76,22 +76,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MmResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FormatController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MaterialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\ArticleModel.cs" />
+    <Compile Include="Areas\Admin\Models\FormatModel.cs" />
+    <Compile Include="Areas\Admin\Models\MaterialModel.cs" />
+    <Compile Include="Areas\Admin\Models\TagModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Filters\CheckModel.cs" />
+    <Compile Include="Filters\UserNameFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MapCreater.cs" />
+    <Compile Include="MappingExtensions.cs" />
     <Compile Include="Models\RegistrateModel.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\AreaAwareViewLocation.cs" />
-    <Compile Include="Infrastructure\MmRazorViewEngine.cs" />
-    <Compile Include="Infrastructure\MmBuildManagerViewEngine.cs" />
-    <Compile Include="Infrastructure\MmVirtualPathProviderViewEngine.cs" />
-    <Compile Include="Infrastructure\ViewLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bottom-left.png" />
@@ -248,7 +257,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -265,10 +276,6 @@
       <Project>{8D2531E3-99C1-4494-B036-F05DDB7519C3}</Project>
       <Name>MetalMastery.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="Administration\MetalMastery.Admin.csproj">
-      <Project>{64D81F60-E41A-4CCE-94AC-77517EF4CD29}</Project>
-      <Name>MetalMastery.Admin</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_LocalResources\MmResources.resx">
@@ -281,6 +288,35 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Article\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Format\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Format\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Format\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Format\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Format\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Material\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Material\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Material\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Material\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Material\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
     <None Include="Content\Site.less" />
     <None Include="Scripts\MetalMastery\MmResJs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

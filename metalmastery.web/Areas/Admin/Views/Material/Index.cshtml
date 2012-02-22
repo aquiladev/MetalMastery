@@ -1,0 +1,33 @@
+@using MetalMastery.Web.App_LocalResources
+@model IEnumerable<MetalMastery.Web.Areas.Admin.Models.MaterialModel>
+
+@{
+    ViewBag.Title = MmResources.Materials;
+}
+
+<p>
+    @Html.ActionLink(MmResources.CreateNew, "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            @MmResources.Name
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(MmResources.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(MmResources.Delete, "Delete", new { id=item.Id })
+        </td>
+        <td>
+			@item.Name
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -117,8 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdminSite" xml:space="preserve">
+    <value>Админка</value>
+  </data>
+  <data name="ArticleDidntFound" xml:space="preserve">
+    <value>Статья с таким идендитификатором не найдена.</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>Статьи</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Вернуться к списку</value>
+  </data>
   <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
     <value>Пароли не совпадают</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Создать новое</value>
+  </data>
+  <data name="DefaultOption" xml:space="preserve">
+    <value>Выберите...</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteConfirmQuestion" xml:space="preserve">
+    <value>Вы действительно хотите удалить это?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
   </data>
   <data name="EmailLbl" xml:space="preserve">
     <value>Мыло</value>
@@ -132,14 +171,38 @@
   <data name="EntranceTab" xml:space="preserve">
     <value>Вход</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="FormatDidntFound" xml:space="preserve">
+    <value>Формат с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Formats" xml:space="preserve">
+    <value>Форматы</value>
+  </data>
+  <data name="IdEmptyError" xml:space="preserve">
+    <value>Идендитификатор не может быть пустым.</value>
+  </data>
   <data name="LoginPasswordInvalid" xml:space="preserve">
     <value>Пользователя с такими логином и паролем не существует, или Вы допустили ошибку!</value>
+  </data>
+  <data name="MaterialDidntFound" xml:space="preserve">
+    <value>Материал с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Материалы</value>
   </data>
   <data name="MetalMasteryTitle" xml:space="preserve">
     <value>MetalMastery</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
   <data name="NewsTab" xml:space="preserve">
     <value>Почитать</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Владелец</value>
   </data>
   <data name="PasswordLbl" xml:space="preserve">
     <value>Пароль</value>
@@ -150,10 +213,37 @@
   <data name="RememberMeLbl" xml:space="preserve">
     <value>Запомнить меня</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
   <data name="RoleNotFound" xml:space="preserve">
     <value>Ошибка во время создания пользователья, роль не найдена.</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="TagDidntFound" xml:space="preserve">
+    <value>Тег с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="UserDidntFound" xml:space="preserve">
+    <value>Пользователь с таким идендитификатором не найден.</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
   <data name="WantToReg" xml:space="preserve">
     <value>Хочешь зарегаться?</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать {0}</value>
   </data>
 </root>

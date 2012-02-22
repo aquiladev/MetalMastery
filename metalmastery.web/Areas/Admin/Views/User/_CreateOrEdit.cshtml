@@ -1,0 +1,34 @@
+@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Areas.Admin.Models.UserModel
+<table>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @MmResources.Role
+            </div>
+        </td>
+        <td>    
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.RoleId, ((IEnumerable<MetalMastery.Core.Domain.Role>)ViewBag.PossibleRoles).Select(option => new SelectListItem
+                   {
+                       Text = (option == null ? "None" : option.Name),
+                       Value = option.Id.ToString(),
+                       Selected = (Model != null) && (option.Id == Model.RoleId)
+                   }), @MmResources.DefaultOption)
+                @Html.ValidationMessageFor(model => model.RoleId)
+            </div>
+        </td>
+    </tr>
+</table>

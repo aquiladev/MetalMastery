@@ -7,7 +7,6 @@ using System.Web.Security;
 using Autofac;
 using Autofac.Integration.Mvc;
 using MetalMastery.Core.Infrastructure;
-using MetalMastery.Web.Infrastructure;
 
 namespace MetalMastery.Web
 {
@@ -35,9 +34,6 @@ namespace MetalMastery.Web
 
         protected void Application_Start()
         {
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new MmRazorViewEngine());
-
             var builder = new ContainerBuilder();
             new DependencyRegistrar().Register(builder, new AppDomainTypeFinder());
             var container = builder.Build();

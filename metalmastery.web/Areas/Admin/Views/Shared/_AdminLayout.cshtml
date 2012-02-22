@@ -1,0 +1,48 @@
+﻿@using System.Web.Mvc.Html
+@using MetalMastery.Web.App_LocalResources
+@{
+    var currentCustomer = HttpContext.Current.User.Identity.Name;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/reset.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Administration/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.17.js")" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+        </div>
+        <div class="login-info">
+            @if (!string.IsNullOrEmpty(currentCustomer))
+            {
+                @string.Format(MmResources.Welcome, currentCustomer)
+                <text>, @Html.ActionLink(MmResources.Exit, "LogOut", "User", new { area = "" }, null)</text> 
+            }
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div class="header-menu">
+        <ul>
+            <li>@Html.ActionLink(MmResources.Users, "Index", "User", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink(MmResources.Articles, "Index", "Article", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink(MmResources.Formats, "Index", "Format", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink(MmResources.Materials, "Index", "Material", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink(MmResources.Tags, "Index", "Tag", new { area = "Admin" }, null)</li>
+        </ul>
+    </div>
+    @RenderBody()
+</body>
+</html>

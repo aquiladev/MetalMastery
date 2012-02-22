@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MetalMastery.Admin.Models;
 using MetalMastery.Core.Domain;
+using MetalMastery.Web.Areas.Admin.Models;
 using MetalMastery.Web.Models;
 
 namespace MetalMastery.Web

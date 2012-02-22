@@ -1,0 +1,30 @@
+@using MetalMastery.Web.App_LocalResources
+@model IEnumerable<MetalMastery.Web.Areas.Admin.Models.UserModel>
+
+@{
+    ViewBag.Title = MmResources.Users;
+}
+
+<table>
+    <tr>
+        <th>
+            @MmResources.Email
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.Email
+        </td>
+        <td>
+            @Html.ActionLink(MmResources.Edit, "Edit", new { id = item.Id }) |
+            @Html.ActionLink(MmResources.Delete, "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
