@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\FormatController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MaterialController.cs" />
@@ -94,8 +95,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
-    <Compile Include="Filters\CheckModel.cs" />
-    <Compile Include="Filters\UserNameFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +278,10 @@
     <ProjectReference Include="..\MetalMastery.Services\MetalMastery.Services.csproj">
       <Project>{8D2531E3-99C1-4494-B036-F05DDB7519C3}</Project>
       <Name>MetalMastery.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetalMastery.Web.Framework\MetalMastery.Web.Framework.csproj">
+      <Project>{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}</Project>
+      <Name>MetalMastery.Web.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

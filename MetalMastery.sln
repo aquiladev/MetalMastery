@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Core.Tests", "MetalMastery.Core.Tests\MetalMastery.Core.Tests.csproj", "{DBDCBFA0-E7EB-49F0-9407-FC0C038B1BA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web.Framework", "MetalMastery.Web.Framework\MetalMastery.Web.Framework.csproj", "{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,12 +103,23 @@ Global
 		{DBDCBFA0-E7EB-49F0-9407-FC0C038B1BA4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DBDCBFA0-E7EB-49F0-9407-FC0C038B1BA4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DBDCBFA0-E7EB-49F0-9407-FC0C038B1BA4}.Release|x86.ActiveCfg = Release|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{58E157B0-AC61-4829-BE7A-CD573FDCC841} = {FD1C2FCB-172D-4817-9013-3275B4A549F6}
+		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD} = {FD1C2FCB-172D-4817-9013-3275B4A549F6}
 		{F986A4BF-BE67-4491-B0C1-B0E1327F4ADA} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}
 		{8D2531E3-99C1-4494-B036-F05DDB7519C3} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}
 		{334D57A9-A3E7-4FA8-8C88-56863CAA6EA9} = {ACF4DFE0-DE63-4090-BBAD-65184474651F}

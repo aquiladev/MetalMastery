@@ -19,13 +19,13 @@ namespace MetalMastery.Services
         public void SignIn(User user, bool createPersistentCookie)
         {
             var now = DateTime.UtcNow.ToLocalTime();
-            //TODO: роли заполнять
-            var ticket = new FormsAuthenticationTicket(1,
+            var ticket = new FormsAuthenticationTicket(
+                1,
                 user.Email,
-                now, 
+                now,
                 now.Add(_expirationTimeSpan),
                 createPersistentCookie,
-                "test",
+                user.Role == null ? string.Empty : user.Role.Name,
                 FormsAuthentication.FormsCookiePath);
 
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);

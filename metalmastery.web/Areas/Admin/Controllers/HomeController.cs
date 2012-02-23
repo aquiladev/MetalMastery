@@ -2,7 +2,7 @@
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseAdminController
     {
         public ActionResult Index()
         {

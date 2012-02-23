@@ -6,8 +6,8 @@ using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
-{   
-    public class FormatController : Controller
+{
+    public class FormatController : BaseAdminController
     {
         private readonly IFormatService _formatService;
 

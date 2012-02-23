@@ -7,7 +7,7 @@ using MetalMastery.Web.Areas.Admin.Models;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseAdminController
     {
         private readonly IUserService _userService;
 

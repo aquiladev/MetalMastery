@@ -7,7 +7,7 @@ using MetalMastery.Web.Areas.Admin.Models;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
 {
-    public class TagController : Controller
+    public class TagController : BaseAdminController
     {
         private readonly ITagService _tagService;
 

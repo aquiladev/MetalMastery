@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MetalMastery.Web.Filters
+namespace MetalMastery.Web.Framework.Filters
 {
     public class UserNameFilter : ActionFilterAttribute
     {

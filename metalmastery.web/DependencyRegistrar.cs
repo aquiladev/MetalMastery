@@ -16,7 +16,6 @@ namespace MetalMastery.Web
         {
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
-            //TODO: хорошо бы убрать связь с Data
             builder.Register<IDbContext>(c => new MmDataContext(ConfigurationManager.ConnectionStrings["MmDataContext"].ConnectionString)).InstancePerHttpRequest();
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();

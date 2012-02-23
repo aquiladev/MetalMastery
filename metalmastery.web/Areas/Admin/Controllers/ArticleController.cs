@@ -4,11 +4,11 @@ using System.Web.Mvc;
 using MetalMastery.Services;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
-using MetalMastery.Web.Filters;
+using MetalMastery.Web.Framework.Filters;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseAdminController
     {
         private readonly IArticleService _articleService;
         private readonly IUserService _userService;

@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using MetalMastery.Core.Mvc;
 
-namespace MetalMastery.Web.Filters
+namespace MetalMastery.Web.Framework.Filters
 {
-    public class CheckModel : ActionFilterAttribute
+    public class CheckModelFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

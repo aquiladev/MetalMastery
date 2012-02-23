@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using MetalMastery.Core.Domain;
 using MetalMastery.Core.Mvc;
 using MetalMastery.Web.App_LocalResources;
-using MetalMastery.Web.Filters;
+using MetalMastery.Web.Framework.Filters;
 using MetalMastery.Web.Models;
 using MetalMastery.Services;
 
@@ -25,12 +25,14 @@ namespace MetalMastery.Web.Controllers
             _emailSender = emailSender;
         }
 
-        [CheckModel]
+        [CheckModelFilter]
         public JsonResult LogIn(LogOnModel user)
         {
             if (_userService.ValidateUser(user.Email, user.Password))
             {
-                _authenticationService.SignIn(new User { Email = user.Email }, user.RememberMe);
+                _authenticationService.SignIn(
+                    _userService.GetUserByEmail(user.Email),
+                    user.RememberMe);
             }
             else
             {
@@ -43,7 +45,7 @@ namespace MetalMastery.Web.Controllers
             return new MmJsonResult(data: null);
         }
 
-        [CheckModel]
+        [CheckModelFilter]
         public JsonResult LogOn(RegistrateModel user)
         {
             var role = _userService.GetRoleByName(Roles.Customer.ToString());
@@ -51,8 +53,8 @@ namespace MetalMastery.Web.Controllers
             if (role == null)
             {
                 return new MmJsonResult(
-                    data: null, 
-                    success: false, 
+                    data: null,
+                    success: false,
                     errors: new List<string> { MmResources.RoleNotFound });
             }
             _userService.InsertUser(new User

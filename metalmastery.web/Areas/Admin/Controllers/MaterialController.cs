@@ -6,8 +6,8 @@ using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
-{   
-    public class MaterialController : Controller
+{
+    public class MaterialController : BaseAdminController
     {
         private readonly IMaterialService _materialService;
 
