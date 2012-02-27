@@ -28,7 +28,8 @@ namespace MetalMastery.Services
         /// Insert a user
         /// </summary>
         /// <param name="user">User</param>
-        void InsertUser(User user);
+        /// <param name="role">Role</param>
+        void InsertUser(User user, Roles role = Roles.Customer);
 
         /// <summary>
         /// Update a user
@@ -56,7 +57,7 @@ namespace MetalMastery.Services
         /// <param name="usernameOrEmail">Username or email</param>
         /// <param name="password">Password</param>
         /// <returns>Result</returns>
-        bool ValidateUser(string usernameOrEmail, string password);
+        bool ValidateUser(string usernameOrEmail, byte[] password);
 
         /// <summary>
         /// Get role by role name

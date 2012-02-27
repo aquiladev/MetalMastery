@@ -12,7 +12,9 @@ namespace MetalMastery.Web
             ViceVersa<User, UserModel>();
             ViceVersa<User, LogOnModel>();
             ViceVersa<User, RegistrateModel>();
-            ViceVersa<Article, ArticleModel>();
+            Mapper.CreateMap<Article, ArticleModel>()
+                .ForMember(x => x.Owner, a => a.Ignore());
+            Mapper.CreateMap<ArticleModel, Article>();
             ViceVersa<Format, FormatModel>();
             ViceVersa<Material, MaterialModel>();
             ViceVersa<Tag, TagModel>();

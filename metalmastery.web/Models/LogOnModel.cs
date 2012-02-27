@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MetalMastery.Core.Domain;
 using MetalMastery.Web.App_LocalResources;
 
 namespace MetalMastery.Web.Models
 {
     [MetadataType(typeof(LogOnModelMetadata))]
-    public class LogOnModel : User
+    public class LogOnModel
     {
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
         public bool RememberMe { get; set; }
     }
 

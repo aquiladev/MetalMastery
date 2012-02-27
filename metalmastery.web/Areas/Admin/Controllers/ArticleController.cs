@@ -20,9 +20,9 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             _userService = userService;
         }
 
-        public ViewResult Index()
+        public ViewResult Index(int pageIndex = 0, int pageSize = 10)
         {
-            return View(_articleService.GetAllArticles(0, 10)
+            return View(_articleService.GetAllArticles(pageIndex, pageSize)
                 .Select(x => x.ToModel())
                 .ToList());
         }
@@ -53,7 +53,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (user == null)
             {
-                ViewBag.Error = MmResources.UserDidntFound;
+                ViewBag.Error = MmResources.UserNotFound;
                 return View(article);
             }
 
@@ -77,7 +77,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (article == null)
             {
-                ViewBag.Error = MmResources.ArticleDidntFound;
+                ViewBag.Error = MmResources.ArticleNotFound;
                 return View();
             }
 
@@ -106,7 +106,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (article == null)
             {
-                ViewBag.Error = MmResources.ArticleDidntFound;
+                ViewBag.Error = MmResources.ArticleNotFound;
                 return View();
             }
 
@@ -123,7 +123,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (article == null)
             {
-                ViewBag.Error = MmResources.ArticleDidntFound;
+                ViewBag.Error = MmResources.ArticleNotFound;
                 return View();
             }
 

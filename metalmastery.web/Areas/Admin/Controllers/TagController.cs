@@ -53,7 +53,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (tag == null)
             {
-                ViewBag.Error = MmResources.TagDidntFound;
+                ViewBag.Error = MmResources.TagNotFound;
                 return View();
             }
 
@@ -82,7 +82,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (tag == null)
             {
-                ViewBag.Error = MmResources.TagDidntFound;
+                ViewBag.Error = MmResources.TagNotFound;
                 return View();
             }
 
@@ -99,7 +99,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (tag == null)
             {
-                ViewBag.Error = MmResources.TagDidntFound;
+                ViewBag.Error = MmResources.TagNotFound;
                 return View();
             }
 

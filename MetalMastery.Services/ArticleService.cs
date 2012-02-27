@@ -18,10 +18,21 @@ namespace MetalMastery.Services
         public IPagedList<Article> GetAllArticles(int pageIndex, int pageSize)
         {
             return new PagedList<Article>(_articleRepository
-                                           .Table
-                                           .ToList(),
-                                       pageIndex,
-                                       pageSize);
+                                              .Table
+                                              .OrderByDescending(a => a.CreateDate)
+                                              .ToList()
+                                              .Select(a => new Article
+                                                               {
+                                                                   Id = a.Id,
+                                                                   CreateDate = a.CreateDate,
+                                                                   Text = a.Text.GetPreviewText(),
+                                                                   Title = a.Title,
+                                                                   Owner = a.Owner,
+                                                                   OwnerId = a.OwnerId
+                                                               })
+                                              .ToList(),
+                                          pageIndex,
+                                          pageSize);
         }
 
         public void DeleteArticle(Article article)

@@ -53,7 +53,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (material == null)
             {
-                ViewBag.Error = MmResources.MaterialDidntFound;
+                ViewBag.Error = MmResources.MaterialNotFound;
                 return View();
             }
 
@@ -82,7 +82,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (material == null)
             {
-                ViewBag.Error = MmResources.MaterialDidntFound;
+                ViewBag.Error = MmResources.MaterialNotFound;
                 return View();
             }
 
@@ -99,7 +99,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (material == null)
             {
-                ViewBag.Error = MmResources.MaterialDidntFound;
+                ViewBag.Error = MmResources.MaterialNotFound;
                 return View();
             }
 

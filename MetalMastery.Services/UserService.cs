@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
@@ -39,14 +40,26 @@ namespace MetalMastery.Services
             _userRepository.SaveChanges();
         }
 
-        public void InsertUser(User user)
+        public void InsertUser(User user, Roles roleType = Roles.Customer)
         {
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
 
-            _userRepository.Insert(user);
+            var hash = SHA1.Create();
+            var role = GetRoleByName(roleType.ToString());
+
+            if (role == null)
+                throw new InvalidOperationException();
+
+            _userRepository.Insert(new User
+                                       {
+                                           Id = Guid.NewGuid(),
+                                           Email = user.Email,
+                                           Password = hash.ComputeHash(user.Password),
+                                           RoleId = role.Id
+                                       });
             _userRepository.SaveChanges();
         }
 
@@ -96,20 +109,22 @@ namespace MetalMastery.Services
                 : user.FirstOrDefault();
         }
 
-        public bool ValidateUser(string email, string password)
+        public bool ValidateUser(string email, byte[] password)
         {
             if (string.IsNullOrEmpty(email))
             {
                 throw new ArgumentNullException("email");
             }
-            if (string.IsNullOrEmpty(password))
+            if (password == null)
             {
                 throw new ArgumentNullException("password");
             }
 
+            var hash = SHA1.Create();
+            var pwd = hash.ComputeHash(password);
             return _userRepository.Table
                 .Count(u => u.Email == email &&
-                    u.Password == password) == 1;
+                    u.Password == pwd) == 1;
         }
 
         public Role GetRoleByName(string roleName)

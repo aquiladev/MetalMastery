@@ -55,11 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminArticleControllerTests.cs" />
-    <Compile Include="AdminFormatControllerTests.cs" />
-    <Compile Include="AdminMaterailControllerTests.cs" />
-    <Compile Include="AdminTagControllerTests.cs" />
-    <Compile Include="AdminUserControllerTests.cs" />
+    <Compile Include="Admin\ArticleControllerTests.cs" />
+    <Compile Include="Admin\FormatControllerTests.cs" />
+    <Compile Include="Admin\MaterailControllerTests.cs" />
+    <Compile Include="Admin\TagControllerTests.cs" />
+    <Compile Include="Admin\UserControllerTests.cs" />
+    <Compile Include="ArticleControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControllerTests.cs" />
   </ItemGroup>

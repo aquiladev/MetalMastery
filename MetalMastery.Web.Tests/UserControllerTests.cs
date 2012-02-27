@@ -38,55 +38,38 @@ namespace MetalMastery.Web.Tests
         }
 
         [Test]
-        public void LogIn_IncorectEmailOrPassword_ReturnError()
+        public void SignIn_IncorectEmailOrPassword_ReturnError()
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.ValidateUser(string.Empty, string.Empty))
+                _userService.Stub(x => x.ValidateUser(string.Empty, null))
                     .IgnoreArguments().Return(false);
             }
 
-            var result = _userController.LogIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
+            var result = _userController.SignIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, false);
             Assert.AreEqual(((MmJsonResult)result).Errors.Count, 1);
         }
 
         [Test]
-        public void LogIn_CorrectAll()
+        public void SignIn_CorrectAll()
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.ValidateUser(string.Empty, string.Empty))
+                _userService.Stub(x => x.ValidateUser(string.Empty, null))
                     .IgnoreArguments().Return(true);
+                _userService.Stub(x => x.GetUserByEmail(string.Empty))
+                    .IgnoreArguments().Return(new User { Email = EmailTest });
             }
 
-            var result = _userController.LogIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
+            var result = _userController.SignIn(new LogOnModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, true);
         }
 
         [Test]
-        public void LogOn_RoleNotFound_ReturnError()
-        {
-            using (_mockRepository.Record())
-            {
-                _userService.Stub(x => x.GetRoleByName(string.Empty))
-                    .IgnoreArguments()
-                    .Return(null);
-
-                _userService.Stub(x => x.InsertUser(null))
-                    .IgnoreArguments();
-            }
-
-            var result = _userController.LogOn(new RegistrateModel { Email = EmailTest, Password = PwdTest });
-
-            Assert.AreEqual(((MmJsonResult)result).Success, false);
-            Assert.AreEqual(((MmJsonResult)result).Errors.Count, 1);
-        }
-
-        [Test]
-        public void LogOn_CorrectInsert()
+        public void SignUp_CorrectInsert()
         {
             var stubRole = new Role { Id = Guid.NewGuid() };
 
@@ -100,7 +83,7 @@ namespace MetalMastery.Web.Tests
                     .IgnoreArguments();
             }
 
-            var result = _userController.LogOn(new RegistrateModel { Email = EmailTest, Password = PwdTest });
+            var result = _userController.SignUp(new RegistrateModel { Email = EmailTest, Password = PwdTest });
 
             Assert.AreEqual(((MmJsonResult)result).Success, true);
         }

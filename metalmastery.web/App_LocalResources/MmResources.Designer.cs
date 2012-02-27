@@ -72,9 +72,9 @@ namespace MetalMastery.Web.App_LocalResources {
         /// <summary>
         ///   Looks up a localized string similar to Статья с таким идендитификатором не найдена..
         /// </summary>
-        public static string ArticleDidntFound {
+        public static string ArticleNotFound {
             get {
-                return ResourceManager.GetString("ArticleDidntFound", resourceCulture);
+                return ResourceManager.GetString("ArticleNotFound", resourceCulture);
             }
         }
         
@@ -84,6 +84,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Articles {
             get {
                 return ResourceManager.GetString("Articles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Почитать.
+        /// </summary>
+        public static string ArticlesTab {
+            get {
+                return ResourceManager.GetString("ArticlesTab", resourceCulture);
             }
         }
         
@@ -102,6 +111,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string ConfirmPasswordErrorMessage {
             get {
                 return ResourceManager.GetString("ConfirmPasswordErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердите пароль.
+        /// </summary>
+        public static string ConfirmPasswordLbl {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordLbl", resourceCulture);
             }
         }
         
@@ -234,9 +252,9 @@ namespace MetalMastery.Web.App_LocalResources {
         /// <summary>
         ///   Looks up a localized string similar to Формат с таким идендитификатором не найден..
         /// </summary>
-        public static string FormatDidntFound {
+        public static string FormatNotFound {
             get {
-                return ResourceManager.GetString("FormatDidntFound", resourceCulture);
+                return ResourceManager.GetString("FormatNotFound", resourceCulture);
             }
         }
         
@@ -270,9 +288,9 @@ namespace MetalMastery.Web.App_LocalResources {
         /// <summary>
         ///   Looks up a localized string similar to Материал с таким идендитификатором не найден..
         /// </summary>
-        public static string MaterialDidntFound {
+        public static string MaterialNotFound {
             get {
-                return ResourceManager.GetString("MaterialDidntFound", resourceCulture);
+                return ResourceManager.GetString("MaterialNotFound", resourceCulture);
             }
         }
         
@@ -300,15 +318,6 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Почитать.
-        /// </summary>
-        public static string NewsTab {
-            get {
-                return ResourceManager.GetString("NewsTab", resourceCulture);
             }
         }
         
@@ -376,11 +385,20 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зарегаться.
+        /// </summary>
+        public static string SignUpBtn {
+            get {
+                return ResourceManager.GetString("SignUpBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тег с таким идендитификатором не найден..
         /// </summary>
-        public static string TagDidntFound {
+        public static string TagNotFound {
             get {
-                return ResourceManager.GetString("TagDidntFound", resourceCulture);
+                return ResourceManager.GetString("TagNotFound", resourceCulture);
             }
         }
         
@@ -414,9 +432,9 @@ namespace MetalMastery.Web.App_LocalResources {
         /// <summary>
         ///   Looks up a localized string similar to Пользователь с таким идендитификатором не найден..
         /// </summary>
-        public static string UserDidntFound {
+        public static string UserNotFound {
             get {
-                return ResourceManager.GetString("UserDidntFound", resourceCulture);
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
         
@@ -444,6 +462,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Привет.
+        /// </summary>
+        public static string WelcomePrefix {
+            get {
+                return ResourceManager.GetString("WelcomePrefix", resourceCulture);
             }
         }
     }

@@ -120,17 +120,23 @@
   <data name="AdminSite" xml:space="preserve">
     <value>Админка</value>
   </data>
-  <data name="ArticleDidntFound" xml:space="preserve">
+  <data name="ArticleNotFound" xml:space="preserve">
     <value>Статья с таким идендитификатором не найдена.</value>
   </data>
   <data name="Articles" xml:space="preserve">
     <value>Статьи</value>
+  </data>
+  <data name="ArticlesTab" xml:space="preserve">
+    <value>Почитать</value>
   </data>
   <data name="BackToList" xml:space="preserve">
     <value>Вернуться к списку</value>
   </data>
   <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
     <value>Пароли не совпадают</value>
+  </data>
+  <data name="ConfirmPasswordLbl" xml:space="preserve">
+    <value>Подтвердите пароль</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
@@ -174,7 +180,7 @@
   <data name="Exit" xml:space="preserve">
     <value>Выход</value>
   </data>
-  <data name="FormatDidntFound" xml:space="preserve">
+  <data name="FormatNotFound" xml:space="preserve">
     <value>Формат с таким идендитификатором не найден.</value>
   </data>
   <data name="Formats" xml:space="preserve">
@@ -186,7 +192,7 @@
   <data name="LoginPasswordInvalid" xml:space="preserve">
     <value>Пользователя с такими логином и паролем не существует, или Вы допустили ошибку!</value>
   </data>
-  <data name="MaterialDidntFound" xml:space="preserve">
+  <data name="MaterialNotFound" xml:space="preserve">
     <value>Материал с таким идендитификатором не найден.</value>
   </data>
   <data name="Materials" xml:space="preserve">
@@ -197,9 +203,6 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Название</value>
-  </data>
-  <data name="NewsTab" xml:space="preserve">
-    <value>Почитать</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>
@@ -222,7 +225,10 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
-  <data name="TagDidntFound" xml:space="preserve">
+  <data name="SignUpBtn" xml:space="preserve">
+    <value>Зарегаться</value>
+  </data>
+  <data name="TagNotFound" xml:space="preserve">
     <value>Тег с таким идендитификатором не найден.</value>
   </data>
   <data name="Tags" xml:space="preserve">
@@ -234,7 +240,7 @@
   <data name="Title" xml:space="preserve">
     <value>Заголовок</value>
   </data>
-  <data name="UserDidntFound" xml:space="preserve">
+  <data name="UserNotFound" xml:space="preserve">
     <value>Пользователь с таким идендитификатором не найден.</value>
   </data>
   <data name="Users" xml:space="preserve">
@@ -245,5 +251,8 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Добро пожаловать {0}</value>
+  </data>
+  <data name="WelcomePrefix" xml:space="preserve">
+    <value>Привет</value>
   </data>
 </root>

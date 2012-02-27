@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
 using NUnit.Framework;
@@ -18,6 +17,8 @@ namespace MetalMastery.Services.Tests
 
         private IUserService _userService;
 
+        private byte[] _pwd = new byte[] { 1, 32, 12, 3, 12, 3 };
+
         [SetUp]
         public void SetUp()
         {
@@ -30,14 +31,12 @@ namespace MetalMastery.Services.Tests
 
         [Test]
         [TestCase(null, null)]
-        [TestCase(null, "")]
         [TestCase("", null)]
-        [TestCase("", "pwd")]
-        [TestCase("email", "")]
-        [TestCase(null, "pwd")]
+        [TestCase("", new byte[] { 3, 2 })]
+        [TestCase(null, new byte[] { 3, 2 })]
         [TestCase("email", null)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ValidateUser_IncorrectParams_Erxception(string email, string pwd)
+        public void ValidateUser_IncorrectParams_Erxception(string email, byte[] pwd)
         {
             _userService.ValidateUser(email, pwd);
         }
@@ -52,7 +51,7 @@ namespace MetalMastery.Services.Tests
                 _userRepository.Table.Stub(x => x).Return(users.AsQueryable());
             }
 
-            var result = _userService.ValidateUser("test@te.te", "123qw!");
+            var result = _userService.ValidateUser("test@te.te", _pwd);
 
             Assert.IsTrue(result);
         }
@@ -67,7 +66,7 @@ namespace MetalMastery.Services.Tests
                 _userRepository.Table.Stub(x => x).Return(users.AsQueryable());
             }
 
-            var result = _userService.ValidateUser("test@sa.sa", "123qw!");
+            var result = _userService.ValidateUser("test@sa.sa", _pwd);
 
             Assert.IsFalse(result);
         }
@@ -116,7 +115,7 @@ namespace MetalMastery.Services.Tests
         {
             _userService.InsertUser(null);
         }
-        
+
         [Test]
         public void GetAllUsers_CorrectCount()
         {
@@ -180,7 +179,7 @@ namespace MetalMastery.Services.Tests
         public void GetUserById_Founded()
         {
             var id = Guid.NewGuid();
-            var user = new User {Id = id};
+            var user = new User { Id = id };
 
             using (_mockRepository.Record())
             {
@@ -258,8 +257,8 @@ namespace MetalMastery.Services.Tests
         {
             return new List<User>
                             {
-                                new User{ Email = "test@te.te", Password = "123qw!"},
-                                new User{ Email = "seta@sa.sa", Password = "1231q!"}
+                                new User{ Email = "test@te.te", Password = _pwd},
+                                new User{ Email = "seta@sa.sa", Password = _pwd}
                             };
         }
 

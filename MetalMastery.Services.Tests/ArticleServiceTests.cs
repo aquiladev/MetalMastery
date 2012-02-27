@@ -15,7 +15,7 @@ namespace MetalMastery.Services.Tests
         private IRepository<Article> _articleRepository;
 
         private IArticleService _articleService;
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -103,6 +103,38 @@ namespace MetalMastery.Services.Tests
             var result = _articleService.GetAllArticles(1, 4);
 
             Assert.AreEqual(result.Count(), 2);
+        }
+
+        [Test]
+        public void GetAllArticles_OrderByDescending()
+        {
+            var ar0 = new Article
+                          {
+                              CreateDate = DateTime.Now,
+                              Id = Guid.NewGuid()
+                          };
+            var ar1 = new Article
+                          {
+                              CreateDate = DateTime.Now.AddSeconds(1),
+                              Id = Guid.NewGuid()
+                          };
+            var ar2 = new Article
+                          {
+                              CreateDate = DateTime.Now.AddSeconds(2),
+                              Id = Guid.NewGuid()
+                          };
+
+            using (_mockRepository.Record())
+            {
+                _articleRepository.Stub(x => x.Table)
+                    .Return(new List<Article> { ar1, ar2, ar0 }.AsQueryable());
+            }
+
+            var result = _articleService.GetAllArticles(0, 10);
+
+            Assert.AreEqual(result[0].Id, ar2.Id);
+            Assert.AreEqual(result[1].Id, ar1.Id);
+            Assert.AreEqual(result[2].Id, ar0.Id);
         }
 
         [Test]

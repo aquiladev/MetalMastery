@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using System.Web.Mvc;
 using MetalMastery.Core.Domain;
 using MetalMastery.Core.Mvc;
@@ -26,12 +27,17 @@ namespace MetalMastery.Web.Controllers
         }
 
         [CheckModelFilter]
-        public JsonResult LogIn(LogOnModel user)
+        public JsonResult SignIn(LogOnModel user)
         {
-            if (_userService.ValidateUser(user.Email, user.Password))
+            User authUser;
+            var encoder = new ASCIIEncoding();
+            byte[] pwd = encoder.GetBytes(user.Password);
+
+            if (_userService.ValidateUser(user.Email, pwd))
             {
+                authUser = _userService.GetUserByEmail(user.Email);
                 _authenticationService.SignIn(
-                    _userService.GetUserByEmail(user.Email),
+                    authUser,
                     user.RememberMe);
             }
             else
@@ -42,26 +48,18 @@ namespace MetalMastery.Web.Controllers
                     errors: new List<string> { MmResources.LoginPasswordInvalid });
             }
 
-            return new MmJsonResult(data: null);
+            return new MmJsonResult(authUser.Email);
         }
 
         [CheckModelFilter]
-        public JsonResult LogOn(RegistrateModel user)
+        public JsonResult SignUp(RegistrateModel user)
         {
-            var role = _userService.GetRoleByName(Roles.Customer.ToString());
+            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);  
 
-            if (role == null)
-            {
-                return new MmJsonResult(
-                    data: null,
-                    success: false,
-                    errors: new List<string> { MmResources.RoleNotFound });
-            }
             _userService.InsertUser(new User
                                         {
                                             Email = user.Email,
-                                            Password = user.Password,
-                                            RoleId = role.Id
+                                            Password = pwd
                                         });
             //TODO: Добавить вменяемый шаблон
             //_emailSender.SendEmail("Праздравляю, зарегались Вы!", "зарегались", string.Empty, string.Empty, user.Email, user.Email);
@@ -70,111 +68,18 @@ namespace MetalMastery.Web.Controllers
 
         public JsonResult IsAuthenticate()
         {
-            return new MmJsonResult(data: new
-                                              {
-                                                  User.Identity.IsAuthenticated,
-                                                  IsAdmin = User.IsInRole(Roles.Administrator.ToString())
-                                              });
+            return new MmJsonResult(new
+                                        {
+                                            User.Identity.IsAuthenticated,
+                                            User = User.Identity.Name,
+                                            IsAdmin = User.IsInRole(Roles.Administrator.ToString())
+                                        });
         }
 
-        public JsonResult LogOut()
+        public JsonResult SignOut()
         {
             _authenticationService.SignOut();
             return new MmJsonResult(data: null);
         }
-
-        ////
-        //// GET: /User/
-
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// GET: /User/Details/5
-
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// GET: /User/Create
-
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //} 
-
-        ////
-        //// POST: /User/Create
-
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        ////
-        //// GET: /User/Edit/5
-
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// POST: /User/Edit/5
-
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        ////
-        //// GET: /User/Delete/5
-
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// POST: /User/Delete/5
-
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

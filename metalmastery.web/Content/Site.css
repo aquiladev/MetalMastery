@@ -1,47 +1,75 @@
+html
+{
+    height: 100%;
+}
+
 body
 {
     font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
     color: #232323;
-    background-color: #fff;    
+    background-color: #343423;
+    height: 100%;
 }
 
-header,
-footer,
-nav,
-section {
+header, footer, nav, section
+{
     display: block;
 }
 
-/* Styles for basic forms
------------------------------------------------------------*/
-
-fieldset 
+ul
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+    list-style-type: none;
 }
 
-legend 
+ul li
 {
-    font-size:1.2em;
+    float: left;
+    padding: 0px 5px;
+    height: 25px;
+    margin: 1px;
+    text-align: center;
+    border: 1px solid #343434;
+    background-color: #aa997a;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     font-weight: bold;
 }
 
-textarea 
+ul li:hover
+{
+    background-color: #ddb;
+}
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
 {
     min-height: 75px;
 }
 
-.editor-label 
+.editor-label
 {
     margin: 1em 0 0 0;
 }
 
-.editor-field 
+.editor-field
 {
-    margin:0.5em 0 0 0;
+    margin: 0.5em 0 0 0;
 }
 
 
@@ -72,4 +100,48 @@ textarea
 .validation-summary-valid
 {
     display: none;
+}
+
+.wrap
+{
+    margin: 0 auto;
+    width: 1000px;
+    height: 100%;
+    background-color: #cca;
+}
+
+.logo
+{
+    margin: 0 5px;
+    width: 700px;
+    height: 50px;
+    background-image: url("admin_logo.png");
+    background-repeat: no-repeat;
+}
+
+.login-info
+{
+    float: right;
+    padding-right: 10px;
+}
+
+.header-menu
+{
+    width: 900px;
+    height: 30px;
+    margin: 5px;
+    background-color: #cca;
+}
+
+#content-placeholder
+{
+    width: 98%;
+    height: 300px;
+    margin: 10px auto;
+    padding: 5px;
+    background-color: #ddb;
+    border: 1px solid #343434;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
 }

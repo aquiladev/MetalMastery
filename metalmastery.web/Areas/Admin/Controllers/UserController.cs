@@ -36,7 +36,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (user == null)
             {
-                ViewBag.Error = MmResources.UserDidntFound;
+                ViewBag.Error = MmResources.UserNotFound;
                 return View();
             }
 
@@ -66,7 +66,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (user == null)
             {
-                ViewBag.Error = MmResources.UserDidntFound;
+                ViewBag.Error = MmResources.UserNotFound;
                 return View();
             }
 
@@ -83,7 +83,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
             if (user == null)
             {
-                ViewBag.Error = MmResources.UserDidntFound;
+                ViewBag.Error = MmResources.UserNotFound;
                 return View();
             }
 

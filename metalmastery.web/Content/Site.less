@@ -31,18 +31,20 @@ body {
     min-height: 600px;
 }
 
-table {
-    width: 100%;
-    height: 100%;
-}
+.root-layout {
+    table {
+        width: 100%;
+        height: 100%;
+    }
 
-table, td {
-    border-collapse: collapse;
-    border: none;    
-    margin: 0;
-    padding: 0;
-    background: @base-color;
-    background-image: url("transparent.png");
+    table, td {
+        border-collapse: collapse;
+        border: none;    
+        margin: 0;
+        padding: 0;
+        background: @base-color;
+        background-image: url("transparent.png");
+    }
 }
 
 fieldset {
@@ -306,22 +308,28 @@ fieldset {
     margin-top: 130px;
 }
 
-#signin {
+#auth {
     display: none;
-    background-color: @btn-color;
-    position: absolute;
-    margin-left: -150px;
-    padding-top: @horizontal-btn-padding;
-    text-align: left;
     left: 50%;
+    margin-left: -235px;
+    position: absolute;
+    text-align: left;
     top: 0;
     z-index: 1;
+    table {
+        .bottom-border-radius(5px);
+        background-color: @btn-color;
+        text-align: left;    
+        .box-shadow(@shadow-color);    
+        font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+        color: @txt-color; 
+    }
+}
+
+#signin, #signup {
+    padding-top: @horizontal-btn-padding;
     cursor: auto;
-    padding: 10px;  
-    font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
-    color: @txt-color;
-    .box-shadow(@shadow-color);
-    .bottom-border-radius(5px);    
+    padding: 10px;
     .subchck {
         padding: 9px 0;
         position: relative;
@@ -353,6 +361,49 @@ fieldset {
     }
 }
 
-#news {
+#signout {
+    display: inline-block;
+    padding-left: 10px;
+    color: #00c;
+}
+
+#articles {
     display: none;
+    .list {
+        li {
+            float: left;
+            height: 130px;
+            margin: 10px 25px;
+            width: 520px;
+            a {
+                display: block;
+                margin-left: 115px;
+                margin-top: 15px;
+                min-height: 120px;
+                padding: 10px;
+                text-decoration: none;
+                div {
+                    background-image: url("js-ico.png");
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    display: block;
+                    height: 100px;
+                    margin-left: -105px;
+                    margin-top: -10px;
+                    position: absolute;
+                    width: 100px;
+                }
+                h3 {
+                    color: #FFFFFF;
+                    font-size: 24px;
+                    line-height: 125%;
+                    padding-bottom: 9px;
+                }
+                p {
+                    color: #888888;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
 }

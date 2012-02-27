@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using MetalMastery.Core.Domain;
 
 namespace MetalMastery.Web.Areas.Admin.Models
@@ -18,5 +19,7 @@ namespace MetalMastery.Web.Areas.Admin.Models
 
     public class ArticleModelMetadata
     {
+        [AllowHtml]
+        public string Text { get; set; }
     }
 }
