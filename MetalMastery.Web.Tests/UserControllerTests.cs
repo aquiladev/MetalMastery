@@ -87,5 +87,20 @@ namespace MetalMastery.Web.Tests
 
             Assert.AreEqual(((MmJsonResult)result).Success, true);
         }
+
+        [Test]
+        public void SignUp_DublicateEmail_ReturnError()
+        {
+            using (_mockRepository.Record())
+            {
+                _userService.Stub(x => x.GetUserByEmail(string.Empty))
+                    .IgnoreArguments().Return(new User { Email = EmailTest });
+            }
+
+            var result = _userController.SignUp(new RegistrateModel{ Email = EmailTest, Password = PwdTest });
+
+            Assert.AreEqual(((MmJsonResult)result).Success, false);
+            Assert.AreEqual(((MmJsonResult)result).Errors.Count, 1);
+        }
     }
 }

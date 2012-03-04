@@ -10,6 +10,7 @@ using MetalMastery.Services;
 
 namespace MetalMastery.Web.Controllers
 {
+    [SessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
     public class UserController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
@@ -54,7 +55,15 @@ namespace MetalMastery.Web.Controllers
         [CheckModelFilter]
         public JsonResult SignUp(RegistrateModel user)
         {
-            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);  
+            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);
+
+            if (_userService.GetUserByEmail(user.Email) != null)
+            {
+                return new MmJsonResult(
+                    data: null,
+                    success: false,
+                    errors: new List<string> { MmResources.DublicateUser });
+            }
 
             _userService.InsertUser(new User
                                         {

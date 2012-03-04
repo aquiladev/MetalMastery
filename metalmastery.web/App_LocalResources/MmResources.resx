@@ -132,6 +132,9 @@
   <data name="BackToList" xml:space="preserve">
     <value>Вернуться к списку</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
   <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
     <value>Пароли не совпадают</value>
   </data>
@@ -159,11 +162,17 @@
   <data name="Details" xml:space="preserve">
     <value>Детали</value>
   </data>
+  <data name="DublicateUser" xml:space="preserve">
+    <value>Пользователь с таким мылом уже существует!</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
+  </data>
+  <data name="EmailIncorrect" xml:space="preserve">
+    <value>Не верно введено мыло</value>
   </data>
   <data name="EmailLbl" xml:space="preserve">
     <value>Мыло</value>
@@ -179,6 +188,9 @@
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Выход</value>
+  </data>
+  <data name="FieldLength" xml:space="preserve">
+    <value>Поле {0} не должно превышать {1} символов</value>
   </data>
   <data name="FormatNotFound" xml:space="preserve">
     <value>Формат с таким идендитификатором не найден.</value>
@@ -207,11 +219,17 @@
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>
   </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>Пароль должен содержать латинские символы и цифры, а также хотя бы один символ из ! @ # $% ^ &amp;amp; + =</value>
+  </data>
   <data name="PasswordLbl" xml:space="preserve">
     <value>Пароль</value>
   </data>
   <data name="PasswordLength" xml:space="preserve">
     <value>Длина пароля не должна быть менее 5 символов и превышать 32 символа</value>
+  </data>
+  <data name="RegistrationComplete" xml:space="preserve">
+    <value>Поздравляем, Вы зарегистрировались!</value>
   </data>
   <data name="RememberMeLbl" xml:space="preserve">
     <value>Запомнить меня</value>
@@ -239,6 +257,9 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Заголовок</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Возникла необработанная ошибка</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Пользователь с таким идендитификатором не найден.</value>

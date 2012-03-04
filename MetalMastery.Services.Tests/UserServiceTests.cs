@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
 using NUnit.Framework;
@@ -57,7 +58,7 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        public void ValidateUser_DontExistUser()
+        public void ValidateUser_NotExistUser()
         {
             var users = InitUserSets();
 
@@ -255,10 +256,13 @@ namespace MetalMastery.Services.Tests
         #region
         private IEnumerable<User> InitUserSets()
         {
+            var hash = SHA1.Create();
+            var pwd = hash.ComputeHash(_pwd);
+
             return new List<User>
                             {
-                                new User{ Email = "test@te.te", Password = _pwd},
-                                new User{ Email = "seta@sa.sa", Password = _pwd}
+                                new User{ Email = "test@te.te", Password = pwd},
+                                new User{ Email = "seta@sa.sa", Password = pwd}
                             };
         }
 

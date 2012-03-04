@@ -2,28 +2,95 @@
 @{
     ViewBag.Title = @MmResources.MetalMasteryTitle;
 }
-@*@if (User.Identity.IsAuthenticated)
-{
-    <label>Hi @User.Identity.Name</label>
-    <input type="button" id="logout" value="---"/>
-}
-else
-{
-    <div id="user" style="width: 250px; border: 1px solid #000">
-        <p>Email332: <input data-bind="value: email" /></p>
-        <p>Password876: <input data-bind="value: password" /></p>
-        <p>Remember34297<input type="checkbox"/></p>
-        <input type="button" data-bind="click: $root.logIn" value="*&^*"/>
-    </div>
-}
-<div id="userReg" style="width: 250px; border: 1px solid #000">
-    <p>Email222: <input data-bind="value: email" /></p>
-    <p>Password09: <input data-bind="value: password" /></p>
-    <p>Confirm passwordd32423: <input data-bind="value: confirmPassword" /></p>
-    <input type="button" data-bind="click: $root.logOn" value="*&^*"/>
-</div>
-*@
-<form id="articles" action="">
-    <ul class="list">
-    </ul>
+<form id="auth" action="">
+    <table>
+        <tr>
+            <td>
+                <div id="signup">
+                    <fieldset class="textbox">
+                        <label class="username">
+                            <span>@MmResources.EmailLbl</span>
+                            <input id="email" name="email" type="text" data-bind="value: email" />
+                        </label>
+                        <label class="password">
+                            <span>@MmResources.PasswordLbl</span>
+                            <input id="pwd" name="password" type="password" data-bind="value: password" />
+                        </label>
+                        <label class="confirmPassword">
+                            <span>@MmResources.ConfirmPasswordLbl</span>
+                            <input id="confirmPassword" name="confirmPassword" type="password" data-bind="value: confirmPassword" />
+                        </label>
+                    </fieldset>
+                    <fieldset class="subchck">
+                        <button class="button" type="button" data-bind="click: $root.signUp">@MmResources.SignUpBtn</button>
+                    </fieldset>
+                </div>
+            </td>
+            <td>
+                <div id="signin">
+                    <fieldset class="textbox">
+                        <label class="username">
+                            <span>@MmResources.EmailLbl</span>
+                            <input id="login" name="email" type="text" data-bind="value: email" />
+                        </label>
+                        <label class="password">
+                            <span>@MmResources.PasswordLbl</span>
+                            <input id="password" name="password" type="password" data-bind="value: password" />
+                        </label>
+                    </fieldset>
+                    <fieldset class="subchck">
+                        <label class="remember">
+                            <input id="remember_me" name="remember_me" type="checkbox" value="1" />
+                            <span>@MmResources.RememberMeLbl</span>
+                        </label>
+                        <button class="button" type="button" data-bind="click: $root.signIn">@MmResources.EnterBtn</button>
+                    </fieldset>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="close-btn">@MmResources.Close</div>
 </form>
+<div class="content">
+    <form id="articles" action="">
+        <ul class="list" data-bind="foreach: items">
+            <li data-bind="click: $root.goToArticle">
+                <div class="item">
+                    <div></div>
+                    <h3 data-bind="text: $data.Title"></h3>
+                    <p data-bind="text: $data.Text"></p>
+                </div>
+            </li>
+        </ul>
+        <div class="view-article" data-bind="with: chosenArticleData">
+            <div class="article">
+                <div class="text">
+                    <h1 data-bind="text: Data.Title"></h1>
+                    <p class="text" data-bind="html: Data.Text" />
+                </div>
+                <div class="about">
+                    <div class="box">
+                        <h1 data-bind="text: Data.Title"></h1>
+                        <p><label>@MmResources.Owner</label>: <span data-bind="text: Data.OwnerId"></span></p>
+                        <p><label>@MmResources.CreateDate</label>: <span data-bind="text: Data.CreateDate"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="close-btn" data-bind="click: $root.goToList">@MmResources.Close</div>
+        </div>
+    </form>
+
+    <div id="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'mmua';
+            var disqus_developer = 1;
+            (function () {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </div>
+</div>
+<div id="notifications"></div>

@@ -1,6 +1,47 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+    $(window).resize(function () {
+        $('#root-layout').height($(this).height() - 200);
+    });
+
+    $(window).resize();
+});
+
+$(document).ready(function() {
     ModuleManager();
 });
+
+MM.Notification = {
+    Timers: [],
+    pushTimer: function (timer) {
+        if (this.Timers.length > 4) {
+            clearTimeout(this.Timers[0]);
+            this.Timers.splice(0, 1);
+            $('#notifications').find("div").first().remove();
+        }
+        this.Timers.push(timer);
+    },
+    removeTimer: function (timer) {
+        for (key in this.Timers) {
+            if (this.Timers[key] == timer) {
+                this.Timers.splice(key, 1);
+                return;
+            }
+        }
+    },
+    show: function (message, type) {
+        var obj = this;
+        var errorBlock = $('#notifications');
+        var timer = setTimeout(function () {
+            errorBlock.find("div").first().remove();
+            clearTimeout(timer);
+            obj.removeTimer(timer);
+        }, 3000);
+
+        this.pushTimer(timer);
+
+        errorBlock.append("<div class='" + type + "'>" + message + "</div>");
+    }
+};
 
 function ModuleManager() {
     this.Modules = [];
@@ -84,7 +125,7 @@ function SignIn() {
     this.IsAuthenticated = false;
     this.IsAdmin = false;
     this.IsHideCenter = false;
-    this.User;
+    this.User = null;
     var obj = this;
     init();
 
@@ -92,8 +133,8 @@ function SignIn() {
         ko.applyBindings(new signInViewModel(), document.getElementById("signin"));
         ko.applyBindings(new signUpViewModel(), document.getElementById("signup"));
 
-        $.get('/user/isAuthenticate', { })
-            .success(function(result) {
+        $.get('/user/isAuthenticate', {})
+            .success(function (result) {
                 if (result.Success && result.Data) {
                     obj.IsAuthenticated = result.Data.IsAuthenticated;
                     obj.IsAdmin = result.Data.IsAdmin;
@@ -101,29 +142,51 @@ function SignIn() {
                         obj.User = result.Data.User;
                         obj.buildUserPanel();
                     }
+                } else {
+                    if (result.Errors.length > 0) {
+                        for (key in result.Errors) {
+                            MM.Notification.show(result.Errors[key], "error");
+                        }
+                    } else {
+                        MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                    }
                 }
             })
-            .error(function() { alert("error"); });
+            .error(function () {
+                MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+            });
+
+        $("#auth .close-btn").live('click', function() {
+            obj.hide();
+        });
     }
-    
+
     function signInViewModel() {
         this.email = ko.observable("");
         this.password = ko.observable("");
 
         this.signIn = function () {
             $.get('/user/signIn', { Email: this.email(), Password: this.password() })
-                .success(function(result) {
+                .success(function (result) {
                     if (result === undefined)
                         return;
                     if (result.Success) {
                         obj.User = result.Data;
                         obj.buildUserPanel();
                     } else {
-                        alert('error');
+                        if (result.Errors.length > 0) {
+                            for (key in result.Errors) {
+                                MM.Notification.show(result.Errors[key], "error");
+                            }
+                        } else {
+                            MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                        }
                     }
                 })
-                .error(function() { alert("error"); })
-                .complete(function() {
+                .error(function () {
+                    MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                })
+                .complete(function () {
                     obj.cleanForm();
                 });
         };
@@ -136,19 +199,28 @@ function SignIn() {
 
         this.signUp = function () {
             $.get('/user/signup', { Email: this.email(), Password: this.password(), ConfirmPassword: this.confirmPassword() })
-                .success(function(result) {
+                .success(function (result) {
                     if (result === undefined)
                         return;
                     if (result.Success) {
-                        obj.User = result.Data;
-                        obj.buildUserPanel();
+                        MM.Notification.show(MM.Res.get("RegistrationComplete"), "message");
+                        obj.cleanForm();
+                        obj.hide();
                     } else {
-                        alert('error');
+                        if (result.Errors.length > 0) {
+                            for (key in result.Errors) {
+                                MM.Notification.show(result.Errors[key], "error");
+                            }
+                        } else {
+                            MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                        }
                     }
                 })
-                .error(function() { alert("error"); })
-                .complete(function() {
-                    obj.cleanForm();
+                .error(function () {
+                    MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                })
+                .complete(function () {
+                    $('#password, #pwd, #confirmPassword').val("");
                 });
         };
     }
@@ -186,9 +258,17 @@ function Articles() {
     this.Btn = "articles-btn";
     this.BtnClass = "left-button";
     this.Items = [];
+    this.ArticleViewModel = null;
+    var obj = this;
+    init();
+
+    function init() {
+        obj.ArticleViewModel = new articleViewModel();
+        ko.applyBindings(obj.ArticleViewModel, document.getElementById("articles"));
+    }
 
     this.loadArticles = function (pageIndex, pageSize) {
-        var items = this.Items;
+        var vmmv = this.ArticleViewModel;
         $.get(
             '/Article/GetArticles',
             { 'pageIndex': pageIndex, 'pageSize': pageSize },
@@ -196,22 +276,51 @@ function Articles() {
                 if (result.Success && result.Data) {
                     for (i in result.Data) {
                         if (result.Data[i]) {
-                            items.push(result.Data[i]);
+                            vmmv.items.push(result.Data[i]);
                         }
+                    }
+                } else {
+                    if (result.Errors.length > 0) {
+                        for (key in result.Errors) {
+                            MM.Notification.show(result.Errors[key], "error");
+                        }
+                    } else {
+                        MM.Notification.show(MM.Res.get("UnhandledException"), "error");
                     }
                 }
             });
     };
 
-    this.drawArticles = function () {
-        var list = $("form#" + this.Form + " > ul");
-        list.empty();
-        for (i in this.Items) {
-            if (this.Items[i]) {
-                list.append("<li><a href='#'><div></div><h3>" + this.Items[i].Title + "</h3><p>" + this.Items[i].Text + "</p></a></li>");
-            }
-        }
-    };
+    function articleViewModel() {
+        var self = this;
+        self.items = ko.observableArray();
+        self.chosenArticleData = ko.observable();
+
+        self.goToArticle = function (article) {
+            $.get('/Article/Details/' + article.Id, {}, self.chosenArticleData)
+                .success(function () {
+                    $('#articles .list').hide();
+                    $('#articles .view-article').show();
+                    if (DISQUS) {
+                        DISQUS.reset({
+                            reload: true,
+                            config: function () {
+                                this.page.identifier = "article-" + article.Id;
+                                this.page.url = "http://mmua/#!A" + article.Id;
+                            }
+                        });
+                        $("#comments").show();
+                    }
+                });
+        };
+        self.goToList = function () {
+            $("#comments").hide();
+            $('.dsq-tooltip-outer').remove();
+            $('#articles .view-article').hide();
+            $('#articles .list').show();
+
+        };
+    }
 }
 Articles.prototype = new Module();
 Articles.base = Module.prototype;
@@ -220,10 +329,7 @@ Articles.prototype.build = function () {
     this.Items = [];
     this.loadArticles();
 };
-Articles.prototype.initHandler = function (preEventHandler) {
-    var obj = this;
-    Articles.base.initHandler.call(this, preEventHandler);
-    $("#" + this.Btn).live("click", function () {
-        obj.drawArticles();
-    });
-}
+Articles.prototype.hide = function () {
+    Articles.base.hide.call(this);
+    $("#comments").hide();
+};

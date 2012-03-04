@@ -122,9 +122,12 @@ namespace MetalMastery.Services
 
             var hash = SHA1.Create();
             var pwd = hash.ComputeHash(password);
-            return _userRepository.Table
-                .Count(u => u.Email == email &&
-                    u.Password == pwd) == 1;
+
+            var user = _userRepository.Table
+                .ToList()
+                .SingleOrDefault(u => u.Email == email &&
+                                      u.Password.SequenceEqual(pwd));
+            return user != null;
         }
 
         public Role GetRoleByName(string roleName)

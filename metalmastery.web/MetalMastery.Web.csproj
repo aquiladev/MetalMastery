@@ -111,6 +111,7 @@
     <Content Include="Content\bottom-right.png" />
     <Content Include="Content\bottom.png" />
     <Content Include="Content\center.png" />
+    <Content Include="Content\favicon.png" />
     <Content Include="Content\js-ico.png" />
     <Content Include="Content\left.png" />
     <Content Include="Content\MetalMastery.png" />

@@ -106,6 +106,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Закрыть.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пароли не совпадают.
         /// </summary>
         public static string ConfirmPasswordErrorMessage {
@@ -187,6 +196,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пользователь с таким мылом уже существует!.
+        /// </summary>
+        public static string DublicateUser {
+            get {
+                return ResourceManager.GetString("DublicateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Редактировать.
         /// </summary>
         public static string Edit {
@@ -201,6 +219,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не верно введено мыло.
+        /// </summary>
+        public static string EmailIncorrect {
+            get {
+                return ResourceManager.GetString("EmailIncorrect", resourceCulture);
             }
         }
         
@@ -246,6 +273,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поле {0} не должно превышать {1} символов.
+        /// </summary>
+        public static string FieldLength {
+            get {
+                return ResourceManager.GetString("FieldLength", resourceCulture);
             }
         }
         
@@ -331,6 +367,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пароль должен содержать латинские символы и цифры, а также хотя бы один символ из ! @ # $% ^ &amp;amp; + =.
+        /// </summary>
+        public static string PasswordIncorrect {
+            get {
+                return ResourceManager.GetString("PasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пароль.
         /// </summary>
         public static string PasswordLbl {
@@ -345,6 +390,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string PasswordLength {
             get {
                 return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поздравляем, Вы зарегистрировались!.
+        /// </summary>
+        public static string RegistrationComplete {
+            get {
+                return ResourceManager.GetString("RegistrationComplete", resourceCulture);
             }
         }
         
@@ -426,6 +480,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Возникла необработанная ошибка.
+        /// </summary>
+        public static string UnhandledException {
+            get {
+                return ResourceManager.GetString("UnhandledException", resourceCulture);
             }
         }
         
