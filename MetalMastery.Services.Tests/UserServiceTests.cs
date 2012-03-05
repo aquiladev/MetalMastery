@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
 using NUnit.Framework;
@@ -18,7 +19,7 @@ namespace MetalMastery.Services.Tests
 
         private IUserService _userService;
 
-        private byte[] _pwd = new byte[] { 1, 32, 12, 3, 12, 3 };
+        private string _pwd = "pwd";
 
         [SetUp]
         public void SetUp()
@@ -33,11 +34,13 @@ namespace MetalMastery.Services.Tests
         [Test]
         [TestCase(null, null)]
         [TestCase("", null)]
-        [TestCase("", new byte[] { 3, 2 })]
-        [TestCase(null, new byte[] { 3, 2 })]
+        [TestCase(null, "")]
+        [TestCase("", "test")]
+        [TestCase(null, "test")]
         [TestCase("email", null)]
+        [TestCase("email", "")]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ValidateUser_IncorrectParams_Erxception(string email, byte[] pwd)
+        public void ValidateUser_IncorrectParams_Erxception(string email, string pwd)
         {
             _userService.ValidateUser(email, pwd);
         }
@@ -257,7 +260,7 @@ namespace MetalMastery.Services.Tests
         private IEnumerable<User> InitUserSets()
         {
             var hash = SHA1.Create();
-            var pwd = hash.ComputeHash(_pwd);
+            var pwd = hash.ComputeHash(Encoding.ASCII.GetBytes(_pwd));
 
             return new List<User>
                             {

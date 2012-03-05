@@ -70,7 +70,7 @@ fieldset {
     border-bottom-left-radius: @border-radius; 
 }
 
-#root-layout {
+#single-layout {
     margin: 0 auto;
     width: 100%;
 	padding-top: 100px;
@@ -111,6 +111,54 @@ fieldset {
         }
         .message {
             color: green;
+        }
+    }
+    #auth {
+        display: none;
+        left: 50%;
+        margin-left: -235px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        z-index: 1;
+        table {
+            .bottom-border-radius(5px);
+            background-color: @btn-color;
+            text-align: left;    
+            .box-shadow(@shadow-color);    
+            font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+            color: @txt-color; 
+        }
+        .close-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+    }
+}
+
+#layout {
+    background: @base-color;
+    background-image: url("transparent.png");
+    width: 100%;
+    height: 100%;
+    form {
+        left: 50%;
+        top: 30%;
+        margin-left: -200px;
+        position: absolute;
+        text-align: left;
+        z-index: 1;
+        #signin, #signup {
+            .border-radius(5px);
+            width: 400px;
+            background-color: @btn-color;
+            text-align: left;    
+            .box-shadow(@shadow-color);    
+            font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+            color: @txt-color; 
         }
     }
 }
@@ -216,31 +264,6 @@ fieldset {
     color: @txt-color;
     cursor: pointer;
     .box-shadow(@shadow-color);
-}
-
-#auth {
-    display: none;
-    left: 50%;
-    margin-left: -235px;
-    position: absolute;
-    text-align: left;
-    top: 0;
-    z-index: 1;
-    table {
-        .bottom-border-radius(5px);
-        background-color: @btn-color;
-        text-align: left;    
-        .box-shadow(@shadow-color);    
-        font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
-        color: @txt-color; 
-    }
-    .close-btn {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        cursor: pointer;
-        padding: 5px;
-    }
 }
 
 #signin, #signup {

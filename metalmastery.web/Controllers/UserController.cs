@@ -31,10 +31,8 @@ namespace MetalMastery.Web.Controllers
         public JsonResult SignIn(LogOnModel user)
         {
             User authUser;
-            var encoder = new ASCIIEncoding();
-            byte[] pwd = encoder.GetBytes(user.Password);
 
-            if (_userService.ValidateUser(user.Email, pwd))
+            if (_userService.ValidateUser(user.Email, user.Password))
             {
                 authUser = _userService.GetUserByEmail(user.Email);
                 _authenticationService.SignIn(
@@ -50,6 +48,26 @@ namespace MetalMastery.Web.Controllers
             }
 
             return new MmJsonResult(authUser.Email);
+        }
+
+        public ActionResult LogIn(LogOnModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (_userService.ValidateUser(user.Email, user.Password))
+            {
+                _authenticationService.SignIn(
+                    _userService.GetUserByEmail(user.Email),
+                    user.RememberMe);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Error = MmResources.UserNotFound;
+            return View();
         }
 
         [CheckModelFilter]
@@ -73,6 +91,30 @@ namespace MetalMastery.Web.Controllers
             //TODO: Добавить вменяемый шаблон
             //_emailSender.SendEmail("Праздравляю, зарегались Вы!", "зарегались", string.Empty, string.Empty, user.Email, user.Email);
             return new MmJsonResult(data: null);
+        }
+
+        public ActionResult LogOn(RegistrateModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);
+
+            if (_userService.GetUserByEmail(user.Email) != null)
+            {
+                ViewBag.Error = MmResources.DublicateUser;
+                return View();
+            }
+
+            _userService.InsertUser(new User
+                                        {
+                                            Email = user.Email,
+                                            Password = pwd
+                                        });
+
+            return RedirectToAction("Index", "Home");
         }
 
         public JsonResult IsAuthenticate()

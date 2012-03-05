@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Text;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
@@ -109,19 +110,19 @@ namespace MetalMastery.Services
                 : user.FirstOrDefault();
         }
 
-        public bool ValidateUser(string email, byte[] password)
+        public bool ValidateUser(string email, string password)
         {
             if (string.IsNullOrEmpty(email))
             {
                 throw new ArgumentNullException("email");
             }
-            if (password == null)
+            if (string.IsNullOrEmpty(password))
             {
                 throw new ArgumentNullException("password");
             }
 
             var hash = SHA1.Create();
-            var pwd = hash.ComputeHash(password);
+            var pwd = hash.ComputeHash(Encoding.ASCII.GetBytes(password));
 
             var user = _userRepository.Table
                 .ToList()

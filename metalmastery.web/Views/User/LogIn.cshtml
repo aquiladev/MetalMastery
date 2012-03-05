@@ -1,0 +1,27 @@
+﻿@using MetalMastery.Web.App_LocalResources
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "LogIn";
+}
+<form action="">
+    <div id="signin">
+        <fieldset class="textbox">
+            <label class="username">
+                <span>@MmResources.EmailLbl</span>
+                <input id="login" name="email" type="text"/>
+            </label>
+            <label class="password">
+                <span>@MmResources.PasswordLbl</span>
+                <input id="password" name="password" type="password"/>
+            </label>
+        </fieldset>
+        <fieldset class="subchck">
+            <label class="remember">
+                <input id="remember_me" name="remember_me" type="checkbox" value="1" />
+                <span>@MmResources.RememberMeLbl</span>
+            </label>
+            <input type="submit" class="button" value="@MmResources.EnterBtn" />
+        </fieldset>
+    </div>
+</form>
+    

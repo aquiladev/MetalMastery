@@ -57,7 +57,7 @@ namespace MetalMastery.Services
         /// <param name="usernameOrEmail">Username or email</param>
         /// <param name="password">Password</param>
         /// <returns>Result</returns>
-        bool ValidateUser(string usernameOrEmail, byte[] password);
+        bool ValidateUser(string usernameOrEmail, string password);
 
         /// <summary>
         /// Get role by role name

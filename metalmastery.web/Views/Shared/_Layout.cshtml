@@ -1,27 +1,15 @@
-﻿@using MetalMastery.Web.App_LocalResources
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/reset.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/site.less")" rel="stylesheet/less" type="text/css"/>
     <link href="@Url.Content("~/Content/favicon.png")" rel="shortcut icon" type="image/x-icon" />
     <script src="@Url.Content("~/Scripts/jquery-1.7.1.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.17.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/knockout-2.0.0.debug.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/MetalMastery/MmResJs.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/MetalMastery/MmBaseScript.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/less-1.2.1.js")" type="text/javascript"></script>
 </head>
 <body>
-    <div id="root-layout">
-        <div class="center">
-            <div class="logo">
-            </div>
-            <div class="logo-txt">
-            </div>
-        </div>
+    <div id="layout">
         @RenderBody()
     </div>
 </body>
