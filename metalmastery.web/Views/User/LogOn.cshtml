@@ -1,27 +1,45 @@
 ﻿@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Models.RegistrateModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "LogOn";
 }
-<form action="">
-    <div id="signup">
-        <fieldset class="textbox">
-            <label class="username">
-                <span>@MmResources.EmailLbl</span>
-                <input id="email" name="email" type="text"/>
-            </label>
-            <label class="password">
-                <span>@MmResources.PasswordLbl</span>
-                <input id="pwd" name="password" type="password"/>
-            </label>
-            <label class="confirmPassword">
-                <span>@MmResources.ConfirmPasswordLbl</span>
-                <input id="confirmPassword" name="confirmPassword" type="password"/>
-            </label>
-        </fieldset>
-        <fieldset class="subchck">
-            <input type="submit" class="button" value="@MmResources.SignUpBtn" />
-        </fieldset>
-    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ("@ViewBag.Error".length > 0) {
+            MM.Notification.show("@ViewBag.Error", "error");
+        }
+    });
+</script>
+<form action="/user/logon">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div id="signup">
+            <fieldset class="textbox">
+                <div class="editor-label">@MmResources.EmailLbl</div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                
+                <div class="editor-label">@MmResources.PasswordLbl</div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+                
+                <div class="editor-label">@MmResources.ConfirmPasswordLbl</div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ConfirmPassword)
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                </div>
+                
+            </fieldset>
+            <fieldset class="subchck">
+                <input type="submit" class="button" value="@MmResources.SignUpBtn" />
+            </fieldset>
+        </div>
+    }
 </form>
     

@@ -12,6 +12,15 @@
     <script src="@Url.Content("~/Scripts/MetalMastery/MmResJs.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/MetalMastery/MmBaseScript.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/less-1.2.1.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(window).resize(function () {
+                $('#single-layout').height($(this).height() - 200);
+            });
+
+            $(window).resize();
+        });
+    </script>
 </head>
 <body>
     <div id="single-layout">

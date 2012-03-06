@@ -41,6 +41,10 @@ fieldset {
     border: 0 none;
 }
 
+.field-validation-error {
+    color: red;
+}
+
 .text-rotate (@degree) {
     -webkit-transform: rotate(@degree);	
     -moz-transform: rotate(@degree);
@@ -87,32 +91,6 @@ fieldset {
             padding-top: 15px;
         }
     } 
-    #notifications {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;        
-        background-color: black;
-        opacity: .5;
-        z-index: 1;
-        color: #fff;
-        div {
-            font-size: 2.4em;
-            height: 40px;
-            padding: 20px;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .error {
-            color: red;
-        }
-        .warning {
-            color: yellow;
-        }
-        .message {
-            color: green;
-        }
-    }
     #auth {
         display: none;
         left: 50%;
@@ -140,8 +118,6 @@ fieldset {
 }
 
 #layout {
-    background: @base-color;
-    background-image: url("transparent.png");
     width: 100%;
     height: 100%;
     form {
@@ -160,6 +136,33 @@ fieldset {
             font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
             color: @txt-color; 
         }
+    }
+}
+
+#notifications {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;        
+    background-color: black;
+    opacity: .5;
+    z-index: 1;
+    color: #fff;
+    div {
+        font-size: 2.4em;
+        height: 40px;
+        padding: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .error {
+        color: red;
+    }
+    .warning {
+        color: yellow;
+    }
+    .message {
+        color: green;
     }
 }
 
@@ -279,11 +282,15 @@ fieldset {
             position: absolute;
             text-align: left;
             white-space: nowrap;
+            div {
+                float: left;
+                padding-right: 5px;
+            }
         }
     }
     .textbox {
-        label {
-            padding-bottom: 7px;
+        .editor-label {
+            padding-top: 7px;
         }
         span, label {
             display: block;

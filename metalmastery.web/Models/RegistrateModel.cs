@@ -19,6 +19,7 @@ namespace MetalMastery.Web.Models
         public string Password { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         [Compare("Password", ErrorMessageResourceType = typeof(MmResources), ErrorMessageResourceName = "ConfirmPasswordErrorMessage")]
         public string ConfirmPassword { get; set; }
     }

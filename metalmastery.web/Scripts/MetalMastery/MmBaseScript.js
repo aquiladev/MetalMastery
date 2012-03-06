@@ -1,14 +1,5 @@
-﻿$(function () {
-    $(window).resize(function () {
-        $('#root-layout').height($(this).height() - 200);
-    });
-
-    $(window).resize();
-});
-
-$(document).ready(function() {
-    ModuleManager();
-});
+﻿if (!window.MM)
+    MM = {};
 
 MM.Notification = {
     Timers: [],
