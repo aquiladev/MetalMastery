@@ -32,7 +32,6 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             }
 
             UserModel user = _userService.GetUserById(id).ToModel();
-            ViewBag.PossibleRoles = _userService.GetAllRoles();
 
             if (user == null)
             {
@@ -48,7 +47,6 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.PossibleRoles = _userService.GetAllRoles();
                 return View(_userService.GetUserById(user.Id).ToModel());
             }
 

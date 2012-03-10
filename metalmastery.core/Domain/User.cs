@@ -15,14 +15,12 @@ namespace MetalMastery.Core.Domain
 		public Guid Id { get; set; }
 		
         public string Email { get; set; }
-		
-        public byte[] Password { get; set; }
-		
-        public Guid RoleId { get; set; }
+
+	    public byte[] Password { get; set; }
+
+	    public bool IsAdmin { get; set; }
 		
         public virtual ICollection<Order> Orders { get; set; }
-		
-        public virtual Role Role { get; set; }
 
         //public virtual ICollection<Thing> Things { get; set; }
 

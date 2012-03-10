@@ -76,24 +76,7 @@ namespace MetalMastery.Web.Tests.Admin
             Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmResources.UserNotFound);
             Assert.IsNull(((ViewResultBase)result).Model);
         }
-
-        [Test]
-        public void Edit_GetAllRoles_CorrectCount()
-        {
-            var id = Guid.NewGuid();
-
-            using (_mockRepository.Record())
-            {
-                _userService.Stub(x => x.GetUserById(id)).Return(null);
-                _userService.Stub(x => x.GetAllRoles()).Return(new List<Role> {new Role {Name = "role1"}});
-            }
-
-            var result = _userController.Edit(id);
-            var roles = ((ViewResultBase) result).ViewBag.PossibleRoles;
-
-            Assert.AreEqual(((List<Role>)roles).Count, 1);
-        }
-
+        
         [Test]
         public void Edit_FoundedUser_CorrectView()
         {
@@ -116,8 +99,6 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetAllRoles())
-                    .Return(new List<Role> { new Role { Name = "role1" } });
                 _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new User());
@@ -125,28 +106,9 @@ namespace MetalMastery.Web.Tests.Admin
 
             var result = _userController.Edit(new UserModel());
 
-            Assert.IsNotNull(((ViewResultBase)result).ViewBag.PossibleRoles);
             Assert.IsNotNull(((ViewResultBase)result).Model);
         }
-
-        [Test]
-        public void EditPost_ModelIncorrect_RolesGetCorrectCount()
-        {
-            var id = Guid.NewGuid();
-
-            _userController.ModelState.AddModelError("Email", "err");
-
-            using (_mockRepository.Record())
-            {
-                _userService.Stub(x => x.GetAllRoles()).Return(new List<Role> { new Role { Name = "role1" } });
-            }
-
-            var result = _userController.Edit(new UserModel());
-            var roles = ((ViewResultBase)result).ViewBag.PossibleRoles;
-
-            Assert.AreEqual(((List<Role>)roles).Count, 1);
-        }
-
+        
         [Test]
         public void EditPost_CorrectEdit_Redirect()
         {

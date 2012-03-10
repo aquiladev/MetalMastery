@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Security;
 using MetalMastery.Core.Domain;
+using Roles = MetalMastery.Core.Domain.Roles;
 
 namespace MetalMastery.Services
 {
@@ -19,13 +20,14 @@ namespace MetalMastery.Services
         public void SignIn(User user, bool createPersistentCookie)
         {
             var now = DateTime.UtcNow.ToLocalTime();
+            var role = (user.IsAdmin) ? Roles.Administrator : Roles.Customer;
             var ticket = new FormsAuthenticationTicket(
                 1,
                 user.Email,
                 now,
                 now.Add(_expirationTimeSpan),
                 createPersistentCookie,
-                user.Role == null ? string.Empty : user.Role.Name,
+                role.ToString(),
                 FormsAuthentication.FormsCookiePath);
 
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);

@@ -107,11 +107,11 @@ namespace MetalMastery.Services
         {
             return new EmailAccount
             {
-                Username = ConfigurationManager.AppSettings["Username"],
-                Port = ConfigurationManager.AppSettings["Port"].ToInt(),
-                Host = ConfigurationManager.AppSettings["Host"],
-                Email = ConfigurationManager.AppSettings["Email"],
-                DisplayName = ConfigurationManager.AppSettings["DisplayName"],
+                Username = ConfigurationManager.AppSettings["UserName"],
+                Port = ConfigurationManager.AppSettings["SmtpPort"].ToInt(),
+                Host = ConfigurationManager.AppSettings["SmtpHost"],
+                Email = ConfigurationManager.AppSettings["From"],
+                DisplayName = ConfigurationManager.AppSettings["SenderName"],
                 Password = ConfigurationManager.AppSettings["Password"],
                 EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
                 UseDefaultCredentials = Convert.ToBoolean(ConfigurationManager.AppSettings["UseDefaultCredentials"]),

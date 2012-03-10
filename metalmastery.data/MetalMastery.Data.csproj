@@ -49,7 +49,6 @@
     <Compile Include="Mapping\FormatMap.cs" />
     <Compile Include="Mapping\MaterialMap.cs" />
     <Compile Include="Mapping\OrderMap.cs" />
-    <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\StateMap.cs" />
     <Compile Include="Mapping\StateOrderMap.cs" />
     <Compile Include="Mapping\TagMap.cs" />

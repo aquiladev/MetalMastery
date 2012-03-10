@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using MetalMastery.Core;
@@ -12,13 +11,10 @@ namespace MetalMastery.Services
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
-        private readonly IRepository<Role> _roleRepository;
 
-        public UserService(IRepository<User> userRepository,
-            IRepository<Role> roleRepository)
+        public UserService(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
-            _roleRepository = roleRepository;
         }
 
         public IPagedList<User> GetAllUsers(int pageIndex, int pageSize)
@@ -49,17 +45,13 @@ namespace MetalMastery.Services
             }
 
             var hash = SHA1.Create();
-            var role = GetRoleByName(roleType.ToString());
-
-            if (role == null)
-                throw new InvalidOperationException();
 
             _userRepository.Insert(new User
                                        {
                                            Id = Guid.NewGuid(),
                                            Email = user.Email,
                                            Password = hash.ComputeHash(user.Password),
-                                           RoleId = role.Id
+                                           IsAdmin = roleType.Equals(Roles.Administrator)
                                        });
             _userRepository.SaveChanges();
         }
@@ -78,7 +70,7 @@ namespace MetalMastery.Services
 
             if (userRep != null)
             {
-                userRep.RoleId = user.RoleId;
+                userRep.IsAdmin = user.IsAdmin;
 
                 _userRepository.SaveChanges();
             }
@@ -129,27 +121,6 @@ namespace MetalMastery.Services
                 .SingleOrDefault(u => u.Email == email &&
                                       u.Password.SequenceEqual(pwd));
             return user != null;
-        }
-
-        public Role GetRoleByName(string roleName)
-        {
-            if (string.IsNullOrEmpty(roleName))
-            {
-                throw new ArgumentNullException("roleName");
-            }
-
-            var role = _roleRepository.Find(r => r.Name == roleName);
-
-            return role == null
-                       ? null
-                       : role.FirstOrDefault();
-        }
-
-        public IList<Role> GetAllRoles()
-        {
-            return _roleRepository
-                .Table
-                .ToList();
         }
     }
 }

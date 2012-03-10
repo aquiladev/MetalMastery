@@ -21,13 +21,7 @@
         </td>
         <td>    
             <div class="editor-field">
-                @Html.DropDownListFor(model => model.RoleId, ((IEnumerable<MetalMastery.Core.Domain.Role>)ViewBag.PossibleRoles).Select(option => new SelectListItem
-                   {
-                       Text = (option == null ? "None" : option.Name),
-                       Value = option.Id.ToString(),
-                       Selected = (Model != null) && (option.Id == Model.RoleId)
-                   }), @MmResources.DefaultOption)
-                @Html.ValidationMessageFor(model => model.RoleId)
+                @Html.CheckBoxFor(model=>model.IsAdmin)
             </div>
         </td>
     </tr>

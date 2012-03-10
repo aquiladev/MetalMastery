@@ -54,7 +54,6 @@
     <Compile Include="Domain\Format.cs" />
     <Compile Include="Domain\Material.cs" />
     <Compile Include="Domain\Order.cs" />
-    <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\Roles.cs" />
     <Compile Include="Domain\State.cs" />
     <Compile Include="Domain\StateOrder.cs" />

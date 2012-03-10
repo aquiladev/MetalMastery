@@ -24,13 +24,7 @@ namespace MetalMastery.Data.Mapping
 			Property(t => t.Id).HasColumnName("Id");
 			Property(t => t.Email).HasColumnName("Email");
 			Property(t => t.Password).HasColumnName("Password");
-			Property(t => t.RoleId).HasColumnName("RoleId");
-
-			// Relationships
-			HasRequired(t => t.Role)
-				.WithMany(t => t.Users)
-				.HasForeignKey(d => d.RoleId);
-				
+			Property(t => t.IsAdmin).HasColumnName("IsAdmin");
 		}
 	}
 }

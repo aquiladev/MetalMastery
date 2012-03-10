@@ -15,7 +15,6 @@ namespace MetalMastery.Services.Tests
     {
         private MockRepository _mockRepository;
         private IRepository<User> _userRepository;
-        private IRepository<Role> _roleRepository;
 
         private IUserService _userService;
 
@@ -26,9 +25,8 @@ namespace MetalMastery.Services.Tests
         {
             _mockRepository = new MockRepository();
             _userRepository = _mockRepository.DynamicMock<IRepository<User>>();
-            _roleRepository = _mockRepository.DynamicMock<IRepository<Role>>();
 
-            _userService = new UserService(_userRepository, _roleRepository);
+            _userService = new UserService(_userRepository);
         }
 
         [Test]
@@ -73,44 +71,6 @@ namespace MetalMastery.Services.Tests
             var result = _userService.ValidateUser("test@sa.sa", _pwd);
 
             Assert.IsFalse(result);
-        }
-
-        [Test]
-        [TestCase(null)]
-        [TestCase("")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetRoleByName_EmptyRoleName_Exception(string roleName)
-        {
-            _userService.GetRoleByName(roleName);
-        }
-
-        [Test]
-        public void GetRoleByName_ExistRole()
-        {
-            string roleName = "fest";
-
-            using (_mockRepository.Record())
-            {
-                _roleRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
-                    .IgnoreArguments()
-                    .Return(InitRoleSets());
-            }
-
-            var result = _userService.GetRoleByName(roleName);
-
-            Assert.IsTrue(result != null);
-        }
-
-        [Test]
-        public void GetAllRoles_CorrectCount()
-        {
-            using (_mockRepository.Record())
-            {
-                _roleRepository.Stub(x => x.Table).Return(InitRoleSets().AsQueryable());
-            }
-
-            var result = _userService.GetAllRoles();
-            Assert.AreEqual(result.Count, 2);
         }
 
         [Test]
@@ -266,15 +226,6 @@ namespace MetalMastery.Services.Tests
                             {
                                 new User{ Email = "test@te.te", Password = pwd},
                                 new User{ Email = "seta@sa.sa", Password = pwd}
-                            };
-        }
-
-        private IEnumerable<Role> InitRoleSets()
-        {
-            return new List<Role>
-                            {
-                                new Role{ Name = "tset"},
-                                new Role{ Name = "fest"}
                             };
         }
         #endregion

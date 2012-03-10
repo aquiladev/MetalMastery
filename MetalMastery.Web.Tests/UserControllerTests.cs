@@ -73,14 +73,8 @@ namespace MetalMastery.Web.Tests
         [Test]
         public void SignUp_CorrectInsert()
         {
-            var stubRole = new Role { Id = Guid.NewGuid() };
-
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetRoleByName(string.Empty))
-                    .IgnoreArguments()
-                    .Return(stubRole);
-
                 _userService.Stub(x => x.InsertUser(null))
                     .IgnoreArguments();
             }
@@ -175,14 +169,8 @@ namespace MetalMastery.Web.Tests
         [Test]
         public void LogOn_CorrectInsert_RedirectToHome()
         {
-            var stubRole = new Role { Id = Guid.NewGuid() };
-
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetRoleByName(string.Empty))
-                    .IgnoreArguments()
-                    .Return(stubRole);
-
                 _userService.Stub(x => x.InsertUser(null))
                     .IgnoreArguments();
             }

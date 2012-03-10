@@ -16,8 +16,6 @@ namespace MetalMastery.Data
         
         public DbSet<Order> Orders { get; set; }
         
-        public DbSet<Role> Roles { get; set; }
-        
         public DbSet<State> States { get; set; }
         
         public DbSet<StateOrder> StateOrders { get; set; }
@@ -36,7 +34,6 @@ namespace MetalMastery.Data
             modelBuilder.Configurations.Add(new FormatMap());
             modelBuilder.Configurations.Add(new MaterialMap());
             modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new RoleMap());
             modelBuilder.Configurations.Add(new StateMap());
             modelBuilder.Configurations.Add(new StateOrderMap());
             modelBuilder.Configurations.Add(new TagMap());

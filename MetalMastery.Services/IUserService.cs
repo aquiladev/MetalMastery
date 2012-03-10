@@ -58,18 +58,5 @@ namespace MetalMastery.Services
         /// <param name="password">Password</param>
         /// <returns>Result</returns>
         bool ValidateUser(string usernameOrEmail, string password);
-
-        /// <summary>
-        /// Get role by role name
-        /// </summary>
-        /// <param name="roleName">Role name</param>
-        /// <returns>The role</returns>
-        Role GetRoleByName(string roleName);
-
-        /// <summary>
-        /// Get all active roles
-        /// </summary>
-        /// <returns>Roles</returns>
-        IList<Role> GetAllRoles();
     }
 }
