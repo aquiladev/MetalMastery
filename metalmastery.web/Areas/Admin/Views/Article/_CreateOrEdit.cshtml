@@ -26,6 +26,18 @@
             </div>
         </td>
     </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsPublished)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.CheckBoxFor(model => model.IsPublished)
+            </div>
+        </td>
+    </tr>
 </table>
 <script type="text/javascript">
     tinyMCE.init({

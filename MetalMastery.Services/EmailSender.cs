@@ -16,18 +16,29 @@ namespace MetalMastery.Services
         /// </summary>
         /// <param name="subject">Subject</param>
         /// <param name="body">Body</param>
-        /// <param name="fromAddress">From address</param>
-        /// <param name="fromName">From display name</param>
         /// <param name="toAddress">To address</param>
         /// <param name="toName">To display name</param>
+        /// <param name="fromAddress">From address</param>
+        /// <param name="fromName">From display name</param>
         /// <param name="bcc">BCC addresses list</param>
         /// <param name="cc">CC addresses ist</param>
-        public void SendEmail(string subject, string body,
-            string fromAddress, string fromName, string toAddress, string toName,
-            IEnumerable<string> bcc = null, IEnumerable<string> cc = null)
+        public void SendEmail(
+            string subject, 
+            string body,
+            string toAddress, 
+            string toName,
+            string fromAddress = "",
+            string fromName = "", 
+            IEnumerable<string> bcc = null, 
+            IEnumerable<string> cc = null)
         {
-            SendEmail(GetAccount(), subject, body,
-                new MailAddress(fromAddress, fromName), new MailAddress(toAddress, toName),
+            var account = GetAccount();
+
+            SendEmail(account, subject, body,
+                new MailAddress(toAddress, toName),
+                new MailAddress(
+                    string.IsNullOrEmpty(fromAddress) ? account.Email : fromAddress,
+                    string.IsNullOrEmpty(fromName) ? account.DisplayName : fromName), 
                 bcc, cc);
         }
 
@@ -37,18 +48,26 @@ namespace MetalMastery.Services
         /// <param name="emailAccount">Email account to use</param>
         /// <param name="subject">Subject</param>
         /// <param name="body">Body</param>
-        /// <param name="fromAddress">From address</param>
-        /// <param name="fromName">From display name</param>
         /// <param name="toAddress">To address</param>
         /// <param name="toName">To display name</param>
+        /// <param name="fromAddress">From address</param>
+        /// <param name="fromName">From display name</param>
         /// <param name="bcc">BCC addresses list</param>
         /// <param name="cc">CC addresses ist</param>
-        public void SendEmail(EmailAccount emailAccount, string subject, string body,
-            string fromAddress, string fromName, string toAddress, string toName,
-            IEnumerable<string> bcc = null, IEnumerable<string> cc = null)
+        public void SendEmail(
+            EmailAccount emailAccount, 
+            string subject, 
+            string body,
+            string toAddress, 
+            string toName,
+            string fromAddress, 
+            string fromName,
+            IEnumerable<string> bcc = null, 
+            IEnumerable<string> cc = null)
         {
             SendEmail(emailAccount, subject, body,
-                new MailAddress(fromAddress, fromName), new MailAddress(toAddress, toName),
+                new MailAddress(toAddress, toName),
+                new MailAddress(fromAddress, fromName),
                 bcc, cc);
         }
 
@@ -58,13 +77,18 @@ namespace MetalMastery.Services
         /// <param name="emailAccount">Email account to use</param>
         /// <param name="subject">Subject</param>
         /// <param name="body">Body</param>
-        /// <param name="from">From address</param>
         /// <param name="to">To address</param>
+        /// <param name="from">From address</param>
         /// <param name="bcc">BCC addresses list</param>
         /// <param name="cc">CC addresses ist</param>
-        public virtual void SendEmail(EmailAccount emailAccount, string subject, string body,
-            MailAddress from, MailAddress to,
-            IEnumerable<string> bcc = null, IEnumerable<string> cc = null)
+        public virtual void SendEmail(
+            EmailAccount emailAccount, 
+            string subject, 
+            string body,
+            MailAddress to,
+            MailAddress from,
+            IEnumerable<string> bcc = null, 
+            IEnumerable<string> cc = null)
         {
             var message = new MailMessage { From = @from };
             message.To.Add(to);

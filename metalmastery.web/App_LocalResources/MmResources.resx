@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Admin" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
   <data name="AdminSite" xml:space="preserve">
     <value>Админка</value>
   </data>
@@ -140,6 +143,12 @@
   </data>
   <data name="ConfirmPasswordLbl" xml:space="preserve">
     <value>Подтвердите пароль</value>
+  </data>
+  <data name="CongratulationMsgTemplate" xml:space="preserve">
+    <value>Поздравляем {0}, Вы зарегистрировались на сайте MetalMastery. &lt;p/&gt; Для того чтобы попасть на сайт, кликните -&gt; http:\\fake.url </value>
+  </data>
+  <data name="CongratulationSbjTemplate" xml:space="preserve">
+    <value>Регистрация MetalMastery</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
@@ -227,6 +236,9 @@
   </data>
   <data name="PasswordLength" xml:space="preserve">
     <value>Длина пароля не должна быть менее 5 символов и превышать 32 символа</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Опубликован</value>
   </data>
   <data name="RegistrationComplete" xml:space="preserve">
     <value>Поздравляем, Вы зарегистрировались!</value>

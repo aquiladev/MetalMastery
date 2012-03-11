@@ -14,6 +14,8 @@ namespace MetalMastery.Core.Domain
 
         public Guid OwnerId { get; set; }
 
+        public bool IsPublished { get; set; }
+
         public virtual User Owner { get; set; }
     }
 }

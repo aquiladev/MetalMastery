@@ -10,13 +10,19 @@
         <th>
             @MmResources.Email
         </th>
+        <th>
+            @MmResources.Admin
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-			@item.Email
+            @item.Email
+        </td>
+        <td>
+            @item.IsAdmin
         </td>
         <td>
             @Html.ActionLink(MmResources.Edit, "Edit", new { id = item.Id }) |

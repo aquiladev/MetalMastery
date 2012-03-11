@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
 

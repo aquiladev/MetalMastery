@@ -10,7 +10,6 @@
 </p>
 <table>
     <tr>
-        <th></th>
         <th>
             @MmResources.Title
         </th>
@@ -23,15 +22,14 @@
         <th>
             @MmResources.Owner
         </th>
+        <th>
+            @MmResources.Published
+        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.ActionLink(MmResources.Edit, "Edit", new { id=item.Id }) |
-            @Html.ActionLink(MmResources.Details, "Details", new { id=item.Id }) |
-            @Html.ActionLink(MmResources.Delete, "Delete", new { id=item.Id })
-        </td>
         <td>
 			@item.Title
         </td>
@@ -46,6 +44,14 @@
             {
                 @Html.DisplayTextFor(_ => item.Owner.Email).ToString()
             }
+        </td>
+        <td>
+            @item.IsPublished
+        </td>
+        <td>
+            @Html.ActionLink(MmResources.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(MmResources.Details, "Details", new { id=item.Id }) |
+            @Html.ActionLink(MmResources.Delete, "Delete", new { id=item.Id })
         </td>
     </tr>
 }

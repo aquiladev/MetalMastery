@@ -110,6 +110,12 @@ textarea
     background-color: #cca;
 }
 
+.header
+{
+    margin: 5px 0;
+    padding-top: 5px;
+}
+
 .logo
 {
     margin: 0 5px;
@@ -121,8 +127,10 @@ textarea
 
 .login-info
 {
+    position: relative;
+    top: -50px;
+    right: 10px;
     float: right;
-    padding-right: 10px;
 }
 
 .header-menu
@@ -144,4 +152,20 @@ textarea
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+}
+
+table {
+    border: 1px solid #343434;
+}
+
+th {
+    padding: 5px;
+}
+
+td {
+    padding: 0 5px;
+}
+
+tr:nth-child(2n) {
+    background: #CCC;
 }

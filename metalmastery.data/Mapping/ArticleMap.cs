@@ -27,6 +27,7 @@ namespace MetalMastery.Data.Mapping
             Property(t => t.CreateDate).HasColumnName("CreateDate");
             Property(t => t.Title).HasColumnName("Title");
             Property(t => t.Text).HasColumnName("Text");
+            Property(t => t.IsPublished).HasColumnName("IsPublished");
             Property(t => t.OwnerId).HasColumnName("OwnerId");
 
             // Relationships

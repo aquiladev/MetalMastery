@@ -80,7 +80,7 @@ namespace MetalMastery.Services.Tests
                                 .AsQueryable());
             }
 
-            var result = _articleService.GetAllArticles(0, 1);
+            var result = _articleService.GetAllArticles(0, 100);
 
             Assert.AreEqual(result.Count(), 1);
         }
@@ -135,6 +135,21 @@ namespace MetalMastery.Services.Tests
             Assert.AreEqual(result[0].Id, ar2.Id);
             Assert.AreEqual(result[1].Id, ar1.Id);
             Assert.AreEqual(result[2].Id, ar0.Id);
+        }
+
+        [Test]
+        public void GetPublishedArticles_CorrectCount()
+        {
+            using (_mockRepository.Record())
+            {
+                _articleRepository.Stub(x => x.Table)
+                    .Return((new List<Article> { new Article { IsPublished = true }, new Article() })
+                                .AsQueryable());
+            }
+
+            var result = _articleService.GetPublishedArticles(0, 100);
+
+            Assert.AreEqual(result.Count(), 1);
         }
 
         [Test]

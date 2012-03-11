@@ -61,6 +61,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Администратор.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Админка.
         /// </summary>
         public static string AdminSite {
@@ -129,6 +138,24 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string ConfirmPasswordLbl {
             get {
                 return ResourceManager.GetString("ConfirmPasswordLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поздравляем {0}, Вы зарегистрировались на сайте MetalMastery. &lt;p/&gt; Для того чтобы попасть на сайт, кликните -&gt; http:\\fake.url .
+        /// </summary>
+        public static string CongratulationMsgTemplate {
+            get {
+                return ResourceManager.GetString("CongratulationMsgTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация MetalMastery.
+        /// </summary>
+        public static string CongratulationSbjTemplate {
+            get {
+                return ResourceManager.GetString("CongratulationSbjTemplate", resourceCulture);
             }
         }
         
@@ -390,6 +417,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string PasswordLength {
             get {
                 return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Опубликован.
+        /// </summary>
+        public static string Published {
+            get {
+                return ResourceManager.GetString("Published", resourceCulture);
             }
         }
         

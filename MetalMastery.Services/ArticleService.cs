@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
@@ -17,22 +18,21 @@ namespace MetalMastery.Services
 
         public IPagedList<Article> GetAllArticles(int pageIndex, int pageSize)
         {
-            return new PagedList<Article>(_articleRepository
-                                              .Table
-                                              .OrderByDescending(a => a.CreateDate)
-                                              .ToList()
-                                              .Select(a => new Article
-                                                               {
-                                                                   Id = a.Id,
-                                                                   CreateDate = a.CreateDate,
-                                                                   Text = a.Text.GetPreviewText(),
-                                                                   Title = a.Title,
-                                                                   Owner = a.Owner,
-                                                                   OwnerId = a.OwnerId
-                                                               })
-                                              .ToList(),
-                                          pageIndex,
-                                          pageSize);
+            return new PagedList<Article>(
+                GetOrderedArcicles()
+                    .ToList(),
+                pageIndex,
+                pageSize);
+        }
+
+        public IPagedList<Article> GetPublishedArticles(int pageIndex, int pageSize)
+        {
+            return new PagedList<Article>(
+                GetOrderedArcicles()
+                    .Where(x => x.IsPublished)
+                    .ToList(),
+                pageIndex,
+                pageSize);
         }
 
         public void DeleteArticle(Article article)
@@ -73,6 +73,7 @@ namespace MetalMastery.Services
             {
                 userRep.Text = article.Text;
                 userRep.Title = article.Title;
+                userRep.IsPublished = article.IsPublished;
 
                 _articleRepository.SaveChanges();
             }
@@ -90,5 +91,26 @@ namespace MetalMastery.Services
                 ? null
                 : user.FirstOrDefault();
         }
+
+        #region private methods
+        private IEnumerable<Article> GetOrderedArcicles()
+        {
+            return _articleRepository
+                .Table
+                .OrderByDescending(a => a.CreateDate)
+                .ToList()
+                .Select(a => new Article
+                                 {
+                                     Id = a.Id,
+                                     CreateDate = a.CreateDate,
+                                     Text = a.Text.GetPreviewText(),
+                                     Title = a.Title,
+                                     Owner = a.Owner,
+                                     IsPublished = a.IsPublished,
+                                     OwnerId = a.OwnerId
+                                 });
+        }
+
+        #endregion
     }
 }

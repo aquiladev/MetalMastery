@@ -31,7 +31,7 @@
                 @if (!string.IsNullOrEmpty(currentCustomer))
                 {
                     @string.Format(MmResources.Welcome, currentCustomer)
-                    <text>, @Html.ActionLink(MmResources.Exit, "LogOut", "User", new { area = "" }, null)</text> 
+                    <text> @Html.ActionLink(MmResources.Exit, "LogOut", "User", new { area = "" }, null)</text> 
                 }
             </div>
         </div>

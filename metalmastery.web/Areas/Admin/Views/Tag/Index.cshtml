@@ -10,20 +10,20 @@
 </p>
 <table>
     <tr>
-        <th></th>
         <th>
             @MmResources.Name
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(MmResources.Edit, "Edit", new { id=item.Id }) |
-            @Html.ActionLink(MmResources.Delete, "Delete", new { id=item.Id })
+			@item.Name
         </td>
         <td>
-			@item.Name
+            @Html.ActionLink(MmResources.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(MmResources.Delete, "Delete", new { id=item.Id })
         </td>
     </tr>
 }

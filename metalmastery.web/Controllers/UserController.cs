@@ -88,8 +88,12 @@ namespace MetalMastery.Web.Controllers
                                             Email = user.Email,
                                             Password = pwd
                                         });
-            //TODO: Тестовые запуски
-            _emailSender.SendEmail("Праздравляю, зарегались Вы!", "зарегались", "test@metalmastery.com", string.Empty, user.Email, user.Email);
+
+            _emailSender.SendEmail(
+                MmResources.CongratulationSbjTemplate, 
+                string.Format(MmResources.CongratulationMsgTemplate, user.Email), 
+                user.Email, user.Email);
+
             return new MmJsonResult(data: null);
         }
 

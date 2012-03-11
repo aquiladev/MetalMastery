@@ -7,12 +7,20 @@ namespace MetalMastery.Services
     public interface IArticleService
     {
         /// <summary>
-        /// Get all with paging
+        /// Get all articles with paging
         /// </summary>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <returns>User collection</returns>
         IPagedList<Article> GetAllArticles(int pageIndex, int pageSize);
+
+        /// <summary>
+        /// Get published articles with paging
+        /// </summary>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>User collection</returns>
+        IPagedList<Article> GetPublishedArticles(int pageIndex, int pageSize); 
 
         /// <summary>
         /// Delete a article
