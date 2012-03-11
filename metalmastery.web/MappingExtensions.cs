@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MetalMastery.Core.Domain;
 using MetalMastery.Web.Areas.Admin.Models;
+using MetalMastery.Web.Models;
 
 namespace MetalMastery.Web
 {
@@ -21,6 +22,15 @@ namespace MetalMastery.Web
         public static User ToEntity(this UserModel model, User destination)
         {
             return Mapper.Map(model, destination);
+        }
+
+        #endregion
+
+        #region RegistrateModel
+
+        public static User ToEntity(this RegistrateModel model)
+        {
+            return Mapper.Map<RegistrateModel, User>(model);
         }
 
         #endregion

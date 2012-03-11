@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using MetalMastery.Core.Domain;
 using MetalMastery.Web.App_LocalResources;
 
 namespace MetalMastery.Web.Areas.Admin.Models
 {
     [MetadataType(typeof(ArticleModelMetadata))]
-    public class ArticleModel : Article
+    public class ArticleModel
     {
         public ArticleModel()
         {
@@ -16,6 +15,21 @@ namespace MetalMastery.Web.Areas.Admin.Models
                 Id = Guid.NewGuid();
             }
         }
+
+        public Guid Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Text { get; set; }
+
+        public string CreateDate { get; set; }
+
+        public Guid OwnerId { get; set; }
+
+        public string OwnerName { get; set; }
+
+        public bool IsPublished { get; set; }
+
     }
 
     public class ArticleModelMetadata

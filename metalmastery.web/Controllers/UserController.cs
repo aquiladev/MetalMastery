@@ -73,8 +73,6 @@ namespace MetalMastery.Web.Controllers
         [CheckModelFilter]
         public JsonResult SignUp(RegistrateModel user)
         {
-            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);
-
             if (_userService.GetUserByEmail(user.Email) != null)
             {
                 return new MmJsonResult(
@@ -83,11 +81,7 @@ namespace MetalMastery.Web.Controllers
                     errors: new List<string> { MmResources.DublicateUser });
             }
 
-            _userService.InsertUser(new User
-                                        {
-                                            Email = user.Email,
-                                            Password = pwd
-                                        });
+            _userService.InsertUser(user.ToEntity());
 
             _emailSender.SendEmail(
                 MmResources.CongratulationSbjTemplate, 
@@ -104,19 +98,13 @@ namespace MetalMastery.Web.Controllers
                 return View();
             }
 
-            byte[] pwd = Encoding.ASCII.GetBytes(user.Password);
-
             if (_userService.GetUserByEmail(user.Email) != null)
             {
                 ViewBag.Error = MmResources.DublicateUser;
                 return View();
             }
 
-            _userService.InsertUser(new User
-                                        {
-                                            Email = user.Email,
-                                            Password = pwd
-                                        });
+            _userService.InsertUser(user.ToEntity());
 
             return RedirectToAction("Index", "Home");
         }

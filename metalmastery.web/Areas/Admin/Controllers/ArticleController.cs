@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using MetalMastery.Services;
@@ -57,8 +58,8 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(article);
             }
 
-            article.CreateDate = DateTime.UtcNow;
-            article.Owner = user;
+            article.CreateDate = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            article.OwnerId = user.Id;
 
             _articleService.InsertArticle(article.ToEntity());
 

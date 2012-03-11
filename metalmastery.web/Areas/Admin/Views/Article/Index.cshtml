@@ -40,10 +40,7 @@
 			@String.Format("{0:g}", item.CreateDate)
         </td>
         <td>
-            @if (item.Owner != null)
-            {
-                @Html.DisplayTextFor(_ => item.Owner.Email).ToString()
-            }
+            @item.OwnerName
         </td>
         <td>
             @item.IsPublished
