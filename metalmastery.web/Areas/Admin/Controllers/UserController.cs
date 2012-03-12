@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
@@ -18,7 +18,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            return View(_userService.GetAllUsers(0, 10)
+            return View(_userService.GetAll(0, 10)
                 .Select(x => x.ToModel())
                 .ToList());
         }
@@ -31,7 +31,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            UserModel user = _userService.GetUserById(id).ToModel();
+            UserModel user = _userService.GetEntityById(id).ToModel();
 
             if (user == null)
             {
@@ -47,10 +47,10 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(_userService.GetUserById(user.Id).ToModel());
+                return View(_userService.GetEntityById(user.Id).ToModel());
             }
 
-            _userService.UpdateUser(user);
+            _userService.Update(user);
 
             return RedirectToAction("Index");
         }
@@ -60,7 +60,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetEntityById(id);
 
             if (user == null)
             {
@@ -77,7 +77,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetEntityById(id);
 
             if (user == null)
             {
@@ -85,7 +85,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            _userService.DeleteUser(user);
+            _userService.Delete(user);
 
             return RedirectToAction("Index");
         }

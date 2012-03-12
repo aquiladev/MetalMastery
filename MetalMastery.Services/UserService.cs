@@ -2,42 +2,23 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseEntityService<User>, IUserService
     {
         private readonly IRepository<User> _userRepository;
 
-        public UserService(IRepository<User> userRepository)
+        public UserService(IRepository<User> userRepository) 
+            : base(userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public IPagedList<User> GetAllUsers(int pageIndex, int pageSize)
-        {
-            return new PagedList<User>(_userRepository
-                                           .Table
-                                           .ToList(),
-                                       pageIndex,
-                                       pageSize);
-        }
-
-        public void DeleteUser(User user)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            _userRepository.Delete(user);
-            _userRepository.SaveChanges();
-        }
-
-        public void InsertUser(User user, Roles roleType = Roles.Customer)
+        public override void Insert(User user)
         {
             if (user == null)
             {
@@ -51,12 +32,12 @@ namespace MetalMastery.Services
                                            Id = Guid.NewGuid(),
                                            Email = user.Email,
                                            Password = hash.ComputeHash(user.Password),
-                                           IsAdmin = roleType.Equals(Roles.Administrator)
+                                           IsAdmin = false
                                        });
             _userRepository.SaveChanges();
         }
 
-        public void UpdateUser(User user)
+        public override void Update(User user)
         {
             if (user == null)
             {
@@ -74,19 +55,10 @@ namespace MetalMastery.Services
 
                 _userRepository.SaveChanges();
             }
-        }
-
-        public User GetUserById(Guid userId)
-        {
-            if (userId.Equals(default(Guid)))
+            else
             {
-                throw new ArgumentNullException("userId");
+                throw new InvalidOperationException("User didn't found");
             }
-
-            var user = _userRepository.Find(u => u.Id == userId);
-            return user == null
-                ? null
-                : user.FirstOrDefault();
         }
 
         public User GetUserByEmail(string email)

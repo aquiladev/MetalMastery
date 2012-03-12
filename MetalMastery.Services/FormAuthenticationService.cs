@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Security;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 using Roles = MetalMastery.Core.Domain.Roles;
 
 namespace MetalMastery.Services

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -24,96 +25,18 @@ namespace MetalMastery.Services.Tests
 
             _materialService = new MaterialService(_materialRepository);
         }
-
-        [Test]
-        public void GetAllMaterials_CorrectCount()
-        {
-            using (_mockRepository.Record())
-            {
-                _materialRepository.Stub(x => x.Table)
-                    .Return((new List<Material> { new Material() })
-                                .AsQueryable());
-            }
-
-            var result = _materialService.GetAllMaterials(0, 1);
-
-            Assert.AreEqual(result.Count(), 1);
-        }
-
-        [Test]
-        public void GetAllMaterials_WithPaging_CorrectCount()
-        {
-            var materials = new List<Material>();
-            for (int i = 0; i < 6; i++)
-            {
-                materials.Add(new Material());
-            }
-
-            using (_mockRepository.Record())
-            {
-                _materialRepository.Stub(x => x.Table)
-                    .Return(materials.AsQueryable());
-            }
-
-            var result = _materialService.GetAllMaterials(1, 4);
-
-            Assert.AreEqual(result.Count(), 2);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteMaterial_MaterialIsNull_Exception()
-        {
-            _materialService.DeleteMaterial(null);
-        }
-
+        
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateMaterial_MaterialIsNull_Exception()
         {
-            _materialService.UpdateMaterial(null);
+            _materialService.Update(null);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InsertMaterial_MaterialIsNull_Exception()
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Update_NotFound_ReturnException()
         {
-            _materialService.InsertMaterial(null);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetMaterialById_IdIsEmpty_Exception()
-        {
-            _materialService.GetMaterialById(Guid.Empty);
-        }
-
-        [Test]
-        public void GetMaterialById_Founded()
-        {
-            var id = Guid.NewGuid();
-            var material = new Material { Id = id };
-
-            using (_mockRepository.Record())
-            {
-                _materialRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
-                    .IgnoreArguments()
-                    .Return(new List<Material>
-                                {
-                                    material
-                                });
-            }
-
-            var result = _materialService.GetMaterialById(id);
-
-            Assert.IsNotNull(result);
-        }
-
-        [Test]
-        public void GetMaterialById_NotFound_ReturnNull()
-        {
-            var id = Guid.NewGuid();
-
             using (_mockRepository.Record())
             {
                 _materialRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
@@ -121,9 +44,47 @@ namespace MetalMastery.Services.Tests
                     .Return(null);
             }
 
-            var result = _materialService.GetMaterialById(id);
+            _materialService.Update(new Material());
+        }
 
-            Assert.IsNull(result);
+        [Test]
+        public void GetAll_CountCorrect()
+        {
+            using (_mockRepository.Record())
+            {
+                _materialRepository.Stub(x => x.Table)
+                    .IgnoreArguments()
+                    .Return(new List<Material>
+                                {
+                                    new Material()
+                                }
+                                .AsQueryable());
+            }
+
+            var result = _materialService.GetAll();
+            Assert.AreEqual(result.Count, 1);
+        }
+
+        [Test]
+        public void GetAll_OrderingCorrect()
+        {
+            using (_mockRepository.Record())
+            {
+                _materialRepository.Stub(x => x.Table)
+                    .IgnoreArguments()
+                    .Return(new List<Material>
+                                {
+                                    new Material { Name = "re" },
+                                    new Material { Name = "ds" },
+                                    new Material { Name = "ss" }
+                                }
+                                .AsQueryable());
+            }
+
+            var result = _materialService.GetAll();
+            Assert.AreEqual(result[0].Name, "ds");
+            Assert.AreEqual(result[1].Name, "re");
+            Assert.AreEqual(result[2].Name, "ss");
         }
     }
 }

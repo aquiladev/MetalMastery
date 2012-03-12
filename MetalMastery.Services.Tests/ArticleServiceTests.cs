@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -26,118 +27,6 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetArticleById_IdIsEmpty_Exception()
-        {
-            _articleService.GetArticleById(Guid.Empty);
-        }
-
-        [Test]
-        public void GetArticleById_Founded()
-        {
-            var id = Guid.NewGuid();
-            var article = new Article() { Id = id };
-
-            using (_mockRepository.Record())
-            {
-                _articleRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
-                    .IgnoreArguments()
-                    .Return(new List<Article>
-                                {
-                                    article
-                                });
-            }
-
-            var result = _articleService.GetArticleById(id);
-
-            Assert.IsNotNull(result);
-        }
-
-        [Test]
-        public void GetArticleById_NotFound_ReturnNull()
-        {
-            var id = Guid.NewGuid();
-
-            using (_mockRepository.Record())
-            {
-                _articleRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
-                    .IgnoreArguments()
-                    .Return(null);
-            }
-
-            var result = _articleService.GetArticleById(id);
-
-            Assert.IsNull(result);
-        }
-
-        [Test]
-        public void GetAllArticles_CorrectCount()
-        {
-            using (_mockRepository.Record())
-            {
-                _articleRepository.Stub(x => x.Table)
-                    .Return((new List<Article> { new Article() })
-                                .AsQueryable());
-            }
-
-            var result = _articleService.GetAllArticles(0, 100);
-
-            Assert.AreEqual(result.Count(), 1);
-        }
-
-        [Test]
-        public void GetAllArticles_WithPaging_CorrectCount()
-        {
-            var articles = new List<Article>();
-            for (int i = 0; i < 6; i++)
-            {
-                articles.Add(new Article());
-            }
-
-            using (_mockRepository.Record())
-            {
-                _articleRepository.Stub(x => x.Table)
-                    .Return(articles.AsQueryable());
-            }
-
-            var result = _articleService.GetAllArticles(1, 4);
-
-            Assert.AreEqual(result.Count(), 2);
-        }
-
-        [Test]
-        public void GetAllArticles_OrderByDescending()
-        {
-            var ar0 = new Article
-                          {
-                              CreateDate = DateTime.Now,
-                              Id = Guid.NewGuid()
-                          };
-            var ar1 = new Article
-                          {
-                              CreateDate = DateTime.Now.AddSeconds(1),
-                              Id = Guid.NewGuid()
-                          };
-            var ar2 = new Article
-                          {
-                              CreateDate = DateTime.Now.AddSeconds(2),
-                              Id = Guid.NewGuid()
-                          };
-
-            using (_mockRepository.Record())
-            {
-                _articleRepository.Stub(x => x.Table)
-                    .Return(new List<Article> { ar1, ar2, ar0 }.AsQueryable());
-            }
-
-            var result = _articleService.GetAllArticles(0, 10);
-
-            Assert.AreEqual(result[0].Id, ar2.Id);
-            Assert.AreEqual(result[1].Id, ar1.Id);
-            Assert.AreEqual(result[2].Id, ar0.Id);
-        }
-
-        [Test]
         public void GetPublishedArticles_CorrectCount()
         {
             using (_mockRepository.Record())
@@ -153,24 +42,44 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteArticle_ArticleIsNull_Exception()
+        public void GetPublishedArticles_WithPaging_CorrectCount()
         {
-            _articleService.DeleteArticle(null);
+            var entity = new List<Article>();
+            for (int i = 0; i < 6; i++)
+            {
+                entity.Add(new Article());
+            }
+
+            using (_mockRepository.Record())
+            {
+                _articleRepository.Stub(x => x.Table)
+                    .Return(entity.AsQueryable());
+            }
+
+            var result = _articleService.GetAll(1, 4);
+
+            Assert.AreEqual(result.Count(), 2);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateArticle_ArticleIsNull_Exception()
+        public void Update_FormatIsNull_Exception()
         {
-            _articleService.UpdateArticle(null);
+            _articleService.Update(null);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InsertArticle_ArticleIsNull_Exception()
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Update_NotFound_ReturnException()
         {
-            _articleService.InsertArticle(null);
+            using (_mockRepository.Record())
+            {
+                _articleRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(null);
+            }
+
+            _articleService.Update(new Article());
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Reflection;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using AutoMapper;
 using MetalMastery.Core.Domain;
 using MetalMastery.Core.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Controllers;
 using MetalMastery.Web.Models;
@@ -37,6 +36,13 @@ namespace MetalMastery.Web.Tests
                 _authenticationService,
                 _userService,
                 _emailSender);
+
+            Mapper.CreateMap<RegistrateModel, User>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt=>opt.Ignore())
+                .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
+                .ForMember(dest => dest.Orders, opt => opt.Ignore())
+                .ForMember(dest => dest.Articles, opt => opt.Ignore());
         }
 
         [Test]
@@ -75,7 +81,7 @@ namespace MetalMastery.Web.Tests
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.InsertUser(null))
+                _userService.Stub(x => x.Insert(null))
                     .IgnoreArguments();
             }
 
@@ -171,7 +177,7 @@ namespace MetalMastery.Web.Tests
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.InsertUser(null))
+                _userService.Stub(x => x.Insert(null))
                     .IgnoreArguments();
             }
 

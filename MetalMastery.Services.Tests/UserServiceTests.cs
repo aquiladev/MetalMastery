@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -74,13 +75,6 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InsertUser_UserIsNull_Exception()
-        {
-            _userService.InsertUser(null);
-        }
-
-        [Test]
         public void GetAllUsers_CorrectCount()
         {
             using (_mockRepository.Record())
@@ -90,7 +84,7 @@ namespace MetalMastery.Services.Tests
                                 .AsQueryable());
             }
 
-            var result = _userService.GetAllUsers(0, 1);
+            var result = _userService.GetAll(0, 1);
 
             Assert.AreEqual(result.Count(), 1);
         }
@@ -110,7 +104,7 @@ namespace MetalMastery.Services.Tests
                     .Return(users.AsQueryable());
             }
 
-            var result = _userService.GetAllUsers(1, 4);
+            var result = _userService.GetAll(1, 4);
 
             Assert.AreEqual(result.Count(), 2);
         }
@@ -127,37 +121,9 @@ namespace MetalMastery.Services.Tests
                     .Return(null);
             }
 
-            var result = _userService.GetUserById(id);
+            var result = _userService.GetEntityById(id);
 
             Assert.IsNull(result);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetUserById_IdEmpty_Exception()
-        {
-            _userService.GetUserById(Guid.Empty);
-        }
-
-        [Test]
-        public void GetUserById_Founded()
-        {
-            var id = Guid.NewGuid();
-            var user = new User { Id = id };
-
-            using (_mockRepository.Record())
-            {
-                _userRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
-                    .IgnoreArguments()
-                    .Return(new List<User>
-                                {
-                                    user
-                                });
-            }
-
-            var result = _userService.GetUserById(id);
-
-            Assert.IsNotNull(result);
         }
 
         [Test]
@@ -204,16 +170,30 @@ namespace MetalMastery.Services.Tests
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteUser_UserIsNull_Exception()
+        public void Insert_EntityIsNull_Exception()
         {
-            _userService.DeleteUser(null);
+            _userService.Delete(null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateUser_UserIsNull_Exception()
+        public void Update_UserIsNull_Exception()
         {
-            _userService.UpdateUser(null);
+            _userService.Update(null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Update_NotFound_ReturnException()
+        {
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(null);
+            }
+
+            _userService.Update(new User());
         }
 
         #region

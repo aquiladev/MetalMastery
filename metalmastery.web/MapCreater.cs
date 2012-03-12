@@ -43,6 +43,7 @@ namespace MetalMastery.Web
             ViceVersa<Format, FormatModel>();
             ViceVersa<Material, MaterialModel>();
             ViceVersa<Tag, TagModel>();
+            ViceVersa<Thing, ThingModel>();
             Mapper.AssertConfigurationIsValid();
         }
 

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Controllers;
 using MetalMastery.Web.Areas.Admin.Models;
@@ -44,7 +44,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetAllMaterials(0, 0)).IgnoreArguments().Return(materialList);
+                _materialService.Stub(x => x.GetAll(0, 0)).IgnoreArguments().Return(materialList);
             }
 
             var result = _materialController.Index();
@@ -68,7 +68,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(id)).Return(null);
+                _materialService.Stub(x => x.GetEntityById(id)).Return(null);
             }
 
             var result = _materialController.Edit(id);
@@ -84,7 +84,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(id)).Return(new Material());
+                _materialService.Stub(x => x.GetEntityById(id)).Return(new Material());
             }
 
             var result = _materialController.Edit(id);
@@ -97,7 +97,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(Guid.NewGuid()))
+                _materialService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Material());
             }
@@ -118,7 +118,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(Guid.NewGuid()))
+                _materialService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -141,7 +141,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(Guid.NewGuid()))
+                _materialService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -157,7 +157,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(Guid.NewGuid()))
+                _materialService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Material());
             }
@@ -174,7 +174,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _materialService.Stub(x => x.GetMaterialById(Guid.NewGuid()))
+                _materialService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Material());
             }

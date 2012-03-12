@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
 {

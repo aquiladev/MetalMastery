@@ -4,19 +4,21 @@ using System.Linq;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
 {
-    public class ArticleService : IArticleService
+    public class ArticleService : BaseEntityService<Article>, IArticleService
     {
         private readonly IRepository<Article> _articleRepository;
 
         public ArticleService(IRepository<Article> articleRepository)
+            : base(articleRepository)
         {
             _articleRepository = articleRepository;
         }
 
-        public IPagedList<Article> GetAllArticles(int pageIndex, int pageSize)
+        public override IPagedList<Article> GetAll(int pageIndex, int pageSize)
         {
             return new PagedList<Article>(
                 GetOrderedArcicles()
@@ -35,29 +37,7 @@ namespace MetalMastery.Services
                 pageSize);
         }
 
-        public void DeleteArticle(Article article)
-        {
-            if (article == null)
-            {
-                throw new ArgumentNullException("article");
-            }
-
-            _articleRepository.Delete(article);
-            _articleRepository.SaveChanges();
-        }
-
-        public void InsertArticle(Article article)
-        {
-            if (article == null)
-            {
-                throw new ArgumentNullException("article");
-            }
-
-            _articleRepository.Insert(article);
-            _articleRepository.SaveChanges();
-        }
-
-        public void UpdateArticle(Article article)
+        public override void Update(Article article)
         {
             if (article == null)
             {
@@ -77,19 +57,10 @@ namespace MetalMastery.Services
 
                 _articleRepository.SaveChanges();
             }
-        }
-
-        public Article GetArticleById(Guid id)
-        {
-            if (id.Equals(default(Guid)))
+            else
             {
-                throw new ArgumentNullException("id");
+                throw new InvalidOperationException("Article didn't found");
             }
-
-            var user = _articleRepository.Find(u => u.Id == id);
-            return user == null
-                ? null
-                : user.FirstOrDefault();
         }
 
         #region private methods

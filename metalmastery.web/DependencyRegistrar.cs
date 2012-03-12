@@ -7,6 +7,7 @@ using MetalMastery.Core.Data;
 using MetalMastery.Core.Infrastructure;
 using MetalMastery.Data;
 using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Web
 {
@@ -44,6 +45,8 @@ namespace MetalMastery.Web
             builder.RegisterType<FormatService>().As<IFormatService>().InstancePerHttpRequest();
             builder.RegisterType<MaterialService>().As<IMaterialService>().InstancePerHttpRequest();
             builder.RegisterType<TagService>().As<ITagService>().InstancePerHttpRequest();
+            builder.RegisterType<ThingService>().As<IThingService>().InstancePerHttpRequest();
+            builder.RegisterType<StateService>().As<IStateService>().InstancePerHttpRequest();
         }
     }
 }

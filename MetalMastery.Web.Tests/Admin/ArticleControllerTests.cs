@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Controllers;
 using MetalMastery.Web.Areas.Admin.Models;
@@ -46,7 +46,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetAllArticles(0, 0)).IgnoreArguments().Return(articleList);
+                _articleService.Stub(x => x.GetAll(0, 0)).IgnoreArguments().Return(articleList);
             }
 
             var result = _articleController.Index();
@@ -70,7 +70,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(id)).Return(null);
+                _articleService.Stub(x => x.GetEntityById(id)).Return(null);
             }
 
             var result = _articleController.Edit(id);
@@ -86,7 +86,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(id)).Return(new Article());
+                _articleService.Stub(x => x.GetEntityById(id)).Return(new Article());
             }
 
             var result = _articleController.Edit(id);
@@ -99,7 +99,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Article());
             }
@@ -120,7 +120,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -143,7 +143,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -159,7 +159,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Article());
             }
@@ -176,7 +176,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Article());
             }
@@ -238,7 +238,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetArticleById(Guid.NewGuid()))
+                _articleService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Article());
             }

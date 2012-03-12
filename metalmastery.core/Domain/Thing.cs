@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-	public class Thing
+	public class Thing : BaseEntity
 	{
 	    public Thing()
 		{
@@ -23,22 +23,20 @@ namespace MetalMastery.Core.Domain
 		
         public Guid FormatId { get; set; }
 		
-        public Nullable<int> Rating { get; set; }
-		
-        public byte[] Image1 { get; set; }
-		
-        public byte[] Image2 { get; set; }
+        public int Rating { get; set; }
+
+        public string Image1 { get; set; }
+
+        public string Image2 { get; set; }
 		
         public string Comment { get; set; }
-		
-        public byte[] ImageRes { get; set; }
+
+        public string ImageRes { get; set; }
 		
         public Guid MaterialId { get; set; }
 		
         public Guid StateId { get; set; }
 
-        //public Guid OwnerId { get; set; }
-		
         public virtual Format Format { get; set; }
 		
         public virtual Material Material { get; set; }
@@ -48,6 +46,8 @@ namespace MetalMastery.Core.Domain
         public virtual State State { get; set; }
 		
         public virtual ICollection<Tag> Tags { get; set; }
+
+        //public Guid OwnerId { get; set; }
 
         //public virtual User Owner { get; set; }
 	}

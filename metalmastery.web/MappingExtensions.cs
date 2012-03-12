@@ -110,5 +110,24 @@ namespace MetalMastery.Web
         }
 
         #endregion
+
+        #region Thing
+
+        public static ThingModel ToModel(this Thing entity)
+        {
+            return Mapper.Map<Thing, ThingModel>(entity);
+        }
+
+        public static Thing ToEntity(this ThingModel model)
+        {
+            return Mapper.Map<ThingModel, Thing>(model);
+        }
+
+        public static Thing ToEntity(this ThingModel model, Thing destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        #endregion
     }
 }

@@ -1,0 +1,159 @@
+@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Areas.Admin.Models.ThingModel
+<table>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShowOnHome)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ShowOnHome)
+                @Html.ValidationMessageFor(model => model.ShowOnHome)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShowForAll)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ShowForAll)
+                @Html.ValidationMessageFor(model => model.ShowForAll)
+            </div>
+        </td>
+    </tr>
+    @*<tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Rating)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Rating)
+                @Html.ValidationMessageFor(model => model.Rating)
+            </div>
+        </td>
+    </tr>*@
+@*    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Comment)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Comment)
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+        </td>
+    </tr>*@
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ImageRes)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ImageRes)
+                @Html.ValidationMessageFor(model => model.ImageRes)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Image1)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Image1)
+                @Html.ValidationMessageFor(model => model.Image1)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Image2)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Image2)
+                @Html.ValidationMessageFor(model => model.Image2)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @MmResources.Material
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.MaterialId,
+                ((IEnumerable<MetalMastery.Core.Domain.Material>)ViewBag.Materials).Select(option => new SelectListItem
+           {
+               Text = (option == null ? "None" : option.Name),
+               Value = option.Id.ToString(),
+               Selected = (Model != null) && (option.Id == Model.MaterialId)
+           }), MmResources.Choose)
+                @Html.ValidationMessageFor(model => model.MaterialId)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @MmResources.Format
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FormatId,
+                ((IEnumerable<MetalMastery.Core.Domain.Format>)ViewBag.Formats).Select(option => new SelectListItem
+            {
+                Text = (option == null ? "None" : option.Name),
+                Value = option.Id.ToString(),
+                Selected = (Model != null) && (option.Id == Model.FormatId)
+            }), MmResources.Choose)
+                @Html.ValidationMessageFor(model => model.FormatId)
+            </div>
+        </td>
+    </tr>
+</table>

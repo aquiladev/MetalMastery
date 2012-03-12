@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-	public class User
+	public class User : BaseEntity
 	{
 	    public User()
 		{

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\Article.cs" />
+    <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\EmailAccount.cs" />
     <Compile Include="Domain\Format.cs" />
     <Compile Include="Domain\Material.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Domain\Roles.cs" />
     <Compile Include="Domain\State.cs" />
     <Compile Include="Domain\StateOrder.cs" />
+    <Compile Include="Domain\States.cs" />
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Domain\Thing.cs" />
     <Compile Include="Domain\User.cs" />

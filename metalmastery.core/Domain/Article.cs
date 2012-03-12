@@ -2,7 +2,7 @@
 
 namespace MetalMastery.Core.Domain
 {
-    public class Article
+    public class Article : BaseEntity
     {
         public Guid Id { get; set; }
 

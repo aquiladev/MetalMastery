@@ -135,8 +135,14 @@
   <data name="BackToList" xml:space="preserve">
     <value>Вернуться к списку</value>
   </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Выберите...</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Закрыть</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
   </data>
   <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
     <value>Пароли не совпадают</value>
@@ -167,6 +173,9 @@
   </data>
   <data name="DeleteConfirmQuestion" xml:space="preserve">
     <value>Вы действительно хотите удалить это?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Детали</value>
@@ -201,6 +210,9 @@
   <data name="FieldLength" xml:space="preserve">
     <value>Поле {0} не должно превышать {1} символов</value>
   </data>
+  <data name="Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
   <data name="FormatNotFound" xml:space="preserve">
     <value>Формат с таким идендитификатором не найден.</value>
   </data>
@@ -212,6 +224,9 @@
   </data>
   <data name="LoginPasswordInvalid" xml:space="preserve">
     <value>Пользователя с такими логином и паролем не существует, или Вы допустили ошибку!</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Материал</value>
   </data>
   <data name="MaterialNotFound" xml:space="preserve">
     <value>Материал с таким идендитификатором не найден.</value>
@@ -240,6 +255,9 @@
   <data name="Published" xml:space="preserve">
     <value>Опубликован</value>
   </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
   <data name="RegistrationComplete" xml:space="preserve">
     <value>Поздравляем, Вы зарегистрировались!</value>
   </data>
@@ -258,6 +276,12 @@
   <data name="SignUpBtn" xml:space="preserve">
     <value>Зарегаться</value>
   </data>
+  <data name="State" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="StateNotFound" xml:space="preserve">
+    <value>Статус с таким идендитификатором не найден.</value>
+  </data>
   <data name="TagNotFound" xml:space="preserve">
     <value>Тег с таким идендитификатором не найден.</value>
   </data>
@@ -266,6 +290,12 @@
   </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
+  </data>
+  <data name="ThingNotFound" xml:space="preserve">
+    <value>Штука с таким идендитификатором не найдена.</value>
+  </data>
+  <data name="Things" xml:space="preserve">
+    <value>Шняги</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Заголовок</value>

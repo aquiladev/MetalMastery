@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
@@ -18,7 +18,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            return View(_formatService.GetAllFormats(0, 10)
+            return View(_formatService.GetAll(0, 10)
                             .Select(x => x.ToModel())
                             .ToList());
         }
@@ -36,7 +36,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(format);
             }
 
-            _formatService.InsertFormat(format.ToEntity());
+            _formatService.Insert(format.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -49,7 +49,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            var format = _formatService.GetFormatById(id).ToModel();
+            var format = _formatService.GetEntityById(id).ToModel();
 
             if (format == null)
             {
@@ -65,10 +65,10 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(_formatService.GetFormatById(format.Id).ToModel());
+                return View(_formatService.GetEntityById(format.Id).ToModel());
             }
 
-            _formatService.UpdateFormat(format.ToEntity());
+            _formatService.Update(format.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -78,7 +78,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var format = _formatService.GetFormatById(id);
+            var format = _formatService.GetEntityById(id);
 
             if (format == null)
             {
@@ -95,7 +95,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var format = _formatService.GetFormatById(id);
+            var format = _formatService.GetEntityById(id);
 
             if (format == null)
             {
@@ -103,7 +103,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            _formatService.DeleteFormat(format);
+            _formatService.Delete(format);
 
             return RedirectToAction("Index");
         }

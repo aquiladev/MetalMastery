@@ -44,19 +44,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleService.cs" />
+    <Compile Include="BaseEntityService.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="FormatService.cs" />
     <Compile Include="FormAuthenticationService.cs" />
-    <Compile Include="IArticleService.cs" />
-    <Compile Include="IAuthenticationService.cs" />
-    <Compile Include="IEmailSender.cs" />
-    <Compile Include="IFormatService.cs" />
-    <Compile Include="IMaterialService.cs" />
-    <Compile Include="ITagService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="Interfaces\IArticleService.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IBaseEntityService.cs" />
+    <Compile Include="Interfaces\IEmailSender.cs" />
+    <Compile Include="Interfaces\IFormatService.cs" />
+    <Compile Include="Interfaces\IMaterialService.cs" />
+    <Compile Include="Interfaces\IStateService.cs" />
+    <Compile Include="Interfaces\ITagService.cs" />
+    <Compile Include="Interfaces\IThingService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="MaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateService.cs" />
     <Compile Include="TagService.cs" />
+    <Compile Include="ThingService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>

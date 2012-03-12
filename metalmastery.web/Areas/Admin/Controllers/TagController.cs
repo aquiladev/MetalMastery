@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
@@ -18,7 +18,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            return View(_tagService.GetAllTags(0, 10)
+            return View(_tagService.GetAll(0, 10)
                             .Select(x => x.ToModel())
                             .ToList());
         }
@@ -36,7 +36,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(tag);
             }
 
-            _tagService.InsertTag(tag.ToEntity());
+            _tagService.Insert(tag.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -49,7 +49,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            var tag = _tagService.GetTagById(id).ToModel();
+            var tag = _tagService.GetEntityById(id).ToModel();
 
             if (tag == null)
             {
@@ -65,10 +65,10 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(_tagService.GetTagById(tag.Id).ToModel());
+                return View(_tagService.GetEntityById(tag.Id).ToModel());
             }
 
-            _tagService.UpdateTag(tag.ToEntity());
+            _tagService.Update(tag.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -78,7 +78,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var tag = _tagService.GetTagById(id);
+            var tag = _tagService.GetEntityById(id);
 
             if (tag == null)
             {
@@ -95,7 +95,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var tag = _tagService.GetTagById(id);
+            var tag = _tagService.GetEntityById(id);
 
             if (tag == null)
             {
@@ -103,7 +103,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            _tagService.DeleteTag(tag);
+            _tagService.Delete(tag);
 
             return RedirectToAction("Index");
         }

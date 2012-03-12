@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 using MetalMastery.Web.Framework.Filters;
@@ -23,7 +23,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
         public ViewResult Index(int pageIndex = 0, int pageSize = 10)
         {
-            return View(_articleService.GetAllArticles(pageIndex, pageSize)
+            return View(_articleService.GetAll(pageIndex, pageSize)
                 .Select(x => x.ToModel())
                 .ToList());
         }
@@ -33,7 +33,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            return View(_articleService.GetArticleById(id).ToModel());
+            return View(_articleService.GetEntityById(id).ToModel());
         }
 
         public ActionResult Create()
@@ -61,7 +61,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             article.CreateDate = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             article.OwnerId = user.Id;
 
-            _articleService.InsertArticle(article.ToEntity());
+            _articleService.Insert(article.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -74,7 +74,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            var article = _articleService.GetArticleById(id).ToModel();
+            var article = _articleService.GetEntityById(id).ToModel();
 
             if (article == null)
             {
@@ -90,10 +90,10 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(_articleService.GetArticleById(article.Id).ToModel());
+                return View(_articleService.GetEntityById(article.Id).ToModel());
             }
 
-            _articleService.UpdateArticle(article.ToEntity());
+            _articleService.Update(article.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -103,7 +103,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var article = _articleService.GetArticleById(id);
+            var article = _articleService.GetEntityById(id);
 
             if (article == null)
             {
@@ -120,7 +120,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var article = _articleService.GetArticleById(id);
+            var article = _articleService.GetEntityById(id);
 
             if (article == null)
             {
@@ -128,7 +128,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            _articleService.DeleteArticle(article);
+            _articleService.Delete(article);
 
             return RedirectToAction("Index");
         }

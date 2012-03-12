@@ -86,11 +86,13 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MaterialController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThingController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleModel.cs" />
     <Compile Include="Areas\Admin\Models\FormatModel.cs" />
     <Compile Include="Areas\Admin\Models\MaterialModel.cs" />
     <Compile Include="Areas\Admin\Models\TagModel.cs" />
+    <Compile Include="Areas\Admin\Models\ThingModel.cs" />
     <Compile Include="Areas\Admin\Models\UserModel.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -581,6 +583,12 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Content\Site.less" />
+    <Content Include="Areas\Admin\Views\Thing\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Thing\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Thing\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Thing\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Thing\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Thing\_CreateOrEdit.cshtml" />
     <None Include="Scripts\MetalMastery\MmResJs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MmResJs.js</LastGenOutput>
@@ -607,7 +615,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60875</DevelopmentServerPort>
+          <DevelopmentServerPort>58731</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

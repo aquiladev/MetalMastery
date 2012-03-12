@@ -1,0 +1,100 @@
+@using MetalMastery.Web.App_LocalResources
+@model IEnumerable<MetalMastery.Web.Areas.Admin.Models.ThingModel>
+
+@{
+    ViewBag.Title = MmResources.Things;
+}
+
+<p>
+    @Html.ActionLink(MmResources.Create, "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @MmResources.Name
+        </th>
+        <th>
+            @MmResources.Description
+        </th>
+        <th>
+            ShowOnHome
+        </th>
+        <th>
+            @MmResources.Published
+        </th>
+        <th>
+            @MmResources.Rating
+        </th>
+        <th>
+            Image1
+        </th>
+        <th>
+            Image2
+        </th>
+        <th>
+            @MmResources.Comment
+        </th>
+        <th>
+            ImageRes
+        </th>
+        <th>
+            @MmResources.Format
+        </th>
+        <th>
+            @MmResources.Material
+        </th>
+        <th>
+            @MmResources.State
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.Name
+        </td>
+        <td>
+			@item.Description
+        </td>
+        <td>
+			@item.ShowOnHome
+        </td>
+        <td>
+			@item.ShowForAll
+        </td>
+        <td>
+			@item.Rating
+        </td>
+        <td>
+			@item.Image1
+        </td>
+        <td>
+			@item.Image2
+        </td>
+        <td>
+			@item.Comment
+        </td>
+        <td>
+			@item.ImageRes
+        </td>
+        <td>
+			@(item.Format == null ? "None" : item.Format.Name)
+        </td>
+        <td>
+			@(item.Material == null ? "None" : item.Material.Name)
+        </td>
+        <td>
+			@(item.State == null ? "None" : item.State.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

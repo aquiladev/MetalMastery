@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using MetalMastery.Core.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.Framework.Filters;
 
 namespace MetalMastery.Web.Controllers
@@ -28,7 +28,7 @@ namespace MetalMastery.Web.Controllers
         [CheckModelFilter]
         public JsonResult Details(Guid id)
         {
-            return new MmJsonResult(_articleService.GetArticleById(id).ToModel());
+            return new MmJsonResult(_articleService.GetEntityById(id).ToModel());
         }
     }
 }

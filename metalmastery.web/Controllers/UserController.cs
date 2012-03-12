@@ -3,6 +3,7 @@ using System.Text;
 using System.Web.Mvc;
 using MetalMastery.Core.Domain;
 using MetalMastery.Core.Mvc;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Framework.Filters;
 using MetalMastery.Web.Models;
@@ -81,7 +82,7 @@ namespace MetalMastery.Web.Controllers
                     errors: new List<string> { MmResources.DublicateUser });
             }
 
-            _userService.InsertUser(user.ToEntity());
+            _userService.Insert(user.ToEntity());
 
             _emailSender.SendEmail(
                 MmResources.CongratulationSbjTemplate, 
@@ -104,7 +105,7 @@ namespace MetalMastery.Web.Controllers
                 return View();
             }
 
-            _userService.InsertUser(user.ToEntity());
+            _userService.Insert(user.ToEntity());
 
             return RedirectToAction("Index", "Home");
         }

@@ -1,0 +1,60 @@
+@using MetalMastery.Web.App_LocalResources
+@model MetalMastery.Web.Areas.Admin.Models.ThingModel
+
+@{
+    ViewBag.Title = MmResources.Details;
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Thing</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">@Model.Description</div>
+
+    <div class="display-label">ShowOnHome</div>
+    <div class="display-field">@Model.ShowOnHome</div>
+
+    <div class="display-label">ShowForAll</div>
+    <div class="display-field">@Model.ShowForAll</div>
+
+    <div class="display-label">Rating</div>
+    <div class="display-field">@Model.Rating</div>
+
+    <div class="display-label">Image1</div>
+    <div class="display-field">@Model.Image1</div>
+
+    <div class="display-label">Image2</div>
+    <div class="display-field">@Model.Image2</div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">@Model.Comment</div>
+
+    <div class="display-label">ImageRes</div>
+    <div class="display-field">@Model.ImageRes</div>
+
+    <div class="display-label">Format</div>
+    <div class="display-field">@(Model.Format == null ? "None" : Model.Format.Name)</div>
+
+    <div class="display-label">Material</div>
+    <div class="display-field">@(Model.Material == null ? "None" : Model.Material.Name)</div>
+
+    <div class="display-label">Orders</div>
+    <div class="display-field">@(Model.Orders == null ? "None" : Model.Orders.Count.ToString())</div>
+
+    <div class="display-label">State</div>
+    <div class="display-field">@(Model.State == null ? "None" : Model.State.Name)</div>
+
+    <div class="display-label">Tags</div>
+    <div class="display-field">@(Model.Tags == null ? "None" : Model.Tags.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink(MmResources.Edit, "Edit", new { id=Model.Id }) |
+    @Html.ActionLink(MmResources.BackToList, "Index")
+</p>
+
+

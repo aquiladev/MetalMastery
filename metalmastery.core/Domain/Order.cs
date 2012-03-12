@@ -2,7 +2,7 @@ using System;
 
 namespace MetalMastery.Core.Domain
 {
-	public class Order
+	public class Order : BaseEntity
 	{
 		public Guid Id { get; set; }
 		

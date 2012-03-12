@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using MetalMastery.Core.Domain;
 
-namespace MetalMastery.Services
+namespace MetalMastery.Services.Interfaces
 {
     public interface IEmailSender
     {

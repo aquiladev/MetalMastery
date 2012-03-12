@@ -3,7 +3,7 @@ using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
 using MetalMastery.Core.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.Areas.Admin.Models;
 using MetalMastery.Web.Controllers;
 using NUnit.Framework;
@@ -43,7 +43,7 @@ namespace MetalMastery.Web.Tests
 
             using (_mockRepository.Record())
             {
-                _articleService.Stub(x => x.GetAllArticles(0, 0)).IgnoreArguments().Return(articleList);
+                _articleService.Stub(x => x.GetPublishedArticles(0, 0)).IgnoreArguments().Return(articleList);
             }
 
             var result = _articleController.GetArticles();

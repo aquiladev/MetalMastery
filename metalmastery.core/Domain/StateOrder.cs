@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-	public class StateOrder
+	public class StateOrder : BaseEntity
 	{
 	    public StateOrder()
 		{

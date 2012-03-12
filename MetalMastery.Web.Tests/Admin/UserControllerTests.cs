@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Controllers;
 using MetalMastery.Web.Areas.Admin.Models;
@@ -44,7 +44,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetAllUsers(0, 0)).IgnoreArguments().Return(userList);
+                _userService.Stub(x => x.GetAll(0, 0)).IgnoreArguments().Return(userList);
             }
 
             var result = _userController.Index();
@@ -68,7 +68,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(id)).Return(null);
+                _userService.Stub(x => x.GetEntityById(id)).Return(null);
             }
 
             var result = _userController.Edit(id);
@@ -84,7 +84,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(id)).Return(new User());
+                _userService.Stub(x => x.GetEntityById(id)).Return(new User());
             }
 
             var result = _userController.Edit(id);
@@ -99,7 +99,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                _userService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new User());
             }
@@ -121,7 +121,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                _userService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new User());
             }
@@ -142,7 +142,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                _userService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -165,7 +165,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                _userService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -181,7 +181,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _userService.Stub(x => x.GetUserById(Guid.NewGuid()))
+                _userService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new User());
             }

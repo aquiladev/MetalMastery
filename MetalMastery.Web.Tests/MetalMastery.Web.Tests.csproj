@@ -59,6 +59,7 @@
     <Compile Include="Admin\FormatControllerTests.cs" />
     <Compile Include="Admin\MaterailControllerTests.cs" />
     <Compile Include="Admin\TagControllerTests.cs" />
+    <Compile Include="Admin\ThingControllerTests.cs" />
     <Compile Include="Admin\UserControllerTests.cs" />
     <Compile Include="ArticleControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

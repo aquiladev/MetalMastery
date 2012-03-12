@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MetalMastery.Core;
 using MetalMastery.Core.Domain;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Controllers;
 using MetalMastery.Web.Areas.Admin.Models;
@@ -44,7 +44,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetAllFormats(0, 0)).IgnoreArguments().Return(formatList);
+                _formatService.Stub(x => x.GetAll(0, 0)).IgnoreArguments().Return(formatList);
             }
 
             var result = _formatController.Index();
@@ -68,7 +68,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(id)).Return(null);
+                _formatService.Stub(x => x.GetEntityById(id)).Return(null);
             }
 
             var result = _formatController.Edit(id);
@@ -84,7 +84,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(id)).Return(new Format());
+                _formatService.Stub(x => x.GetEntityById(id)).Return(new Format());
             }
 
             var result = _formatController.Edit(id);
@@ -97,7 +97,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(Guid.NewGuid()))
+                _formatService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Format());
             }
@@ -118,7 +118,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(Guid.NewGuid()))
+                _formatService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -141,7 +141,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(Guid.NewGuid()))
+                _formatService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -157,7 +157,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(Guid.NewGuid()))
+                _formatService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Format());
             }
@@ -174,7 +174,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             using (_mockRepository.Record())
             {
-                _formatService.Stub(x => x.GetFormatById(Guid.NewGuid()))
+                _formatService.Stub(x => x.GetEntityById(Guid.NewGuid()))
                     .IgnoreArguments()
                     .Return(new Format());
             }

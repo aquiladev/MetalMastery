@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-	public class Format
+	public class Format : BaseEntity
 	{
 	    public Format()
 		{

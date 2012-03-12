@@ -1,52 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
 {
-    public class TagService : ITagService
+    public class TagService : BaseEntityService<Tag>, ITagService
     {
         private readonly IRepository<Tag> _tagRepository;
 
         public TagService(IRepository<Tag> tagRepository)
+            : base(tagRepository)
         {
             _tagRepository = tagRepository;
         }
 
-        public IPagedList<Tag> GetAllTags(int pageIndex, int pageSize)
-        {
-            return new PagedList<Tag>(_tagRepository
-                                           .Table
-                                           .ToList(),
-                                       pageIndex,
-                                       pageSize);
-        }
-
-        public void DeleteTag(Tag tag)
-        {
-            if (tag == null)
-            {
-                throw new ArgumentNullException("tag");
-            }
-
-            _tagRepository.Delete(tag);
-            _tagRepository.SaveChanges();
-        }
-
-        public void InsertTag(Tag tag)
-        {
-            if (tag == null)
-            {
-                throw new ArgumentNullException("tag");
-            }
-
-            _tagRepository.Insert(tag);
-            _tagRepository.SaveChanges();
-        }
-
-        public void UpdateTag(Tag tag)
+        public override void Update(Tag tag)
         {
             if (tag == null)
             {
@@ -64,19 +35,18 @@ namespace MetalMastery.Services
 
                 _tagRepository.SaveChanges();
             }
+            else
+            {
+                throw new InvalidOperationException("Tag didn't found");
+            }
         }
 
-        public Tag GetTagById(Guid id)
+        public List<Tag> GetAll()
         {
-            if (id.Equals(default(Guid)))
-            {
-                throw new ArgumentNullException("id");
-            }
-
-            var user = _tagRepository.Find(u => u.Id == id);
-            return user == null
-                ? null
-                : user.FirstOrDefault();
+            return _tagRepository
+                .Table
+                .OrderBy(t => t.Name)
+                .ToList();
         }
     }
 }

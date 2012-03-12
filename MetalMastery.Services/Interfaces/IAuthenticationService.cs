@@ -1,6 +1,6 @@
 using MetalMastery.Core.Domain;
 
-namespace MetalMastery.Services
+namespace MetalMastery.Services.Interfaces
 {
     /// <summary>
     /// Authentication service interface

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using MetalMastery.Services;
+using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
 
@@ -18,7 +18,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            return View(_materialService.GetAllMaterials(0, 10)
+            return View(_materialService.GetAll(0, 10)
                             .Select(x => x.ToModel())
                             .ToList());
         }
@@ -36,7 +36,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(material);
             }
 
-            _materialService.InsertMaterial(material.ToEntity());
+            _materialService.Insert(material.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -49,7 +49,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            var material = _materialService.GetMaterialById(id).ToModel();
+            var material = _materialService.GetEntityById(id).ToModel();
 
             if (material == null)
             {
@@ -65,10 +65,10 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(_materialService.GetMaterialById(material.Id).ToModel());
+                return View(_materialService.GetEntityById(material.Id).ToModel());
             }
 
-            _materialService.UpdateMaterial(material.ToEntity());
+            _materialService.Update(material.ToEntity());
 
             return RedirectToAction("Index");
         }
@@ -78,7 +78,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var material = _materialService.GetMaterialById(id);
+            var material = _materialService.GetEntityById(id);
 
             if (material == null)
             {
@@ -95,7 +95,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             if (id.Equals(default(Guid)))
                 throw new ArgumentNullException("id");
 
-            var material = _materialService.GetMaterialById(id);
+            var material = _materialService.GetEntityById(id);
 
             if (material == null)
             {
@@ -103,7 +103,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            _materialService.DeleteMaterial(material);
+            _materialService.Delete(material);
 
             return RedirectToAction("Index");
         }

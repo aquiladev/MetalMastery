@@ -144,7 +144,7 @@ textarea
 #content-placeholder
 {
     width: 98%;
-    height: 300px;
+    min-height: 300px;
     margin: 10px auto;
     padding: 5px;
     background-color: #ddb;
