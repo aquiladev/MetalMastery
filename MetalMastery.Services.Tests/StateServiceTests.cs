@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
 using MetalMastery.Services.Interfaces;
@@ -27,13 +28,13 @@ namespace MetalMastery.Services.Tests
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void GetThingByName_IdIsEmpty_Exception()
+        public void GetStateByName_IdIsEmpty_Exception()
         {
-            _service.GetThingByName(string.Empty);
+            _service.GetStateByName(string.Empty);
         }
 
         [Test]
-        public void GetThingByName_Founded()
+        public void GetStateByName_Founded()
         {
             string name = "test";
             var entity = new State() { Name = name};
@@ -48,13 +49,13 @@ namespace MetalMastery.Services.Tests
                                 });
             }
 
-            var result = _service.GetThingByName(name);
+            var result = _service.GetStateByName(name);
 
             Assert.IsNotNull(result);
         }
 
         [Test]
-        public void GetThingByName_NotFound_ReturnNull()
+        public void GetStateByName_NotFound_ReturnNull()
         {
             string name = "test";
 
@@ -65,9 +66,49 @@ namespace MetalMastery.Services.Tests
                     .Return(null);
             }
 
-            var result = _service.GetThingByName(name);
+            var result = _service.GetStateByName(name);
 
             Assert.IsNull(result);
+        }
+
+        [Test]
+        public void GetAll_CountCorrect()
+        {
+            using (_mockRepository.Record())
+            {
+                _repository.Stub(x => x.Table)
+                    .IgnoreArguments()
+                    .Return(new List<State>
+                                {
+                                    new State()
+                                }
+                                .AsQueryable());
+            }
+
+            var result = _service.GetAll();
+            Assert.AreEqual(result.Count, 1);
+        }
+
+        [Test]
+        public void GetAll_OrderingCorrect()
+        {
+            using (_mockRepository.Record())
+            {
+                _repository.Stub(x => x.Table)
+                    .IgnoreArguments()
+                    .Return(new List<State>
+                                {
+                                    new State { Name = "re" },
+                                    new State { Name = "ds" },
+                                    new State { Name = "ss" }
+                                }
+                                .AsQueryable());
+            }
+
+            var result = _service.GetAll();
+            Assert.AreEqual(result[0].Name, "ds");
+            Assert.AreEqual(result[1].Name, "re");
+            Assert.AreEqual(result[2].Name, "ss");
         }
     }
 }

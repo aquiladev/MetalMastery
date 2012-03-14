@@ -84,6 +84,27 @@
             <div class="close-btn" data-bind="click: $root.goToList">@MmResources.Close</div>
         </div>
     </form>
+    
+    <form id="things" action="">
+        <ul class="list" data-bind="foreach: items">
+            <li data-bind="click: $root.goToThing">
+                <div class="item">
+                    <div></div>
+                    <h3 data-bind="text: $data.Name"></h3>
+                    <p data-bind="text: $data.Description"></p>
+                </div>
+            </li>
+        </ul>
+        <div class="view-thing" data-bind="with: chosenThingData">
+            <div class="thing">
+                <div class="text">
+                    <h1 data-bind="text: Data.Name"></h1>
+                    <p class="text" data-bind="html: Data.Description" />
+                </div>
+            </div>
+            <div class="close-btn" data-bind="click: $root.goToList">@MmResources.Close</div>
+        </div>
+    </form>
 
     <div id="comments">
         <div id="disqus_thread"></div>

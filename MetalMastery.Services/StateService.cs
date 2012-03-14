@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
@@ -16,17 +17,25 @@ namespace MetalMastery.Services
             _stateRepository = stateRepository;
         }
         
-        public State GetThingByName(string name)
+        public State GetStateByName(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentNullException("name");
             }
 
-            var things = _stateRepository.Find(u => u.Name == name);
-            return things == null
+            var states = _stateRepository.Find(u => u.Name == name);
+            return states == null
                 ? null
-                : things.FirstOrDefault();
+                : states.FirstOrDefault();
+        }
+
+        public List<State> GetAll()
+        {
+            return _stateRepository
+                .Table
+                .OrderBy(t => t.Name)
+                .ToList();
         }
     }
 }

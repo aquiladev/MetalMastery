@@ -63,7 +63,7 @@ namespace MetalMastery.Services.Tests
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Update_FormatIsNull_Exception()
+        public void Update_ArticleIsNull_Exception()
         {
             _articleService.Update(null);
         }

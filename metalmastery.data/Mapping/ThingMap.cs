@@ -23,6 +23,9 @@ namespace MetalMastery.Data.Mapping
 				
 			Property(t => t.ImageRes)
 				.IsRequired();
+
+            Property(t => t.CreateDate)
+                .IsRequired();
 				
 			// Table & Column Mappings
 			ToTable("Thing");
@@ -36,6 +39,7 @@ namespace MetalMastery.Data.Mapping
 			Property(t => t.Image1).HasColumnName("Image1");
 			Property(t => t.Image2).HasColumnName("Image2");
 			Property(t => t.Comment).HasColumnName("Comment");
+            Property(t => t.CreateDate).HasColumnName("CreateDate");
 			Property(t => t.ImageRes).HasColumnName("ImageRes");
 			Property(t => t.MaterialId).HasColumnName("MaterialId");
 			Property(t => t.StateId).HasColumnName("StateId");

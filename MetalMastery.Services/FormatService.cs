@@ -24,21 +24,19 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("format");
             }
 
-            var users = _formatRepository.Find(x => x.Id == format.Id);
-            var userRep = users == null
+            var formats = _formatRepository.Find(x => x.Id == format.Id);
+            var formatRep = formats == null
                 ? null
-                : users.FirstOrDefault();
+                : formats.FirstOrDefault();
 
-            if (userRep != null)
-            {
-                userRep.Name = format.Name;
-
-                _formatRepository.SaveChanges();
-            }
-            else
+            if (formatRep == null)
             {
                 throw new InvalidOperationException("Format didn't found");
             }
+
+            formatRep.Name = format.Name;
+
+            _formatRepository.SaveChanges();
         }
 
         public List<Format> GetAll()

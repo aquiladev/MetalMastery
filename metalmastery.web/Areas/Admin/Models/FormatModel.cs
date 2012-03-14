@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using MetalMastery.Core.Domain;
+using MetalMastery.Web.App_LocalResources;
 
 namespace MetalMastery.Web.Areas.Admin.Models
 {
@@ -18,5 +19,8 @@ namespace MetalMastery.Web.Areas.Admin.Models
 
     public class FormatModelMetadata
     {
+        [Required]
+        [StringLength(32, ErrorMessageResourceType = typeof(MmResources), ErrorMessageResourceName = "FieldLength")]
+        public string Name { get; set; }
     }
 }

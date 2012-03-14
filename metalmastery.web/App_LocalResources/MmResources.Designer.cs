@@ -340,6 +340,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Значение поля {0} не должно быть меньше {1} и превышать {2}.
+        /// </summary>
+        public static string FieldRangeRestrict {
+            get {
+                return ResourceManager.GetString("FieldRangeRestrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Формат.
         /// </summary>
         public static string Format {
@@ -601,6 +610,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поглядеть.
+        /// </summary>
+        public static string ThingsTab {
+            get {
+                return ResourceManager.GetString("ThingsTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заголовок.
         /// </summary>
         public static string Title {
@@ -615,6 +633,15 @@ namespace MetalMastery.Web.App_LocalResources {
         public static string UnhandledException {
             get {
                 return ResourceManager.GetString("UnhandledException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не верно введен урл.
+        /// </summary>
+        public static string UrlIncorrect {
+            get {
+                return ResourceManager.GetString("UrlIncorrect", resourceCulture);
             }
         }
         

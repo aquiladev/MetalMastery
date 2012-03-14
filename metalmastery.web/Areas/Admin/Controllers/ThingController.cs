@@ -63,7 +63,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(thing);
             }
 
-            var state = _stateService.GetThingByName(States.Idea.ToString());
+            var state = _stateService.GetStateByName(States.Idea.ToString());
 
             if (state == null)
             {
@@ -71,6 +71,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
                 return View(thing);
             }
 
+            thing.CreateDate = DateTime.Now;
             thing.StateId = state.Id;
 
             _thingService.Insert(thing.ToEntity());
@@ -151,6 +152,7 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             ViewBag.Tags = _tagService.GetAll();
             ViewBag.Materials = _materialService.GetAll();
             ViewBag.Formats = _formatService.GetAll();
+            ViewBag.States = _stateService.GetAll();
         }
     }
 }

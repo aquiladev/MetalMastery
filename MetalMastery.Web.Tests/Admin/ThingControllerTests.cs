@@ -141,6 +141,14 @@ namespace MetalMastery.Web.Tests.Admin
                             {
                                 new Format()
                             });
+
+                _stateService.Stub(x => x.GetAll())
+                    .IgnoreArguments()
+                    .Return(
+                        new List<State>
+                            {
+                                new State()
+                            });
             }
 
             var result = (ViewResultBase)_thingController.Edit(id);
@@ -148,6 +156,7 @@ namespace MetalMastery.Web.Tests.Admin
             Assert.IsNotNull(result.ViewBag.Tags);
             Assert.IsNotNull(result.ViewBag.Materials);
             Assert.IsNotNull(result.ViewBag.Formats);
+            Assert.IsNotNull(result.ViewBag.States);
         }
 
         [Test]
@@ -184,6 +193,14 @@ namespace MetalMastery.Web.Tests.Admin
                             {
                                 new Format()
                             });
+
+                _stateService.Stub(x => x.GetAll())
+                    .IgnoreArguments()
+                    .Return(
+                        new List<State>
+                            {
+                                new State()
+                            });
             }
 
             var result = (ViewResultBase)_thingController.Edit(new ThingModel());
@@ -191,6 +208,7 @@ namespace MetalMastery.Web.Tests.Admin
             Assert.IsNotNull(result.ViewBag.Tags);
             Assert.IsNotNull(result.ViewBag.Materials);
             Assert.IsNotNull(result.ViewBag.Formats);
+            Assert.IsNotNull(result.ViewBag.States);
         }
 
         [Test]
@@ -320,6 +338,14 @@ namespace MetalMastery.Web.Tests.Admin
                             {
                                 new Format()
                             });
+
+                _stateService.Stub(x => x.GetAll())
+                    .IgnoreArguments()
+                    .Return(
+                        new List<State>
+                            {
+                                new State()
+                            });
             }
 
             var result = (ViewResultBase)_thingController.Create();
@@ -327,6 +353,7 @@ namespace MetalMastery.Web.Tests.Admin
             Assert.IsNotNull(result.ViewBag.Tags);
             Assert.IsNotNull(result.ViewBag.Materials);
             Assert.IsNotNull(result.ViewBag.Formats);
+            Assert.IsNotNull(result.ViewBag.States);
         }
 
         [Test]
@@ -369,6 +396,14 @@ namespace MetalMastery.Web.Tests.Admin
                             {
                                 new Format()
                             });
+
+                _stateService.Stub(x=> x.GetAll())
+                    .IgnoreArguments()
+                    .Return(
+                        new List<State>
+                            {
+                                new State()
+                            });
             }
 
             var result = (ViewResultBase)_thingController.Create(new ThingModel());
@@ -376,11 +411,19 @@ namespace MetalMastery.Web.Tests.Admin
             Assert.IsNotNull(result.ViewBag.Tags);
             Assert.IsNotNull(result.ViewBag.Materials);
             Assert.IsNotNull(result.ViewBag.Formats);
+            Assert.IsNotNull(result.ViewBag.States);
         }
 
         [Test]
         public void CreatePost_CorrectEdit_Redirect()
         {
+            using (_mockRepository.Record())
+            {
+                _stateService.Stub(x => x.GetStateByName(string.Empty))
+                    .IgnoreArguments()
+                    .Return(new State());
+            }
+
             var result = (RedirectToRouteResult)_thingController.Create(new ThingModel());
             Assert.AreEqual(result.RouteValues["action"], "Index");
         }
@@ -390,7 +433,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             using (_mockRepository.Record())
             {
-                _stateService.Stub(x => x.GetThingByName(string.Empty))
+                _stateService.Stub(x => x.GetStateByName(string.Empty))
                     .IgnoreArguments()
                     .Return(null);
             }
@@ -398,7 +441,7 @@ namespace MetalMastery.Web.Tests.Admin
             var result = _thingController.Create(new ThingModel());
 
             Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmResources.StateNotFound);
-            Assert.IsNull(((ViewResultBase)result).Model);
+            Assert.IsNotNull(((ViewResultBase)result).Model);
         }
 
         [Test]

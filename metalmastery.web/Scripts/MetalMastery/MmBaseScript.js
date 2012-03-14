@@ -43,6 +43,7 @@ function ModuleManager() {
     function init() {
         obj.Modules.push(new SignIn());
         obj.Modules.push(new Articles());
+        obj.Modules.push(new Things());
     }
     function draw() {
         for (key in obj.Modules) {
@@ -322,5 +323,88 @@ Articles.prototype.build = function () {
 };
 Articles.prototype.hide = function () {
     Articles.base.hide.call(this);
+    $("#comments").hide();
+};
+
+function Things() {
+    Module.call(this, "Things");
+    this.Text = MM.Res.get("ThingsTab");
+    this.Form = "things";
+    this.Btn = "things-btn";
+    this.BtnClass = "right-button";
+    this.Items = [];
+    this.ThingViewModel = null;
+    var obj = this;
+    init();
+
+    function init() {
+        obj.ThingViewModel = new thingViewModel();
+        ko.applyBindings(obj.ThingViewModel, document.getElementById("things"));
+    }
+
+    this.loadThings = function (pageIndex, pageSize) {
+        var vmmv = this.ThingViewModel;
+        $.get(
+            '/Thing/GetThings',
+            { 'pageIndex': pageIndex, 'pageSize': pageSize },
+            function (result) {
+                if (result.Success && result.Data) {
+                    for (i in result.Data) {
+                        if (result.Data[i]) {
+                            vmmv.items.push(result.Data[i]);
+                        }
+                    }
+                } else {
+                    if (result.Errors.length > 0) {
+                        for (key in result.Errors) {
+                            MM.Notification.show(result.Errors[key], "error");
+                        }
+                    } else {
+                        MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+                    }
+                }
+            });
+        };
+
+        function thingViewModel() {
+            var self = this;
+            self.items = ko.observableArray();
+            self.chosenThingData = ko.observable();
+
+            self.goToThing = function (thing) {
+                $.get('/Thing/Details/' + thing.Id, {}, self.chosenThingData)
+                .success(function () {
+                    $('#things .list').hide();
+                    $('#things .view-thing').show();
+                    if (DISQUS) {
+                        DISQUS.reset({
+                            reload: true,
+                            config: function () {
+                                this.page.identifier = "thing-" + thing.Id;
+                                this.page.url = "http://mmua/#!T" + thing.Id;
+                            }
+                        });
+                        $("#comments").show();
+                    }
+                });
+            };
+            self.goToList = function () {
+                $("#comments").hide();
+                $('.dsq-tooltip-outer').remove();
+                $('#things .view-thing').hide();
+                $('#things .list').show();
+
+            };
+        }
+}
+Things.prototype = new Module();
+Things.base = Module.prototype;
+Things.prototype.build = function () {
+    Things.base.build.call(this);
+    this.Items = [];
+    this.loadThings();
+};
+Things.prototype.hide = function () {
+    Things.base.hide.call(this);
     $("#comments").hide();
 };

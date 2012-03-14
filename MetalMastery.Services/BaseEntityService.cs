@@ -11,9 +11,9 @@ namespace MetalMastery.Services
     {
         private readonly IRepository<T> _repository;
 
-        public BaseEntityService(IRepository<T> articleRepository)
+        public BaseEntityService(IRepository<T> repository)
         {
-            _repository = articleRepository;
+            _repository = repository;
         }
 
         public virtual IPagedList<T> GetAll(int pageIndex, int pageSize)

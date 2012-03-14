@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Globalization;
-using System.Text;
 using AutoMapper;
 using MetalMastery.Core.Domain;
 using MetalMastery.Web.Areas.Admin.Models;
+using MetalMastery.Web.Framework.AutoMapper;
 using MetalMastery.Web.Models;
 
 namespace MetalMastery.Web
@@ -51,37 +50,6 @@ namespace MetalMastery.Web
         {
             Mapper.CreateMap<T1, T2>();
             Mapper.CreateMap<T2, T1>();
-        }
-
-        private class StrToBytesConverter : ITypeConverter<string, byte[]>
-        {
-            public byte[] Convert(ResolutionContext context)
-            {
-                return Encoding.ASCII.GetBytes(context.SourceValue.ToString());
-            }
-        }
-
-        private class DateToStrConverter : ITypeConverter<DateTime, string>
-        {
-            public string Convert(ResolutionContext context)
-            {
-                return ((DateTime) context.SourceValue).ToString(CultureInfo.InvariantCulture);
-            }
-        }
-
-        private class StrToDateConverter : ITypeConverter<string, DateTime>
-        {
-            public DateTime Convert(ResolutionContext context)
-            {
-                DateTime dateTime;
-                DateTime.TryParse(
-                    context.SourceValue.ToString(),
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out dateTime);
-
-                return dateTime;
-            }
         }
     }
 }

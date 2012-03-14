@@ -11,12 +11,12 @@ namespace MetalMastery.Services
     {
         private readonly IRepository<Material> _materialRepository;
 
-        public MaterialService(IRepository<Material> materialRepository) 
+        public MaterialService(IRepository<Material> materialRepository)
             : base(materialRepository)
         {
             _materialRepository = materialRepository;
         }
-        
+
         public override void Update(Material material)
         {
             if (material == null)
@@ -24,21 +24,19 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("material");
             }
 
-            var users = _materialRepository.Find(x => x.Id == material.Id);
-            var userRep = users == null
+            var maerials = _materialRepository.Find(x => x.Id == material.Id);
+            var materialRep = maerials == null
                 ? null
-                : users.FirstOrDefault();
+                : maerials.FirstOrDefault();
 
-            if (userRep != null)
-            {
-                userRep.Name = material.Name;
-
-                _materialRepository.SaveChanges();
-            }
-            else
+            if (materialRep == null)
             {
                 throw new InvalidOperationException("Material didn't found");
             }
+
+            materialRep.Name = material.Name;
+
+            _materialRepository.SaveChanges();
         }
 
         public List<Material> GetAll()

@@ -31,10 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -45,11 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AdminAuthorizeAttribute.cs" />
-    <Compile Include="Controllers\HandleErrorWithElmahAttribute.cs" />
+    <Compile Include="AutoMapper\DateToStrConverter.cs" />
+    <Compile Include="AutoMapper\StrToBytesConverter.cs" />
+    <Compile Include="AutoMapper\StrToDateConverter.cs" />
+    <Compile Include="Controller\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Controller\HandleErrorWithElmahAttribute.cs" />
     <Compile Include="Filters\CheckModelFilter.cs" />
     <Compile Include="Filters\UserNameFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\UrlAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -60,6 +68,7 @@
       <Name>MetalMastery.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

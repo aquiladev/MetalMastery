@@ -44,23 +44,21 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("article");
             }
 
-            var users = _articleRepository.Find(x => x.Id == article.Id);
-            var userRep = users == null
+            var articles = _articleRepository.Find(x => x.Id == article.Id);
+            var articleRep = articles == null
                 ? null
-                : users.FirstOrDefault();
+                : articles.FirstOrDefault();
 
-            if (userRep != null)
-            {
-                userRep.Text = article.Text;
-                userRep.Title = article.Title;
-                userRep.IsPublished = article.IsPublished;
-
-                _articleRepository.SaveChanges();
-            }
-            else
+            if (articleRep == null)
             {
                 throw new InvalidOperationException("Article didn't found");
             }
+
+            articleRep.Text = article.Text;
+            articleRep.Title = article.Title;
+            articleRep.IsPublished = article.IsPublished;
+
+            _articleRepository.SaveChanges();
         }
 
         #region private methods

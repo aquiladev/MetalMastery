@@ -12,7 +12,7 @@ namespace MetalMastery.Services
     {
         private readonly IRepository<User> _userRepository;
 
-        public UserService(IRepository<User> userRepository) 
+        public UserService(IRepository<User> userRepository)
             : base(userRepository)
         {
             _userRepository = userRepository;
@@ -34,6 +34,7 @@ namespace MetalMastery.Services
                                            Password = hash.ComputeHash(user.Password),
                                            IsAdmin = false
                                        });
+
             _userRepository.SaveChanges();
         }
 
@@ -49,16 +50,14 @@ namespace MetalMastery.Services
                 ? null
                 : users.FirstOrDefault();
 
-            if (userRep != null)
-            {
-                userRep.IsAdmin = user.IsAdmin;
-
-                _userRepository.SaveChanges();
-            }
-            else
+            if (userRep == null)
             {
                 throw new InvalidOperationException("User didn't found");
             }
+
+            userRep.IsAdmin = user.IsAdmin;
+
+            _userRepository.SaveChanges();
         }
 
         public User GetUserByEmail(string email)

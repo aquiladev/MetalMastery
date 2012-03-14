@@ -11,7 +11,7 @@ namespace MetalMastery.Core.Domain
 			Tags = new List<Tag>();
 		}
 
-		public Guid Id { get; set; }
+		public new Guid Id { get; set; }
 
 		public string Name { get; set; }
 		
@@ -32,20 +32,22 @@ namespace MetalMastery.Core.Domain
         public string Comment { get; set; }
 
         public string ImageRes { get; set; }
+
+        public DateTime CreateDate { get; set; }
 		
         public Guid MaterialId { get; set; }
 		
         public Guid StateId { get; set; }
 
-        public virtual Format Format { get; set; }
+        public Format Format { get; set; }
 		
-        public virtual Material Material { get; set; }
+        public Material Material { get; set; }
 		
-        public virtual ICollection<Order> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
 		
-        public virtual State State { get; set; }
+        public State State { get; set; }
 		
-        public virtual ICollection<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
 
         //public Guid OwnerId { get; set; }
 

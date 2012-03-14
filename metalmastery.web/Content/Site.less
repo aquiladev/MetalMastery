@@ -33,7 +33,11 @@ html {
         margin: 0px; 
         height: inherit;
         min-width: 800px;
-        min-height: 600px;       
+        min-height: 600px;   
+        background-image: url("paper.png"); 
+        background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        -webkit-background-size: 100% 100%;   
     }
 }
 
@@ -357,6 +361,87 @@ fieldset {
         }
     }
     .view-article {
+        padding-top: 20px;
+        font-family: 'Voltaire',serif;
+        font-size-adjust: 0.51; 
+        .text {
+            float: left;
+            width: 660px;
+        }
+        .about {
+            float: right;
+            padding-bottom: 40px;
+            width: 240px;
+            .box {
+                padding: 15px;
+                border-style: solid;
+                border-width: 1px;
+                .border-radius(5px);
+                border-color: #999C9E #404D54 #404D54 !important;
+            }
+        }
+        .close-btn {
+            float: left;
+            color: #00b;
+            cursor: pointer;
+            clear: both;
+        }       
+        h1 {
+            font-size: 34pt;
+        }
+        p {
+            color: #373737;
+            font-size: 13.5px;
+            font-weight: 400 !important;
+            line-height: 160%;
+            margin-bottom: 5px;            
+        }
+    }
+}
+
+#things {
+    display: none;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    .list {
+        li {
+            float: left;
+            height: 130px;
+            margin: 10px 0;
+            width: 420px;
+            .item {
+                display: block;
+                margin-left: 115px;
+                margin-top: 15px;
+                min-height: 100px;
+                padding: 10px;
+                text-decoration: none;
+                div {
+                    background-image: url("js-ico.png");
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    display: block;
+                    height: 100px;
+                    margin-left: -105px;
+                    margin-top: -10px;
+                    position: absolute;
+                    width: 100px;
+                }
+                h3 {
+                    
+                    font-size: 24px;
+                    line-height: 125%;
+                    padding-bottom: 9px;
+                }
+                p {
+                    color: #888888;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .view-thing {
         padding-top: 20px;
         font-family: 'Voltaire',serif;
         font-size-adjust: 0.51; 

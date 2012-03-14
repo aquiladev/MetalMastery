@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Elmah;
 
-namespace MetalMastery.Web.Framework.Controllers
+namespace MetalMastery.Web.Framework.Controller
 {
     public class HandleErrorWithElmahAttribute : HandleErrorAttribute
     {

@@ -11,6 +11,27 @@
 
         @Html.HiddenFor(model => model.Id)
 		@Html.Partial("_CreateOrEdit", Model)
+        <table>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @MmResources.State
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.StateId,
+                                    ((IEnumerable<MetalMastery.Core.Domain.State>)ViewBag.States).Select(option => new SelectListItem
+                                                                                                                         {
+                                                                                                                             Text = (option == null ? "None" : option.Name),
+                                                                                                                             Value = option.Id.ToString(),
+                                                                                                                             Selected = (Model != null) && (option.Id == Model.StateId)
+                                                                                                                         }), MmResources.Choose)
+                        @Html.ValidationMessageFor(model => model.StateId)
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <p>
             <input type="submit" value="@MmResources.Save" />

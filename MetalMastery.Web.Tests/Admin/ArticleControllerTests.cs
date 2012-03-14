@@ -8,6 +8,7 @@ using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Controllers;
 using MetalMastery.Web.Areas.Admin.Models;
+using MetalMastery.Web.Framework.AutoMapper;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -29,6 +30,9 @@ namespace MetalMastery.Web.Tests.Admin
             _userService = _mockRepository.DynamicMock<IUserService>();
 
             _articleController = new ArticleController(_articleService, _userService);
+
+            Mapper.CreateMap<string, DateTime>().ConvertUsing(new StrToDateConverter());
+            Mapper.CreateMap<DateTime, string>().ConvertUsing(new DateToStrConverter());
             Mapper.CreateMap<Article, ArticleModel>();
             Mapper.CreateMap<ArticleModel, Article>();
         }
@@ -185,7 +189,7 @@ namespace MetalMastery.Web.Tests.Admin
 
             Assert.IsNotNull(((ViewResultBase)result).Model);
         }
-        
+
         [Test]
         public void EditPost_CorrectEdit_Redirect()
         {
@@ -197,7 +201,7 @@ namespace MetalMastery.Web.Tests.Admin
         public void CreatePost_ModelIncorrect()
         {
             _articleController.ModelState.AddModelError("some", "err");
-            
+
             var result = _articleController.Create(new ArticleModel(), "user");
 
             Assert.IsNotNull(((ViewResultBase)result).Model);

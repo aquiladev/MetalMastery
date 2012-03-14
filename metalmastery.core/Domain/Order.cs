@@ -4,7 +4,7 @@ namespace MetalMastery.Core.Domain
 {
 	public class Order : BaseEntity
 	{
-		public Guid Id { get; set; }
+		public new Guid Id { get; set; }
 		
         public DateTime CreateDate { get; set; }
 		

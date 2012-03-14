@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace MetalMastery.Web.Framework.Controllers
+namespace MetalMastery.Web.Framework.Controller
 {
     public class AdminAuthorizeAttribute : AuthorizeAttribute
     {

@@ -24,21 +24,20 @@ namespace MetalMastery.Services
                 throw new ArgumentNullException("tag");
             }
 
-            var users = _tagRepository.Find(x => x.Id == tag.Id);
-            var userRep = users == null
+            var tags = _tagRepository.Find(x => x.Id == tag.Id);
+            var tagRep = tags == null
                 ? null
-                : users.FirstOrDefault();
+                : tags.FirstOrDefault();
 
-            if (userRep != null)
-            {
-                userRep.Name = tag.Name;
-
-                _tagRepository.SaveChanges();
-            }
-            else
+            if (tagRep == null)
             {
                 throw new InvalidOperationException("Tag didn't found");
             }
+
+            tagRep.Name = tag.Name;
+
+            _tagRepository.SaveChanges();
+
         }
 
         public List<Tag> GetAll()

@@ -10,5 +10,10 @@ namespace MetalMastery.Web.Areas.Admin.Models
 
     public class UserModelMetadata
     {
+        [Editable(false)]
+        public string Email { get; set; }
+
+        [Editable(false)]
+        public byte[] Password { get; set; }
     }
 }

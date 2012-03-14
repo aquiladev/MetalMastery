@@ -96,6 +96,7 @@
     <Compile Include="Areas\Admin\Models\UserModel.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Global.asax.cs">
@@ -615,7 +616,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58731</DevelopmentServerPort>
+          <DevelopmentServerPort>49197</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

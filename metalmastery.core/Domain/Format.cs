@@ -10,11 +10,11 @@ namespace MetalMastery.Core.Domain
 			Things = new List<Thing>();
 		}
 
-		public Guid Id { get; set; }
+		public new Guid Id { get; set; }
 		
         public string Name { get; set; }
 		
-        public virtual ICollection<Thing> Things { get; set; }
+        public ICollection<Thing> Things { get; set; }
 	}
 }
 
