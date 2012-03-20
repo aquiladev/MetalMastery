@@ -55,13 +55,13 @@ namespace MetalMastery.Services
             }
 
             var entities = _repository.Find(x => x.Id == entity.Id);
-            var entityFromRep = entities == null
+            var entityRep = entities == null
                 ? null
                 : entities.FirstOrDefault();
 
-            if (entityFromRep != null)
+            if (entityRep != null)
             {
-                entityFromRep = entity;
+                entityRep = entity;
                 _repository.SaveChanges();
             }
             else

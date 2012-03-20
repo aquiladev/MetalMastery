@@ -24,6 +24,7 @@ namespace MetalMastery.Web
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
                 .ForMember(dest => dest.Orders, opt => opt.Ignore())
+                .ForMember(dest => dest.Things, opt => opt.Ignore())
                 .ForMember(dest => dest.Articles, opt => opt.Ignore());
 
             Mapper.CreateMap<User, RegistrateModel>()
@@ -32,6 +33,7 @@ namespace MetalMastery.Web
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
                 .ForMember(dest => dest.Orders, opt => opt.Ignore())
+                .ForMember(dest => dest.Things, opt => opt.Ignore())
                 .ForMember(dest => dest.Articles, opt => opt.Ignore());
 
             Mapper.CreateMap<Article, ArticleModel>()
@@ -39,10 +41,19 @@ namespace MetalMastery.Web
             Mapper.CreateMap<ArticleModel, Article>()
                 .ForMember(dest => dest.Owner, opt => opt.Ignore());
 
+            Mapper.CreateMap<Thing, ThingModel>()
+                .ForMember(dest => dest.OwnerName, opt => opt.MapFrom(x => x.Owner.Email));
+            Mapper.CreateMap<ThingModel, Thing>()
+                .ForMember(dest => dest.State, opt => opt.Ignore())
+                .ForMember(dest => dest.Format, opt => opt.Ignore())
+                .ForMember(dest => dest.Material, opt => opt.Ignore())
+                .ForMember(dest => dest.Orders, opt => opt.Ignore())
+                .ForMember(dest => dest.Tags, opt => opt.Ignore())
+                .ForMember(dest => dest.Owner, opt => opt.Ignore());
+
             ViceVersa<Format, FormatModel>();
             ViceVersa<Material, MaterialModel>();
             ViceVersa<Tag, TagModel>();
-            ViceVersa<Thing, ThingModel>();
             Mapper.AssertConfigurationIsValid();
         }
 

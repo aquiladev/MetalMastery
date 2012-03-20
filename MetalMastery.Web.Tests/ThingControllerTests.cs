@@ -32,7 +32,7 @@ namespace MetalMastery.Web.Tests
         }
 
         [Test]
-        public void GetThings_GetOnlyPablishedAndCompletedThings_CorrectCount()
+        public void GetThings_GetOnlyPablishedThings_CorrectCount()
         {
             IPagedList<Thing> thingList = new PagedList<Thing>(
                 new List<Thing>
@@ -44,7 +44,7 @@ namespace MetalMastery.Web.Tests
 
             using (_mockRepository.Record())
             {
-                _thingService.Stub(x => x.GetPublishedCompletedThings(0, 0))
+                _thingService.Stub(x => x.GetPublishedThings(0, 0))
                     .IgnoreArguments()
                     .Return(thingList);
             }

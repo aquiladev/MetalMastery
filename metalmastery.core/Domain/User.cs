@@ -9,7 +9,7 @@ namespace MetalMastery.Core.Domain
 		{
 			Orders = new List<Order>();
             Articles = new List<Article>();
-            //Things = new List<Thing>();
+            Things = new List<Thing>();
 		}
 
 		public new Guid Id { get; set; }
@@ -20,11 +20,11 @@ namespace MetalMastery.Core.Domain
 
 	    public bool IsAdmin { get; set; }
 		
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
-        //public virtual ICollection<Thing> Things { get; set; }
+        public virtual ICollection<Thing> Things { get; set; }
 
-        public ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
 	}
 }
 

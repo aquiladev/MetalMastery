@@ -9,14 +9,5 @@
                 return result;
             return default(int);
         }
-
-        public static string GetPreviewText(this string str)
-        {
-            const int previewTxtLength = 50;
-
-            return str != null && str.Length > previewTxtLength
-                       ? str.Substring(0, previewTxtLength) + ("...")
-                       : str;
-        }
     }
 }

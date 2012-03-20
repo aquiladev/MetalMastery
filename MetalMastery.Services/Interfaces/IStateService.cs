@@ -3,10 +3,10 @@ using MetalMastery.Core.Domain;
 
 namespace MetalMastery.Services.Interfaces
 {
-    public interface IStateService : IBaseEntityService<State>
+    public interface IStateService : IBaseEntityService<ThingState>
     {
-        State GetStateByName(string name);
+        ThingState GetStateByName(string name);
 
-        List<State> GetAll();
+        List<ThingState> GetAll();
     }
 }

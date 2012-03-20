@@ -155,6 +155,38 @@
                 @Html.ValidationMessageFor(model => model.FormatId)
             </div>
         </td>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @MmResources.State
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.StateId,
+                            ((IEnumerable<MetalMastery.Core.Domain.ThingState>)ViewBag.States).Select(option => new SelectListItem
+                                                                                                                    {
+                                                                                                                        Text = (option == null ? "None" : option.Name),
+                                                                                                                        Value = option.Id.ToString(),
+                                                                                                                        Selected = (Model != null) && (option.Id == Model.StateId)
+                                                                                                                    }), MmResources.Choose)
+                    @Html.ValidationMessageFor(model => model.StateId)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Price)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Price)
+                    @Html.ValidationMessageFor(model => model.Price)
+                </div>
+            </td>
+        </tr>
     </tr>
 </table>
 <script type="text/javascript">

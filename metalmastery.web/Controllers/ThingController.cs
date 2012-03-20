@@ -20,7 +20,7 @@ namespace MetalMastery.Web.Controllers
         [CheckModelFilter]
         public JsonResult GetThings(int pageIndex = 0, int pageSize = 10)
         {
-            return new MmJsonResult(_thingService.GetPublishedCompletedThings(pageIndex, pageSize)
+            return new MmJsonResult(_thingService.GetPublishedThings(pageIndex, pageSize)
                                         .Select(x => x.ToModel())
                                         .ToList());
         }

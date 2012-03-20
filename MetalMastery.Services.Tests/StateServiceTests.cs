@@ -13,7 +13,7 @@ namespace MetalMastery.Services.Tests
     public class StateServiceTests
     {
         private MockRepository _mockRepository;
-        private IRepository<State> _repository;
+        private IRepository<ThingState> _repository;
 
         private IStateService _service;
 
@@ -21,7 +21,7 @@ namespace MetalMastery.Services.Tests
         public void SetUp()
         {
             _mockRepository = new MockRepository();
-            _repository = _mockRepository.DynamicMock<IRepository<State>>();
+            _repository = _mockRepository.DynamicMock<IRepository<ThingState>>();
 
             _service = new StateService(_repository);
         }
@@ -37,13 +37,13 @@ namespace MetalMastery.Services.Tests
         public void GetStateByName_Founded()
         {
             string name = "test";
-            var entity = new State() { Name = name};
+            var entity = new ThingState() { Name = name};
 
             using (_mockRepository.Record())
             {
                 _repository.Stub(x => x.Find(y => y.Name == string.Empty))
                     .IgnoreArguments()
-                    .Return(new List<State>
+                    .Return(new List<ThingState>
                                 {
                                     entity
                                 });
@@ -78,9 +78,9 @@ namespace MetalMastery.Services.Tests
             {
                 _repository.Stub(x => x.Table)
                     .IgnoreArguments()
-                    .Return(new List<State>
+                    .Return(new List<ThingState>
                                 {
-                                    new State()
+                                    new ThingState()
                                 }
                                 .AsQueryable());
             }
@@ -96,11 +96,11 @@ namespace MetalMastery.Services.Tests
             {
                 _repository.Stub(x => x.Table)
                     .IgnoreArguments()
-                    .Return(new List<State>
+                    .Return(new List<ThingState>
                                 {
-                                    new State { Name = "re" },
-                                    new State { Name = "ds" },
-                                    new State { Name = "ss" }
+                                    new ThingState { Name = "re" },
+                                    new ThingState { Name = "ds" },
+                                    new ThingState { Name = "ss" }
                                 }
                                 .AsQueryable());
             }

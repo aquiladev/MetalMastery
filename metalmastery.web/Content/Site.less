@@ -12,6 +12,8 @@
 @vertical-btn-height: 250px;
 @vertical-btn-width: 50px;
 @border-radius: 10px;
+@img-width: 260px;
+@img-hieght: 300px;
 
 * {
     margin: 0;
@@ -84,7 +86,7 @@ fieldset {
 	padding-top: 100px;
     padding-bottom: 100px;
     .content {
-        width: 940px;
+        width: 700px;
         margin: 0 auto;
         height: 100%;
         overflow-x: hidden;
@@ -368,18 +370,6 @@ fieldset {
             float: left;
             width: 660px;
         }
-        .about {
-            float: right;
-            padding-bottom: 40px;
-            width: 240px;
-            .box {
-                padding: 15px;
-                border-style: solid;
-                border-width: 1px;
-                .border-radius(5px);
-                border-color: #999C9E #404D54 #404D54 !important;
-            }
-        }
         .close-btn {
             float: left;
             color: #00b;
@@ -407,29 +397,17 @@ fieldset {
     .list {
         li {
             float: left;
-            height: 130px;
+            height: 300px;
             margin: 10px 0;
-            width: 420px;
+            width: 320px;
             .item {
                 display: block;
-                margin-left: 115px;
                 margin-top: 15px;
-                min-height: 100px;
+                min-height: 300px;
                 padding: 10px;
                 text-decoration: none;
-                div {
-                    background-image: url("js-ico.png");
-                    background-position: 50% 50%;
-                    background-repeat: no-repeat;
-                    display: block;
-                    height: 100px;
-                    margin-left: -105px;
-                    margin-top: -10px;
-                    position: absolute;
-                    width: 100px;
-                }
                 h3 {
-                    
+                    clear: both;
                     font-size: 24px;
                     line-height: 125%;
                     padding-bottom: 9px;
@@ -445,21 +423,9 @@ fieldset {
         padding-top: 20px;
         font-family: 'Voltaire',serif;
         font-size-adjust: 0.51; 
-        .text {
+        .thing {
             float: left;
             width: 660px;
-        }
-        .about {
-            float: right;
-            padding-bottom: 40px;
-            width: 240px;
-            .box {
-                padding: 15px;
-                border-style: solid;
-                border-width: 1px;
-                .border-radius(5px);
-                border-color: #999C9E #404D54 #404D54 !important;
-            }
         }
         .close-btn {
             float: left;
@@ -469,6 +435,7 @@ fieldset {
         }       
         h1 {
             font-size: 34pt;
+            margin-bottom: 5px;
         }
         p {
             color: #373737;
@@ -476,6 +443,17 @@ fieldset {
             font-weight: 400 !important;
             line-height: 160%;
             margin-bottom: 5px;            
+        }
+    }
+    .img-block{
+        width: @img-width;
+        height: @img-hieght;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        img{
+            width: @img-width;
+            max-height: @img-hieght;
         }
     }
 }

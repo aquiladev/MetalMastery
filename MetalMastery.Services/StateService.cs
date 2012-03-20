@@ -7,17 +7,17 @@ using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
 {
-    public class StateService : BaseEntityService<State>, IStateService
+    public class StateService : BaseEntityService<ThingState>, IStateService
     {
-        private readonly IRepository<State> _stateRepository;
+        private readonly IRepository<ThingState> _stateRepository;
         
-        public StateService(IRepository<State> stateRepository)
+        public StateService(IRepository<ThingState> stateRepository)
             : base(stateRepository)
         {
             _stateRepository = stateRepository;
         }
         
-        public State GetStateByName(string name)
+        public ThingState GetStateByName(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -30,7 +30,7 @@ namespace MetalMastery.Services
                 : states.FirstOrDefault();
         }
 
-        public List<State> GetAll()
+        public List<ThingState> GetAll()
         {
             return _stateRepository
                 .Table

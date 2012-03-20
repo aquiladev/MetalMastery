@@ -3,9 +3,9 @@ using MetalMastery.Core.Domain;
 
 namespace MetalMastery.Data.Mapping
 {
-	public class StateMap : EntityTypeConfiguration<State>
+	public class OrderStateMap : EntityTypeConfiguration<OrderState>
 	{
-		public StateMap()
+		public OrderStateMap()
 		{
 			// Primary Key
 			HasKey(t => t.Id);
@@ -16,7 +16,7 @@ namespace MetalMastery.Data.Mapping
 				.HasMaxLength(32);
 				
 			// Table & Column Mappings
-			ToTable("State");
+            ToTable("OrderState");
 			Property(t => t.Id).HasColumnName("Id");
 			Property(t => t.Name).HasColumnName("Name");
 		}

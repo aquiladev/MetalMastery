@@ -4,6 +4,7 @@ using System.Linq;
 using MetalMastery.Core;
 using MetalMastery.Core.Data;
 using MetalMastery.Core.Domain;
+using MetalMastery.Core.Web;
 using MetalMastery.Services.Interfaces;
 
 namespace MetalMastery.Services
@@ -11,13 +12,13 @@ namespace MetalMastery.Services
     public class ThingService : BaseEntityService<Thing>, IThingService
     {
         private readonly IRepository<Thing> _thingRepository;
-        private readonly IStateService _stateService;
+        private readonly IRepository<ThingState> _thingStateRepository;
 
-        public ThingService(IRepository<Thing> thingRepository, IStateService stateService)
+        public ThingService(IRepository<Thing> thingRepository, IRepository<ThingState> thingStateRepository)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
-            _stateService = stateService;
+            _thingStateRepository = thingStateRepository;
         }
 
         public override void Update(Thing thing)
@@ -34,7 +35,7 @@ namespace MetalMastery.Services
 
             if (thingRep == null)
             {
-                throw new InvalidOperationException("Tag didn't found");
+                throw new InvalidOperationException("Thing didn't found");
             }
 
             thingRep.Name = thing.Name;
@@ -43,6 +44,7 @@ namespace MetalMastery.Services
             thingRep.Image1 = thing.Image1;
             thingRep.Image2 = thing.Image2;
             thingRep.Rating = thing.Rating;
+            thingRep.Price = thing.Price;
             thingRep.ShowForAll = thing.ShowForAll;
             thingRep.ShowOnHome = thing.ShowOnHome;
             thingRep.Comment = thing.Comment;
@@ -62,16 +64,15 @@ namespace MetalMastery.Services
                 pageSize);
         }
 
-        public IPagedList<Thing> GetPublishedCompletedThings(int pageIndex, int pageSize)
+        public IPagedList<Thing> GetPublishedThings(int pageIndex, int pageSize)
         {
-            Guid completedStateId = _stateService
-                .GetStateByName(States.Completed.ToString())
-                .Id;
-
             return new PagedList<Thing>(
                 GetOrderedThings()
-                    .Where(x => x.ShowForAll
-                        && x.StateId == completedStateId)
+                    .Join(_thingStateRepository.Table, t => t.StateId, s => s.Id, (t, s) => new {t, s})
+                    .Where(x => x.t.ShowForAll
+                                && (x.s.Name == States.Completed.ToString()
+                                    || x.s.Name == States.Sale.ToString()))
+                    .Select(z => z.t)
                     .ToList(),
                 pageIndex,
                 pageSize
@@ -79,6 +80,7 @@ namespace MetalMastery.Services
         }
 
         #region private methods
+
         private IEnumerable<Thing> GetOrderedThings()
         {
             return _thingRepository

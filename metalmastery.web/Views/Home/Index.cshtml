@@ -71,14 +71,11 @@
             <div class="article">
                 <div class="text">
                     <h1 data-bind="text: Data.Title"></h1>
-                    <p class="text" data-bind="html: Data.Text" />
-                </div>
-                <div class="about">
                     <div class="box">
-                        <h1 data-bind="text: Data.Title"></h1>
                         <p><label>@MmResources.Owner</label>: <span data-bind="text: Data.OwnerName"></span></p>
                         <p><label>@MmResources.CreateDate</label>: <span data-bind="text: Data.CreateDate"></span></p>
                     </div>
+                    <p class="text" data-bind="html: Data.Text" />
                 </div>
             </div>
             <div class="close-btn" data-bind="click: $root.goToList">@MmResources.Close</div>
@@ -89,16 +86,22 @@
         <ul class="list" data-bind="foreach: items">
             <li data-bind="click: $root.goToThing">
                 <div class="item">
-                    <div></div>
+                    <div class="img-block">
+                        <img data-bind="attr: { src: $data.ImageRes, alt: $data.Name}" alt="" src=""/>
+                    </div>
                     <h3 data-bind="text: $data.Name"></h3>
-                    <p data-bind="text: $data.Description"></p>
                 </div>
             </li>
         </ul>
         <div class="view-thing" data-bind="with: chosenThingData">
             <div class="thing">
-                <div class="text">
-                    <h1 data-bind="text: Data.Name"></h1>
+                <h1 data-bind="text: Data.Name"></h1>
+                <div class="box">
+                    <div class="img-block">
+                        <img data-bind="attr: { src: Data.ImageRes}" alt=""/>
+                    </div>
+                    <p><label>@MmResources.Owner</label>: <span data-bind="text: Data.OwnerName"></span></p>
+                    <p><label>@MmResources.CreateDate</label>: <span data-bind="text: Data.CreateDate"></span></p>
                     <p class="text" data-bind="html: Data.Description" />
                 </div>
             </div>

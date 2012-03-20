@@ -1,14 +1,16 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using MetalMastery.Core.Domain;
 using MetalMastery.Services.Interfaces;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Areas.Admin.Models;
+using MetalMastery.Web.Framework.Filters;
 
 namespace MetalMastery.Web.Areas.Admin.Controllers
-{   
-    public class ThingController : Controller
+{
+    public class ThingController : BaseAdminController
     {
         private readonly IThingService _thingService;
         private readonly ITagService _tagService;
@@ -55,7 +57,8 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Exclude = "Id")]ThingModel thing)
+        [UserNameFilter]
+        public ActionResult Create([Bind(Exclude = "Id")]ThingModel thing, string userName)
         {
             if (!ModelState.IsValid)
             {
@@ -64,15 +67,17 @@ namespace MetalMastery.Web.Areas.Admin.Controllers
             }
 
             var state = _stateService.GetStateByName(States.Idea.ToString());
+            var user = _userService.GetUserByEmail(userName);
 
-            if (state == null)
+            if (state == null || user == null)
             {
-                ViewBag.Error = MmResources.StateNotFound;
+                ViewBag.Error = state == null ? MmResources.StateNotFound : MmResources.UserNotFound;
                 return View(thing);
             }
 
-            thing.CreateDate = DateTime.Now;
+            thing.CreateDate = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             thing.StateId = state.Id;
+            thing.OwnerId = user.Id;
 
             _thingService.Insert(thing.ToEntity());
 

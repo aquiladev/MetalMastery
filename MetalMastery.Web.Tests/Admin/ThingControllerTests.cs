@@ -145,9 +145,9 @@ namespace MetalMastery.Web.Tests.Admin
                 _stateService.Stub(x => x.GetAll())
                     .IgnoreArguments()
                     .Return(
-                        new List<State>
+                        new List<ThingState>
                             {
-                                new State()
+                                new ThingState()
                             });
             }
 
@@ -197,9 +197,9 @@ namespace MetalMastery.Web.Tests.Admin
                 _stateService.Stub(x => x.GetAll())
                     .IgnoreArguments()
                     .Return(
-                        new List<State>
+                        new List<ThingState>
                             {
-                                new State()
+                                new ThingState()
                             });
             }
 
@@ -342,9 +342,9 @@ namespace MetalMastery.Web.Tests.Admin
                 _stateService.Stub(x => x.GetAll())
                     .IgnoreArguments()
                     .Return(
-                        new List<State>
+                        new List<ThingState>
                             {
-                                new State()
+                                new ThingState()
                             });
             }
 
@@ -361,7 +361,7 @@ namespace MetalMastery.Web.Tests.Admin
         {
             _thingController.ModelState.AddModelError("some", "err");
 
-            var result = _thingController.Create(new ThingModel());
+            var result = _thingController.Create(new ThingModel(), "user");
 
             Assert.IsNotNull(((ViewResultBase)result).Model);
         }
@@ -400,13 +400,13 @@ namespace MetalMastery.Web.Tests.Admin
                 _stateService.Stub(x=> x.GetAll())
                     .IgnoreArguments()
                     .Return(
-                        new List<State>
+                        new List<ThingState>
                             {
-                                new State()
+                                new ThingState()
                             });
             }
 
-            var result = (ViewResultBase)_thingController.Create(new ThingModel());
+            var result = (ViewResultBase)_thingController.Create(new ThingModel(), "user");
 
             Assert.IsNotNull(result.ViewBag.Tags);
             Assert.IsNotNull(result.ViewBag.Materials);
@@ -421,10 +421,14 @@ namespace MetalMastery.Web.Tests.Admin
             {
                 _stateService.Stub(x => x.GetStateByName(string.Empty))
                     .IgnoreArguments()
-                    .Return(new State());
+                    .Return(new ThingState());
+
+                _userService.Stub(x => x.GetUserByEmail(string.Empty))
+                    .IgnoreArguments()
+                    .Return(new User());
             }
 
-            var result = (RedirectToRouteResult)_thingController.Create(new ThingModel());
+            var result = (RedirectToRouteResult)_thingController.Create(new ThingModel(), "user");
             Assert.AreEqual(result.RouteValues["action"], "Index");
         }
 
@@ -438,9 +442,29 @@ namespace MetalMastery.Web.Tests.Admin
                     .Return(null);
             }
 
-            var result = _thingController.Create(new ThingModel());
+            var result = _thingController.Create(new ThingModel(), "user");
 
             Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmResources.StateNotFound);
+            Assert.IsNotNull(((ViewResultBase)result).Model);
+        }
+
+        [Test]
+        public void CreatePost_UserNotFound_ReturnError()
+        {
+            using (_mockRepository.Record())
+            {
+                _stateService.Stub(x => x.GetStateByName(string.Empty))
+                    .IgnoreArguments()
+                    .Return(new ThingState());
+
+                _userService.Stub(x => x.GetUserByEmail(string.Empty))
+                    .IgnoreArguments()
+                    .Return(null);
+            }
+
+            var result = _thingController.Create(new ThingModel(), "user");
+
+            Assert.AreEqual(((ViewResultBase)result).ViewBag.Error, MmResources.UserNotFound);
             Assert.IsNotNull(((ViewResultBase)result).Model);
         }
 

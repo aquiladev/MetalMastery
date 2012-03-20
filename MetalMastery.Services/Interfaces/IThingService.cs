@@ -5,6 +5,6 @@ namespace MetalMastery.Services.Interfaces
 {
     public interface IThingService : IBaseEntityService<Thing>
     {
-        IPagedList<Thing> GetPublishedCompletedThings(int pageIndex, int pageSize);
+        IPagedList<Thing> GetPublishedThings(int pageIndex, int pageSize);
     }
 }

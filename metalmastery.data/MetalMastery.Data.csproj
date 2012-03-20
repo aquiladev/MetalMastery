@@ -50,8 +50,8 @@
     <Compile Include="Mapping\FormatMap.cs" />
     <Compile Include="Mapping\MaterialMap.cs" />
     <Compile Include="Mapping\OrderMap.cs" />
-    <Compile Include="Mapping\StateMap.cs" />
-    <Compile Include="Mapping\StateOrderMap.cs" />
+    <Compile Include="Mapping\ThingStateMap.cs" />
+    <Compile Include="Mapping\OrderStateMap.cs" />
     <Compile Include="Mapping\TagMap.cs" />
     <Compile Include="Mapping\ThingMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />

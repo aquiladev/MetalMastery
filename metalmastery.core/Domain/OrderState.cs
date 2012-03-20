@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-	public sealed class StateOrder : BaseEntity
+	public class OrderState : BaseEntity
 	{
-	    public StateOrder()
+	    public OrderState()
 		{
 			Orders = new List<Order>();
 		}
@@ -14,7 +14,7 @@ namespace MetalMastery.Core.Domain
 		
         public string Name { get; set; }
 		
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 	}
 }
 

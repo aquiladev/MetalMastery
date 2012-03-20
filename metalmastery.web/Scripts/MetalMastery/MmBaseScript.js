@@ -370,7 +370,7 @@ function Things() {
             var self = this;
             self.items = ko.observableArray();
             self.chosenThingData = ko.observable();
-
+            
             self.goToThing = function (thing) {
                 $.get('/Thing/Details/' + thing.Id, {}, self.chosenThingData)
                 .success(function () {
@@ -393,7 +393,6 @@ function Things() {
                 $('.dsq-tooltip-outer').remove();
                 $('#things .view-thing').hide();
                 $('#things .list').show();
-
             };
         }
 }

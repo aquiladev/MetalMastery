@@ -14,8 +14,8 @@ namespace MetalMastery.Services.Tests
     {
         private MockRepository _mockRepository;
         private IRepository<Thing> _thingRepository;
+        private IRepository<ThingState> _thingStateRepository;
 
-        private IStateService _stateService;
         private IThingService _thingService;
 
         [SetUp]
@@ -23,9 +23,9 @@ namespace MetalMastery.Services.Tests
         {
             _mockRepository = new MockRepository();
             _thingRepository = _mockRepository.DynamicMock<IRepository<Thing>>();
-            _stateService = _mockRepository.DynamicMock<IStateService>();
+            _thingStateRepository = _mockRepository.DynamicMock<IRepository<ThingState>>();
 
-            _thingService = new ThingService(_thingRepository, _stateService);
+            _thingService = new ThingService(_thingRepository, _thingStateRepository);
         }
 
         [Test]
@@ -50,15 +50,29 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
-        public void GetPublishedCompletedThings_CorrectCount()
+        public void GetPublishedThings_CorrectCount()
         {
             Guid completedStateId = Guid.NewGuid();
+            Guid saleStateId = Guid.NewGuid();
 
             using (_mockRepository.Record())
             {
-                _stateService.Stub(y => y.GetStateByName(string.Empty))
+                _thingStateRepository.Stub(y => y.Table)
                     .IgnoreArguments()
-                    .Return(new State { Id = completedStateId });
+                    .Return(new List<ThingState>
+                                {
+                                    new ThingState
+                                        {
+                                            Name = States.Completed.ToString(),
+                                            Id = completedStateId
+                                        },
+                                    new ThingState
+                                        {
+                                            Name = States.Sale.ToString(),
+                                            Id = saleStateId
+                                        }
+                                }
+                                .AsQueryable());
 
                 _thingRepository.Stub(x => x.Table)
                     .Return((new List<Thing>
@@ -74,6 +88,11 @@ namespace MetalMastery.Services.Tests
                                          },
                                      new Thing
                                          {
+                                             ShowForAll = true,
+                                             StateId = saleStateId
+                                         },
+                                     new Thing
+                                         {
                                              ShowForAll = true
                                          },
                                      new Thing()
@@ -81,9 +100,9 @@ namespace MetalMastery.Services.Tests
                                 .AsQueryable());
             }
 
-            var result = _thingService.GetPublishedCompletedThings(0, 100);
+            var result = _thingService.GetPublishedThings(0, 100);
 
-            Assert.AreEqual(result.Count(), 1);
+            Assert.AreEqual(result.Count(), 2);
         }
     }
 }

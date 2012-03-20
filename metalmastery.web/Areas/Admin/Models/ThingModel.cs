@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using MetalMastery.Core.Domain;
 using MetalMastery.Web.App_LocalResources;
 using MetalMastery.Web.Framework.Validation;
 
 namespace MetalMastery.Web.Areas.Admin.Models
 {
     [MetadataType(typeof(ThingModelMetadata))]
-    public class ThingModel : Thing
+    public class ThingModel
     {
         public ThingModel()
         {
@@ -17,6 +16,40 @@ namespace MetalMastery.Web.Areas.Admin.Models
                 Id = Guid.NewGuid();
             }
         }
+
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public bool ShowOnHome { get; set; }
+
+        public bool ShowForAll { get; set; }
+
+        public Guid FormatId { get; set; }
+
+        public int Rating { get; set; }
+
+        public int Price { get; set; }
+
+        public string Image1 { get; set; }
+
+        public string Image2 { get; set; }
+
+        public string Comment { get; set; }
+
+        public string ImageRes { get; set; }
+
+        public string CreateDate { get; set; }
+
+        public Guid MaterialId { get; set; }
+
+        public Guid StateId { get; set; }
+
+        public Guid OwnerId { get; set; }
+
+        public string OwnerName { get; set; }
     }
 
     public class ThingModelMetadata

@@ -16,9 +16,9 @@ namespace MetalMastery.Data
         
         public DbSet<Order> Orders { get; set; }
         
-        public DbSet<State> States { get; set; }
-        
-        public DbSet<StateOrder> StateOrders { get; set; }
+        public DbSet<ThingState> ThingStates { get; set; }
+
+        public DbSet<OrderState> OrderStates { get; set; }
         
         public DbSet<Tag> Tags { get; set; }
         
@@ -34,8 +34,8 @@ namespace MetalMastery.Data
             modelBuilder.Configurations.Add(new FormatMap());
             modelBuilder.Configurations.Add(new MaterialMap());
             modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new StateMap());
-            modelBuilder.Configurations.Add(new StateOrderMap());
+            modelBuilder.Configurations.Add(new ThingStateMap());
+            modelBuilder.Configurations.Add(new OrderStateMap());
             modelBuilder.Configurations.Add(new TagMap());
             modelBuilder.Configurations.Add(new ThingMap());
             modelBuilder.Configurations.Add(new UserMap());

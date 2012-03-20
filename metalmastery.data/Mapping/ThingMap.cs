@@ -36,6 +36,7 @@ namespace MetalMastery.Data.Mapping
 			Property(t => t.ShowForAll).HasColumnName("ShowForAll");
 			Property(t => t.FormatId).HasColumnName("FormatId");
 			Property(t => t.Rating).HasColumnName("Rating");
+			Property(t => t.Price).HasColumnName("Price");
 			Property(t => t.Image1).HasColumnName("Image1");
 			Property(t => t.Image2).HasColumnName("Image2");
 			Property(t => t.Comment).HasColumnName("Comment");
@@ -43,7 +44,7 @@ namespace MetalMastery.Data.Mapping
 			Property(t => t.ImageRes).HasColumnName("ImageRes");
 			Property(t => t.MaterialId).HasColumnName("MaterialId");
 			Property(t => t.StateId).HasColumnName("StateId");
-            //Property(t => t.OwnerId).HasColumnName("OwnerId");
+            Property(t => t.OwnerId).HasColumnName("OwnerId");
 
 			// Relationships
 			HasRequired(t => t.Format)
@@ -57,6 +58,10 @@ namespace MetalMastery.Data.Mapping
 		    HasRequired(t => t.State)
 		        .WithMany(t => t.Things)
 		        .HasForeignKey(d => d.StateId);
+
+            HasRequired(t => t.Owner)
+                .WithMany(t => t.Things)
+                .HasForeignKey(d => d.OwnerId);
 		}
 	}
 }

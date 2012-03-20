@@ -20,10 +20,10 @@ namespace MetalMastery.Core.Domain
         public bool ShowOnHome { get; set; }
 		
         public bool ShowForAll { get; set; }
-		
-        public Guid FormatId { get; set; }
-		
+				
         public int Rating { get; set; }
+        
+        public int Price { get; set; }
 
         public string Image1 { get; set; }
 
@@ -34,24 +34,26 @@ namespace MetalMastery.Core.Domain
         public string ImageRes { get; set; }
 
         public DateTime CreateDate { get; set; }
+
+        public Guid FormatId { get; set; }
 		
         public Guid MaterialId { get; set; }
 		
         public Guid StateId { get; set; }
 
-        public Format Format { get; set; }
-		
-        public Material Material { get; set; }
-		
-        public ICollection<Order> Orders { get; set; }
-		
-        public State State { get; set; }
-		
-        public ICollection<Tag> Tags { get; set; }
+        public Guid OwnerId { get; set; }
 
-        //public Guid OwnerId { get; set; }
+        public virtual Format Format { get; set; }
+		
+        public virtual Material Material { get; set; }
 
-        //public virtual User Owner { get; set; }
+        public virtual User Owner { get; set; }
+
+        public virtual ThingState State { get; set; }
+		
+        public virtual ICollection<Order> Orders { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
 	}
 }
 

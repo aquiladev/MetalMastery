@@ -25,10 +25,10 @@ namespace MetalMastery.Core.Mvc
                 if (validators.Count > 0)
                 {
                     validators.Add(new
-                    {
-                        Value = DataVal,
-                        Text = true
-                    });
+                                       {
+                                           Value = DataVal,
+                                           Text = true
+                                       });
 
                     modelValidators.Add(
                         modelMetadata.PropertyName,
@@ -54,10 +54,10 @@ namespace MetalMastery.Core.Mvc
             if (validators.Count > 0)
             {
                 validators.Add(new
-                {
-                    Value = DataVal,
-                    Text = true
-                });
+                                   {
+                                       Value = DataVal,
+                                       Text = true
+                                   });
 
                 modelValidators.Add(
                     metaData.PropertyName,

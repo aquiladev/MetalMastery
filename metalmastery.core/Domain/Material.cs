@@ -14,7 +14,7 @@ namespace MetalMastery.Core.Domain
 
         public string Name { get; set; }
 
-        public ICollection<Thing> Things { get; set; }
+        public virtual ICollection<Thing> Things { get; set; }
     }
 }
 

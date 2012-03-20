@@ -7,18 +7,20 @@ namespace MetalMastery.Core.Domain
 		public new Guid Id { get; set; }
 		
         public DateTime CreateDate { get; set; }
-		
-        public Guid UserId { get; set; }
-		
-        public Guid StateOrderId { get; set; }
+
+        public DateTime UpdateDate { get; set; }
+
+        public Guid OwnerId { get; set; }
+
+        public Guid StateId { get; set; }
 		
         public Guid ThingId { get; set; }
 		
-        public virtual StateOrder StateOrder { get; set; }
+        public virtual OrderState State { get; set; }
 		
         public virtual Thing Thing { get; set; }
-		
-        public virtual User User { get; set; }
+
+        public virtual User Owner { get; set; }
 	}
 }
 

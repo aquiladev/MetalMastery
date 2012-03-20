@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace MetalMastery.Core.Domain
 {
-    public sealed class State : BaseEntity
+    public class ThingState : BaseEntity
     {
-        public State()
+        public ThingState()
         {
             Things = new List<Thing>();
         }
@@ -14,7 +14,7 @@ namespace MetalMastery.Core.Domain
 
         public string Name { get; set; }
 
-        public ICollection<Thing> Things { get; set; }
+        public virtual ICollection<Thing> Things { get; set; }
     }
 }
 

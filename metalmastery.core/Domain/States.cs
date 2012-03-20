@@ -2,9 +2,10 @@
 {
     public enum States
     {
+        Sale,
+        Unique,
         Idea,
         Process,
-        Completed,
-        Rejected
+        Completed
     }
 }
