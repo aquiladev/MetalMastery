@@ -135,6 +135,9 @@
   <data name="BackToList" xml:space="preserve">
     <value>Вернуться к списку</value>
   </data>
+  <data name="BackToWeb" xml:space="preserve">
+    <value>Вернуться на сайт</value>
+  </data>
   <data name="Choose" xml:space="preserve">
     <value>Выберите...</value>
   </data>

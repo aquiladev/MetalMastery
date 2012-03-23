@@ -17,9 +17,9 @@ namespace MetalMastery.Web
 
             ViceVersa<User, UserModel>();
 
-            Mapper.CreateMap<User, LogOnModel>()
+            Mapper.CreateMap<User, SignInModel>()
                 .ForMember(dest => dest.RememberMe, opt => opt.Ignore());
-            Mapper.CreateMap<LogOnModel, User>()
+            Mapper.CreateMap<SignInModel, User>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
@@ -27,9 +27,9 @@ namespace MetalMastery.Web
                 .ForMember(dest => dest.Things, opt => opt.Ignore())
                 .ForMember(dest => dest.Articles, opt => opt.Ignore());
 
-            Mapper.CreateMap<User, RegistrateModel>()
+            Mapper.CreateMap<User, SignUpModel>()
                 .ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore());
-            Mapper.CreateMap<RegistrateModel, User>()
+            Mapper.CreateMap<SignUpModel, User>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
                 .ForMember(dest => dest.Orders, opt => opt.Ignore())

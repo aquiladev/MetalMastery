@@ -26,11 +26,11 @@ namespace MetalMastery.Web
 
         #endregion
 
-        #region RegistrateModel
+        #region SignUpModel
 
-        public static User ToEntity(this RegistrateModel model)
+        public static User ToEntity(this SignUpModel model)
         {
-            return Mapper.Map<RegistrateModel, User>(model);
+            return Mapper.Map<SignUpModel, User>(model);
         }
 
         #endregion

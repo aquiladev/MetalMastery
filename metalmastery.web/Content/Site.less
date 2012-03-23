@@ -12,8 +12,8 @@
 @vertical-btn-height: 250px;
 @vertical-btn-width: 50px;
 @border-radius: 10px;
-@img-width: 260px;
-@img-hieght: 300px;
+@img-width: 220px;
+@img-hieght: 260px;
 
 * {
     margin: 0;
@@ -397,13 +397,10 @@ fieldset {
     .list {
         li {
             float: left;
-            height: 300px;
-            margin: 10px 0;
-            width: 320px;
+            margin: 10px;
             .item {
                 display: block;
                 margin-top: 15px;
-                min-height: 300px;
                 padding: 10px;
                 text-decoration: none;
                 h3 {
@@ -455,5 +452,19 @@ fieldset {
             width: @img-width;
             max-height: @img-hieght;
         }
+    }
+    .front, .image{
+        width: @img-width;
+        height: @img-hieght;
+        float: left;
+        border: 1px solid @btn-color;
+        .border-radius(10px);
+        background-position: 50% 50% !important;
+        background-size: 100% 100% !important;
+        background-repeat: no-repeat !important;
+    }
+    .image {
+        margin-right: 20px;
+        margin-bottom: 20px;
     }
 }

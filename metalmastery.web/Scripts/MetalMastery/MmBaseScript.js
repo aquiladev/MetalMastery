@@ -125,7 +125,7 @@ function SignIn() {
         ko.applyBindings(new signInViewModel(), document.getElementById("signin"));
         ko.applyBindings(new signUpViewModel(), document.getElementById("signup"));
 
-        $.get('/user/isAuthenticate', {})
+        $.get('/account/isAuthenticate', {})
             .success(function (result) {
                 if (result.Success && result.Data) {
                     obj.IsAuthenticated = result.Data.IsAuthenticated;
@@ -158,7 +158,7 @@ function SignIn() {
         this.password = ko.observable("");
 
         this.signIn = function () {
-            $.get('/user/signIn', { Email: this.email(), Password: this.password() })
+            $.get('/account/signIn', { Email: this.email(), Password: this.password() })
                 .success(function (result) {
                     if (result === undefined)
                         return;
@@ -190,7 +190,7 @@ function SignIn() {
         this.confirmPassword = ko.observable("");
 
         this.signUp = function () {
-            $.get('/user/signup', { Email: this.email(), Password: this.password(), ConfirmPassword: this.confirmPassword() })
+            $.get('/account/signup', { Email: this.email(), Password: this.password(), ConfirmPassword: this.confirmPassword() })
                 .success(function (result) {
                     if (result === undefined)
                         return;
@@ -234,7 +234,7 @@ SignIn.prototype.buildUserPanel = function () {
     body.find("#" + this.PersonalPanel).remove();
     body.append("<div id='" + this.PersonalPanel + "' class='" + this.BtnClass + "'><span>" + MM.Res.get("WelcomePrefix") + " " + obj.User + "</span><div id='signout'>" + MM.Res.get("Exit") + "</div></div>");
     $('#signout').live('click', function () {
-        $.get('/user/signOut', {});
+        $.get('/account/signOut', {});
         body.find("#" + this.PersonalPanel).remove();
         SignIn.base.build.call(obj);
     });
@@ -393,6 +393,9 @@ function Things() {
                 $('.dsq-tooltip-outer').remove();
                 $('#things .view-thing').hide();
                 $('#things .list').show();
+            };
+            self.getImgUrl = function (item) {
+                return "url(" + item.ImageRes + ")";
             };
         }
 }

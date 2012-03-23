@@ -3,6 +3,18 @@
     ViewBag.Title = @MmResources.MetalMasteryTitle;
 }
 <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25703825-3']);
+    _gaq.push(['_setDomainName', 'metalmastery.ua']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    
     $(document).ready(function () {
         ModuleManager();
     });
@@ -86,10 +98,7 @@
         <ul class="list" data-bind="foreach: items">
             <li data-bind="click: $root.goToThing">
                 <div class="item">
-                    <div class="img-block">
-                        <img data-bind="attr: { src: $data.ImageRes, alt: $data.Name}" alt="" src=""/>
-                    </div>
-                    <h3 data-bind="text: $data.Name"></h3>
+                    <div class="front" data-bind="style: { background: $root.getImgUrl($data) }"></div>
                 </div>
             </li>
         </ul>
@@ -97,9 +106,7 @@
             <div class="thing">
                 <h1 data-bind="text: Data.Name"></h1>
                 <div class="box">
-                    <div class="img-block">
-                        <img data-bind="attr: { src: Data.ImageRes}" alt=""/>
-                    </div>
+                    <div class="image" data-bind="style: { background: $root.getImgUrl(Data) }"></div>
                     <p><label>@MmResources.Owner</label>: <span data-bind="text: Data.OwnerName"></span></p>
                     <p><label>@MmResources.CreateDate</label>: <span data-bind="text: Data.CreateDate"></span></p>
                     <p class="text" data-bind="html: Data.Description" />

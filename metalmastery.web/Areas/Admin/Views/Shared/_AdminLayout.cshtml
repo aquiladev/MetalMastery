@@ -31,7 +31,8 @@
                 @if (!string.IsNullOrEmpty(currentCustomer))
                 {
                     @string.Format(MmResources.Welcome, currentCustomer)
-                    <text> @Html.ActionLink(MmResources.Exit, "LogOut", "User", new { area = "" }, null)</text> 
+                    <text> @Html.ActionLink(MmResources.Exit, "SignOut", "Account", new { area = "Standalone" }, null)</text> 
+                    <p>@Html.ActionLink(MmResources.BackToWeb, "Index", "Home", new { area = "" }, null)</p>
                 }
             </div>
         </div>
@@ -39,7 +40,7 @@
         </div>
         <div class="header-menu">
             <ul>
-                <li>@Html.ActionLink(MmResources.Users, "Index", "User", new { area = "Admin" }, null)</li>
+                <li>@Html.ActionLink(MmResources.Users, "Index", "Account", new { area = "Admin" }, null)</li>
                 <li>@Html.ActionLink(MmResources.Articles, "Index", "Article", new { area = "Admin" }, null)</li>
                 <li>@Html.ActionLink(MmResources.Formats, "Index", "Format", new { area = "Admin" }, null)</li>
                 <li>@Html.ActionLink(MmResources.Materials, "Index", "Material", new { area = "Admin" }, null)</li>

@@ -115,6 +115,15 @@ namespace MetalMastery.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вернуться на сайт.
+        /// </summary>
+        public static string BackToWeb {
+            get {
+                return ResourceManager.GetString("BackToWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выберите....
         /// </summary>
         public static string Choose {
