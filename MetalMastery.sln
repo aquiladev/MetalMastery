@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Core.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Web.Framework", "MetalMastery.Web.Framework\MetalMastery.Web.Framework.csproj", "{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalMastery.Data.Tests", "MetalMastery.Data.Tests\MetalMastery.Data.Tests.csproj", "{5CD400C9-C020-436C-A652-AE2938FA3D22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,16 @@ Global
 		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{030C0339-4CE1-41CA-B5F7-64DE466CF3AD}.Release|x86.ActiveCfg = Release|Any CPU
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Debug|x86.ActiveCfg = Debug|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Debug|x86.Build.0 = Debug|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Release|Any CPU.ActiveCfg = Release|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Release|x86.ActiveCfg = Release|x86
+		{5CD400C9-C020-436C-A652-AE2938FA3D22}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,5 +138,6 @@ Global
 		{45502CD1-9B3F-4102-A6CA-BDF317652B4D} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
 		{050085A7-A117-480F-AC6D-9EC1C491F227} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
 		{DBDCBFA0-E7EB-49F0-9407-FC0C038B1BA4} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
+		{5CD400C9-C020-436C-A652-AE2938FA3D22} = {5F0BA6F8-F2C2-4DFB-8A77-2288C3BC9208}
 	EndGlobalSection
 EndGlobal
