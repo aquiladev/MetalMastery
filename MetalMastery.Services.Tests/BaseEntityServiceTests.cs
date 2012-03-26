@@ -144,13 +144,6 @@ namespace MetalMastery.Services.Tests
         {
             _service.Delete(null);
         }
-        
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Update_EntityIsNull_Exception()
-        {
-            _service.Delete(null);
-        }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
