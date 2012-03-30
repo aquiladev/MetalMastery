@@ -172,7 +172,26 @@ namespace MetalMastery.Services.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Insert_EntityIsNull_Exception()
         {
-            _userService.Delete(null);
+            _userService.Insert(null);
+        }
+
+        [Test]
+        public void Insert_ExpectCallInsert()
+        {
+            var user = new User
+                           {
+                               Email = string.Empty,
+                               Password = new byte[] { }
+                           };
+            using (_mockRepository.Record())
+            {
+                _userRepository.Expect(x => x.Insert(user)).IgnoreArguments();
+                _userRepository.Expect(x => x.SaveChanges());
+            }
+
+            _userService.Insert(user);
+
+            _userRepository.VerifyAllExpectations();
         }
 
         [Test]
@@ -196,6 +215,23 @@ namespace MetalMastery.Services.Tests
             _userService.Update(new User());
         }
 
+        [Test]
+        public void Update_ExpectCallSave()
+        {
+            using (_mockRepository.Record())
+            {
+                _userRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(new []{new User()});
+
+                _userRepository.Expect(x => x.SaveChanges());
+            }
+
+            _userService.Update(new User());
+
+            _userRepository.VerifyAllExpectations();
+        }
+        
         #region
         private IEnumerable<User> InitUserSets()
         {

@@ -28,16 +28,6 @@ namespace MetalMastery.Core
         public PagedList(IList<T> source, int pageIndex, int pageSize)
             : this(source, pageIndex, pageSize, source.Count) { }
 
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="source">source</param>
-        /// <param name="pageIndex">Page index</param>
-        /// <param name="pageSize">Page size</param>
-        /// <param name="totalCount">Total count</param>
-        public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int totalCount)
-            : this(source.ToList(), pageIndex, pageSize, totalCount) { }
-
         private PagedList(IList<T> source, int pageIndex, int pageSize, int totalCount)
         {
             PageSize = pageSize;

@@ -50,6 +50,23 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
+        public void Update_ExpectCallSave()
+        {
+            using (_mockRepository.Record())
+            {
+                _thingRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(new[] {new Thing()});
+
+                _thingRepository.Expect(x => x.SaveChanges());
+            }
+
+            _thingService.Update(new Thing());
+
+            _thingRepository.VerifyAllExpectations();
+        }
+
+        [Test]
         public void GetPublishedThings_CorrectCount()
         {
             Guid completedStateId = Guid.NewGuid();
@@ -101,6 +118,25 @@ namespace MetalMastery.Services.Tests
             }
 
             var result = _thingService.GetPublishedThings(0, 100);
+
+            Assert.AreEqual(result.Count(), 2);
+        }
+
+        [Test]
+        public void GetAll_CountCorrect()
+        {
+            using (_mockRepository.Record())
+            {
+                _thingRepository.Stub(x => x.Table)
+                    .Return((new List<Thing>
+                                 {
+                                     new Thing(),
+                                     new Thing()
+                                 })
+                                .AsQueryable());
+            }
+
+            var result = _thingService.GetAll(0, 100);
 
             Assert.AreEqual(result.Count(), 2);
         }

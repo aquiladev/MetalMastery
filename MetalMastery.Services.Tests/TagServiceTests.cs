@@ -48,6 +48,23 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
+        public void Update_ExpectCallSave()
+        {
+            using (_mockRepository.Record())
+            {
+                _tagRepository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(new[] {new Tag()});
+
+                _tagRepository.Expect(x => x.SaveChanges());
+            }
+
+            _tagService.Update(new Tag());
+
+            _tagRepository.VerifyAllExpectations();
+        }
+
+        [Test]
         public void GetAll_CountCorrect()
         {
             using (_mockRepository.Record())

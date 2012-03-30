@@ -50,8 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtentionsTests.cs" />
     <Compile Include="PagedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\ExtentionsTests.cs" />
+    <Compile Include="Web\HtmlRemovalTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

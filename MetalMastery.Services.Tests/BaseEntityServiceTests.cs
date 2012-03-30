@@ -37,7 +37,7 @@ namespace MetalMastery.Services.Tests
         public void GetEntityById_Founded()
         {
             var id = Guid.NewGuid();
-            var entity = new BaseEntity() { Id = id };
+            var entity = new BaseEntity { Id = id };
 
             using (_mockRepository.Record())
             {
@@ -109,17 +109,17 @@ namespace MetalMastery.Services.Tests
         [Test]
         public void GetAll_OrderByDescending()
         {
-            var ar0 = new BaseEntity()
+            var ar0 = new BaseEntity
                           {
                               Id = Guid.NewGuid()
                           };
 
-            var ar1 = new BaseEntity()
+            var ar1 = new BaseEntity
                           {
                               Id = Guid.NewGuid()
                           };
 
-            var ar2 = new BaseEntity()
+            var ar2 = new BaseEntity
                           {
                               Id = Guid.NewGuid()
                           };
@@ -146,6 +146,29 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
+        public void Delete_ExpectCallDelete()
+        {
+            var entity = new BaseEntity();
+
+            using (_mockRepository.Record())
+            {
+                _repository.Expect(x => x.Delete(entity));
+                _repository.Expect(x => x.SaveChanges());
+            }
+
+            _service.Delete(entity);
+
+            _repository.VerifyAllExpectations();
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Update_EntityIsNull_Exception()
+        {
+            _service.Update(null);
+        }
+
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void Update_NotFound_ReturnException()
         {
@@ -160,10 +183,43 @@ namespace MetalMastery.Services.Tests
         }
 
         [Test]
+        public void Update_ExpectCallSave()
+        {
+            using (_mockRepository.Record())
+            {
+                _repository.Stub(x => x.Find(y => y.Id == Guid.Empty))
+                    .IgnoreArguments()
+                    .Return(new[] {new BaseEntity()});
+
+                _repository.Expect(x => x.SaveChanges());
+            }
+
+            _service.Update(new BaseEntity());
+
+            _repository.VerifyAllExpectations();
+        }
+
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Insert_EntityIsNull_Exception()
         {
-            _service.Delete(null);
+            _service.Insert(null);
+        }
+
+        [Test]
+        public void Insert_ExpectCallInsert()
+        {
+            var entity = new BaseEntity();
+
+            using (_mockRepository.Record())
+            {
+                _repository.Expect(x => x.Insert(entity));
+                _repository.Expect(x => x.SaveChanges());
+            }
+
+            _service.Insert(entity);
+
+            _repository.VerifyAllExpectations();
         }
     }
 }
