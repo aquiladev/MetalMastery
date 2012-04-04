@@ -1,6 +1,40 @@
 ﻿if (!window.MM)
     MM = {};
 
+MM.DisqusProvider = function (callback) {
+    var inprocess = false;
+
+    //window.disqus_no_style = true;
+    window.disqus_shortname = 'mmua';
+    window.disqus_developer = 1;
+
+    $("#comments").hide();
+
+    try {
+        if (DISQUS) {
+            if (callback != undefined
+            && typeof callback === 'function')
+                callback();
+        }
+    } catch (err) {
+        load();
+    }
+
+    function load() {
+        var obj = this;
+        if (inprocess == true)
+            return;
+        
+        $.getScript("http://mmua.disqus.com/embed.js", { async: true }, function(data, textStatus) {
+            if (textStatus === "success") {
+                obj.inprocess = false;
+            } else {
+                MM.Notification.show(MM.Res.get("UnhandledException"), "error");
+            }
+        });
+    }
+};
+
 MM.Notification = {
     Timers: [],
     pushTimer: function (timer) {
@@ -40,6 +74,23 @@ function ModuleManager() {
     init(this);
     draw(this);
 
+    Sammy(function () {
+        this.get('#:module', function () {
+            var module = getModuleByName(this.params.module);
+
+            if (module === undefined || module.Selected)
+                return;
+
+            preEventHandle(module);
+            module.show();
+        });
+
+        this.get('#:module/:args', function () {
+            var module = getModuleByName(this.params.module);
+            module.handleSammy(this.params.args, preEventHandle);
+        });
+    }).run();
+
     function init() {
         obj.Modules.push(new SignIn());
         obj.Modules.push(new Articles());
@@ -52,17 +103,25 @@ function ModuleManager() {
         }
     }
     function preEventHandle(module) {
-        hideAll();
-        if (module.IsHideCenter || module.IsHideCenter === undefined) {
-            $(".center").hide();
-        } else {
-            $(".center").show();
+        if (module.IsModal || module.IsModal === undefined) {
+            hideAll();
         }
+        $(".center").hide();
     }
     function hideAll() {
         for (key in obj.Modules) {
             obj.Modules[key].hide();
         }
+    }
+    function getModuleByName(name) {
+        var module = undefined;
+        
+        for (key in obj.Modules) {
+            if (obj.Modules[key].Name.toLowerCase() == name.toLowerCase())
+                module = obj.Modules[key];
+        }
+        
+        return module;
     }
 }
 
@@ -93,6 +152,10 @@ Module.prototype.initHandler = function (preEventHandler) {
         if (obj.Selected)
             return;
 
+        if (obj.IsModal || obj.IsModal === undefined) {
+            location.hash = obj.Name;
+        }
+
         if (preEvHandler != undefined
             && typeof preEvHandler === 'function')
             preEvHandler(obj);
@@ -106,6 +169,12 @@ Module.prototype.initHandler = function (preEventHandler) {
         }
     });
 };
+Module.prototype.show = function () {
+    var obj = this;
+    var block = $("#" + obj.Form);
+    obj.Selected = true;
+    block.show();
+};
 
 function SignIn() {
     Module.call(this, "SignIn");
@@ -116,7 +185,7 @@ function SignIn() {
     this.BtnClass = "top-button";
     this.IsAuthenticated = false;
     this.IsAdmin = false;
-    this.IsHideCenter = false;
+    this.IsModal = false;
     this.User = null;
     var obj = this;
     init();
@@ -287,30 +356,38 @@ function Articles() {
         var self = this;
         self.items = ko.observableArray();
         self.chosenArticleData = ko.observable();
+        self.selectedItemId = "";
 
         self.goToArticle = function (article) {
             $.get('/Article/Details/' + article.Id, {}, self.chosenArticleData)
                 .success(function () {
+                    var identity = obj.Name + '/' + article.Id;
                     $('#articles .list').hide();
                     $('#articles .view-article').show();
-                    if (DISQUS) {
+                    self.selectedItemId = article.Id;
+                    location.hash = identity;
+
+                    window.disqus_identifier = obj.Name + article.Id;
+                    window.disqus_url = "http://mmua/" + identity;
+                    MM.DisqusProvider(function () {
                         DISQUS.reset({
                             reload: true,
                             config: function () {
-                                this.page.identifier = "article-" + article.Id;
-                                this.page.url = "http://mmua/#!A" + article.Id;
+                                this.page.identifier = obj.Name + article.Id;
+                                this.page.url = "http://mmua/" + identity;
                             }
                         });
-                        $("#comments").show();
-                    }
+                    });
+                    $("#comments").show();
                 });
         };
-        self.goToList = function () {
+        self.goToList = function() {
+            self.selectedItemId = "";
+            location.hash = obj.Name;
             $("#comments").hide();
             $('.dsq-tooltip-outer').remove();
             $('#articles .view-article').hide();
             $('#articles .list').show();
-
         };
     }
 }
@@ -324,6 +401,20 @@ Articles.prototype.build = function () {
 Articles.prototype.hide = function () {
     Articles.base.hide.call(this);
     $("#comments").hide();
+};
+Articles.prototype.handleSammy = function (args, preEventHandler) {
+    var obj = this;
+
+    if (obj.ArticleViewModel.selectedItemId.length != 0
+        && args.toLowerCase() == obj.ArticleViewModel.selectedItemId.toLowerCase())
+        return;
+
+    if (preEventHandler != undefined
+        && typeof preEventHandler === 'function')
+        preEventHandler(obj);
+
+    obj.ArticleViewModel.goToArticle({ Id: args });
+    obj.show();
 };
 
 function Things() {
@@ -366,38 +457,46 @@ function Things() {
             });
         };
 
-        function thingViewModel() {
-            var self = this;
-            self.items = ko.observableArray();
-            self.chosenThingData = ko.observable();
-            
-            self.goToThing = function (thing) {
-                $.get('/Thing/Details/' + thing.Id, {}, self.chosenThingData)
-                .success(function () {
-                    $('#things .list').hide();
-                    $('#things .view-thing').show();
-                    if (DISQUS) {
-                        DISQUS.reset({
-                            reload: true,
-                            config: function () {
-                                this.page.identifier = "thing-" + thing.Id;
-                                this.page.url = "http://mmua/#!T" + thing.Id;
-                            }
-                        });
-                        $("#comments").show();
-                    }
+    function thingViewModel() {
+        var self = this;
+        self.items = ko.observableArray();
+        self.chosenThingData = ko.observable();
+        self.selectedItemId = "";
+
+        self.goToThing = function (thing) {
+            $.get('/Thing/Details/' + thing.Id, {}, self.chosenThingData)
+            .success(function () {
+                var identity = obj.Name + '/' + thing.Id;
+                $('#things .list').hide();
+                $('#things .view-thing').show();
+                self.selectedItemId = thing.Id;
+                location.hash = identity;
+
+                window.disqus_identifier = obj.Name + thing.Id;
+                window.disqus_url = "http://mmua/" + identity;
+                MM.DisqusProvider(function () {
+                    DISQUS.reset({
+                        reload: true,
+                        config: function () {
+                            this.page.identifier = obj.Name + thing.Id;
+                            this.page.url = "http://mmua/" + identity;
+                        }
+                    });
                 });
-            };
-            self.goToList = function () {
-                $("#comments").hide();
-                $('.dsq-tooltip-outer').remove();
-                $('#things .view-thing').hide();
-                $('#things .list').show();
-            };
-            self.getImgUrl = function (item) {
-                return "url(" + item.ImageRes + ")";
-            };
-        }
+                $("#comments").show();
+            });
+        };
+        self.goToList = function () {
+            location.hash = obj.Name;
+            $("#comments").hide();
+            $('.dsq-tooltip-outer').remove();
+            $('#things .view-thing').hide();
+            $('#things .list').show();
+        };
+        self.getImgUrl = function (item) {
+            return "url(" + item.ImageRes + ")";
+        };
+    }
 }
 Things.prototype = new Module();
 Things.base = Module.prototype;
@@ -409,4 +508,18 @@ Things.prototype.build = function () {
 Things.prototype.hide = function () {
     Things.base.hide.call(this);
     $("#comments").hide();
+};
+Things.prototype.handleSammy = function (args, preEventHandler) {
+    var obj = this;
+
+    if (obj.ThingViewModel.selectedItemId.length != 0
+        && args.toLowerCase() == obj.ThingViewModel.selectedItemId.toLowerCase())
+        return;
+
+    if (preEventHandler != undefined
+        && typeof preEventHandler === 'function')
+        preEventHandler(obj);
+
+    obj.ThingViewModel.goToThing({ Id: args });
+    obj.show();
 };
